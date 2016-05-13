@@ -91,7 +91,7 @@ public class SignUpActivity extends AppCompatActivity {
     @OnClick(R.id.sign_in_link)
     public void toSignInPage() {
         // Redirect to sign in page
-        Intent intent = new Intent();
+        Intent intent = new Intent(SignUpActivity.this, SigninActivity.class);
         startActivity(intent);
     }
 
