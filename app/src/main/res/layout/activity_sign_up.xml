@@ -30,8 +30,7 @@
         android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:layout_below="@+id/relativeLayout"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_above="@+id/sign_up_tab">
+        android:layout_alignParentStart="true">
 
         <TextView
             android:layout_width="wrap_content"

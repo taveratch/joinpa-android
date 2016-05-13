@@ -1,11 +1,13 @@
 package io.joinpa.joinpa.ui.views;
 
+import android.graphics.Typeface;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.method.PasswordTransformationMethod;
+import android.view.WindowManager;
 import android.widget.EditText;
 
 import butterknife.BindView;
@@ -49,11 +51,12 @@ public class SignUpActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         LinearLayoutManager llm = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-//        recyclerView.setLayoutManager(llm);
+        recyclerView.setLayoutManager(llm);
 
         // Set EditText to password field input
-//        passwordInput.setTransformationMethod(new PasswordTransformationMethod());
-//        cpasswordInput.setTransformationMethod(new PasswordTransformationMethod());
+        passwordInput.setTransformationMethod(new PasswordTransformationMethod());
+        cpasswordInput.setTransformationMethod(new PasswordTransformationMethod());
+
 
     }
 }
