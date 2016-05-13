@@ -1,5 +1,6 @@
 package io.joinpa.joinpa.ui.views;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import android.widget.EditText;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import io.joinpa.joinpa.R;
 import io.joinpa.joinpa.ui.adapters.UserAvatarAdapter;
 
@@ -46,6 +48,17 @@ public class SignUpActivity extends AppCompatActivity {
     @BindView(R.id.email_input)
     EditText emailInput;
 
+    @OnClick(R.id.sign_up_button)
+    public void signUp() {
+
+    }
+
+    @OnClick(R.id.sign_in_link)
+    public void toSignInPage() {
+        // Redirect to sign in page
+        Intent intent = new Intent();
+        startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,4 +78,6 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     }
+
+
 }
