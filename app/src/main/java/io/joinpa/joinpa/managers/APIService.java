@@ -10,10 +10,10 @@ import retrofit2.http.POST;
 public interface APIService {
 
     @POST("signin")
-    Call<Token> signin(@Body User user);
+    Call<Token> signin(@Body RequestBody requestBody);
 
     @POST("signup")
-    Call<Token> signup(@Body User user);
+    Call<Token> signup(@Body RequestBody requestBody);
 
     @POST("verify")
     Call<User> verify(@Body RequestBody requestBody);
