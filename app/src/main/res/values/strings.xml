@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">JoinPa</string>
+    <string name="already_join">Already joined ?</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="email">Email</string>
 </resources>
