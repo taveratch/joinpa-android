@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.WindowManager;
 import android.widget.EditText;
 
@@ -15,11 +16,17 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.joinpa.joinpa.R;
+import io.joinpa.joinpa.managers.FormValidator;
 import io.joinpa.joinpa.ui.adapters.UserAvatarAdapter;
 
 import io.joinpa.joinpa.R;
 
 public class SignUpActivity extends AppCompatActivity {
+
+    private String username;
+    private String password;
+    private String cpassword;
+    private String email;
 
     @BindView(R.id.choose_avatar_view)
     RecyclerView recyclerView;
@@ -48,8 +55,36 @@ public class SignUpActivity extends AppCompatActivity {
     @BindView(R.id.email_input)
     EditText emailInput;
 
+    public boolean validateForm() {
+
+        username = usernameWrapper.getEditText().getText().toString();
+        password = passwordWrapper.getEditText().getText().toString();
+        cpassword = cpasswordWrapper.getEditText().getText().toString();
+        email = emailWrapper.getEditText().getText().toString();
+
+        if (!FormValidator.validateEmail(email)) {
+            emailWrapper.setError("Error");
+        }
+        else {
+            emailWrapper.setError(null);
+        }
+
+        if (!FormValidator.validatePassword(password, cpassword)) {
+            cpasswordWrapper.setError("Password do not match");
+        }
+        else {
+            cpasswordWrapper.setError(null);
+        }
+
+        return FormValidator.validateEmail(email)
+                && FormValidator.validatePassword(password, cpassword);
+    }
+
     @OnClick(R.id.sign_up_button)
     public void signUp() {
+        if (validateForm()) {
+            // Sent result to server
+        }
 
     }
 
@@ -75,6 +110,18 @@ public class SignUpActivity extends AppCompatActivity {
         // Set EditText to password field input
         passwordInput.setTransformationMethod(new PasswordTransformationMethod());
         cpasswordInput.setTransformationMethod(new PasswordTransformationMethod());
+
+//        usernameWrapper.setErrorEnabled(true);
+//        cpasswordWrapper.setErrorEnabled(true);
+
+
+        // Get value from user inputs
+
+
+        // Check user inputs
+
+
+        // Sign up
 
 
     }
