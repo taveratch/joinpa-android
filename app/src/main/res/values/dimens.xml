@@ -5,4 +5,5 @@
     <dimen name="text_body">14sp</dimen>
     <dimen name="text_heading">20sp</dimen>
     <dimen name="text_input_margin_top">4dp</dimen>
+    <dimen name="logo_size">120dp</dimen>
 </resources>

@@ -6,4 +6,7 @@
     <string name="confirm_password">Confirm password</string>
     <string name="email">Email</string>
     <string name="avatar">Avatar</string>
+    <string name="sign_in">Sign in</string>
+    <string name="not_member">Not a member ?</string>
+    <string name="join_now">Join us now</string>
 </resources>

@@ -14,6 +14,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.joinpa.joinpa.R;
 
+import io.joinpa.joinpa.R;
+
 public class SignUpActivity extends AppCompatActivity {
 
     @BindView(R.id.choose_avatar_view)

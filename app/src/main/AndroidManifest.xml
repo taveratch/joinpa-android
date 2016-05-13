@@ -12,14 +12,13 @@
         <activity android:name=".ui.views.MainActivity">
 
         </activity>
-        <activity android:name=".ui.views.SignUpActivity"
+        <activity android:name=".ui.views.SigninActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize"
             android:windowSoftInputMode="stateVisible|adjustPan">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
