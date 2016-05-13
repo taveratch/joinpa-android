@@ -6,11 +6,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.Observable;
+import java.util.Observer;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import io.joinpa.joinpa.R;
 
-public class SigninActivity extends AppCompatActivity {
+public class SigninActivity extends AppCompatActivity implements Observer{
 
     @BindView(R.id.et_username)
     EditText etUsername;
@@ -32,5 +35,8 @@ public class SigninActivity extends AppCompatActivity {
         // Do sign in
     }
 
-
+    @Override
+    public void update(Observable observable, Object o) {
+        //// TODO: 5/13/16 AD do next thing after received the response from server
+    }
 }
