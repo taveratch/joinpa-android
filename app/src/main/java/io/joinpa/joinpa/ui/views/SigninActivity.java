@@ -46,8 +46,7 @@ public class SigninActivity extends AppCompatActivity implements Observer{
         map.put("username", username);
         map.put("password" , password);
         LoadService loadService = LoadService.newInstance();
-        loadService.addObserver(this);
-        loadService.signIn(map);
+        loadService.signIn(map,this);
     }
 
     @Override
