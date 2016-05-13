@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">JoinPa</string>
+    <string name="already_join">Already joined ?</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="email">Email</string>
+    <string name="avatar">Avatar</string>
+    <string name="sign_in">Sign in</string>
+    <string name="not_member">Not a member ?</string>
+    <string name="join_now">Join us now</string>
 </resources>
