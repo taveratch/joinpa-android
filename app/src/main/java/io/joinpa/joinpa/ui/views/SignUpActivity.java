@@ -13,6 +13,7 @@ import android.widget.EditText;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.joinpa.joinpa.R;
+import io.joinpa.joinpa.ui.adapters.UserAvatarAdapter;
 
 import io.joinpa.joinpa.R;
 
@@ -54,6 +55,9 @@ public class SignUpActivity extends AppCompatActivity {
 
         LinearLayoutManager llm = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(llm);
+
+        UserAvatarAdapter adapter = new UserAvatarAdapter();
+        recyclerView.setAdapter(adapter);
 
         // Set EditText to password field input
         passwordInput.setTransformationMethod(new PasswordTransformationMethod());
