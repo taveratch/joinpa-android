@@ -1,5 +1,6 @@
 package io.joinpa.joinpa.ui.views;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.joinpa.joinpa.R;
+import io.joinpa.joinpa.managers.App;
 import io.joinpa.joinpa.managers.LoadService;
 import io.joinpa.joinpa.models.Token;
 import retrofit2.Response;
@@ -28,10 +30,13 @@ public class SigninActivity extends AppCompatActivity implements Observer{
     @BindView(R.id.et_password)
     EditText etPassword;
 
+    private ProgressDialog progressDialog;
+    private App app;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
+        app = App.getInstance();
         ButterKnife.bind(this);
     }
 
@@ -44,6 +49,7 @@ public class SigninActivity extends AppCompatActivity implements Observer{
         map.put("password" , password);
         LoadService loadService = LoadService.newInstance();
         loadService.signIn(map,this);
+        showLoadingDialog();
     }
 
     @Override
@@ -53,7 +59,7 @@ public class SigninActivity extends AppCompatActivity implements Observer{
         Response<Token> response = (Response<Token>)o;
         if(response.isSuccessful()) {
             Token token = response.body();
-            Log.e("key : " , token.getKey());
+            app.saveToken(token , this);
         }else{
             // TODO: 5/14/16 AD handle error
             try {
@@ -62,6 +68,7 @@ public class SigninActivity extends AppCompatActivity implements Observer{
                 e.printStackTrace();
             }
         }
+        progressDialog.dismiss();
     }
 
     @OnClick(R.id.layout_bottom)
@@ -71,5 +78,10 @@ public class SigninActivity extends AppCompatActivity implements Observer{
         finish();
     }
 
-
+    public void showLoadingDialog() {
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage(getString(R.string.please_wait));
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+    }
 }
