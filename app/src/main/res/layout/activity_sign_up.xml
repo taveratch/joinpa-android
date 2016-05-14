@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="io.joinpa.joinpa.ui.views.SignUpActivity">
 
     <FrameLayout
@@ -36,6 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/avatar"
+            android:textSize="12dp"
             android:id="@+id/avatar_label"
             android:textColor="@color/colorPrimary"/>
 
@@ -52,7 +54,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/username_wrapper"
             android:layout_below="@+id/choose_avatar_view"
-            android:layout_marginTop="@dimen/text_input_margin_top">
+            android:layout_marginTop="@dimen/text_input_margin_top"
+            android:theme="@style/TextLabel">
 
             <EditText
                 android:layout_width="match_parent"
@@ -69,7 +72,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/password_wrapper"
             android:layout_below="@+id/username_wrapper"
-            android:layout_marginTop="@dimen/text_input_margin_top">
+            android:layout_marginTop="@dimen/text_input_margin_top"
+            android:theme="@style/TextLabel">
 
             <EditText
                 android:layout_width="match_parent"
@@ -87,7 +91,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/cpassword_wrapper"
             android:layout_below="@+id/password_wrapper"
-            android:layout_marginTop="@dimen/text_input_margin_top">
+            android:layout_marginTop="@dimen/text_input_margin_top"
+            android:theme="@style/TextLabel">
 
             <EditText
                 android:layout_width="match_parent"
@@ -103,7 +108,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/email_wrapper"
             android:layout_below="@+id/cpassword_wrapper"
-            android:layout_marginTop="@dimen/text_input_margin_top">
+            android:layout_marginTop="@dimen/text_input_margin_top"
+            android:theme="@style/TextLabel">
 
             <EditText
                 android:layout_width="match_parent"
@@ -122,13 +128,15 @@
             android:layout_height="wrap_content"
             android:text="Join us"
             android:layout_below="@id/email_wrapper"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/sign_up_button"
             />
 
     </RelativeLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/avatar_size"
         android:layout_alignParentBottom="true"
         android:id="@+id/sign_up_tab"
         android:background="@color/colorPrimary">
@@ -155,7 +163,8 @@
                 android:textColor="#ffffff"
                 android:layout_alignTop="@+id/t1"
                 android:layout_toRightOf="@+id/t1"
-                android:layout_toEndOf="@+id/t1" />
+                android:layout_toEndOf="@+id/t1"
+                android:id="@+id/sign_in_link"/>
 
         </RelativeLayout>
 
