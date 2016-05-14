@@ -20,12 +20,13 @@ public class FormValidator {
     }
 
     public static boolean validateUsername(String username) {
-        pattern = Pattern.compile(USERNAME_PATTERN);
-        matcher = pattern.matcher(username);
-        return matcher.matches() && username.length() > 4;
+//        pattern = Pattern.compile(USERNAME_PATTERN);
+//        matcher = pattern.matcher(username);
+//        return matcher.matches() && username.length() > 4;
+        return true;
     }
 
     public static boolean validatePassword(String p1, String p2) {
-        return p1.equals(p2);
+        return p1.equals(p2) && p1.length() > 6;
     }
 }

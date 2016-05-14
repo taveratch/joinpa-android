@@ -12,16 +12,24 @@ import android.util.Log;
 import android.view.WindowManager;
 import android.widget.EditText;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Observable;
+import java.util.Observer;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.joinpa.joinpa.R;
 import io.joinpa.joinpa.managers.FormValidator;
+import io.joinpa.joinpa.managers.LoadService;
+import io.joinpa.joinpa.models.Token;
 import io.joinpa.joinpa.ui.adapters.UserAvatarAdapter;
 
 import io.joinpa.joinpa.R;
+import retrofit2.Response;
 
-public class SignUpActivity extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity implements Observer {
 
     private String username;
     private String password;
@@ -57,13 +65,15 @@ public class SignUpActivity extends AppCompatActivity {
 
     public boolean validateForm() {
 
-        username = usernameWrapper.getEditText().getText().toString();
-        password = passwordWrapper.getEditText().getText().toString();
-        cpassword = cpasswordWrapper.getEditText().getText().toString();
-        email = emailWrapper.getEditText().getText().toString();
+        if (!FormValidator.validateUsername(username)) {
+            usernameWrapper.setError("Username must contain only a-z and is longer than 3 characters");
+        }
+        else {
+            usernameWrapper.setError(null);
+        }
 
         if (!FormValidator.validateEmail(email)) {
-            emailWrapper.setError("Error");
+            emailWrapper.setError("Please enter a valid email");
         }
         else {
             emailWrapper.setError(null);
@@ -82,9 +92,22 @@ public class SignUpActivity extends AppCompatActivity {
 
     @OnClick(R.id.sign_up_button)
     public void signUp() {
+
+        username = usernameWrapper.getEditText().getText().toString();
+        password = passwordWrapper.getEditText().getText().toString();
+        cpassword = cpasswordWrapper.getEditText().getText().toString();
+        email = emailWrapper.getEditText().getText().toString();
+
         if (validateForm()) {
-            // Sent result to server
+
+            Map<String,String> map = new HashMap<>();
+            map.put("username", username);
+            map.put("password" , password);
+            LoadService loadService = LoadService.newInstance();
+            loadService.signUp(map,this);
         }
+
+
 
     }
 
@@ -111,10 +134,6 @@ public class SignUpActivity extends AppCompatActivity {
         passwordInput.setTransformationMethod(new PasswordTransformationMethod());
         cpasswordInput.setTransformationMethod(new PasswordTransformationMethod());
 
-//        usernameWrapper.setErrorEnabled(true);
-//        cpasswordWrapper.setErrorEnabled(true);
-
-
         // Get value from user inputs
 
 
@@ -127,4 +146,17 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void update(Observable observable, Object data) {
+        if (data == null) return;
+        if (!data.getClass().equals(Response.class)) return;
+        Response<Token> response = (Response<Token>)data;
+        if (response.isSuccessful()) {
+            Token token = response.body();
+            Log.e("key : " , token.getKey());
+        }
+        else {
+            //todo handle errors
+        }
+    }
 }
