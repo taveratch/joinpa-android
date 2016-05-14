@@ -25,9 +25,20 @@ public class App {
         SharedPreferences.Editor editor = context.getSharedPreferences(Constants.SP_KEY , context.MODE_PRIVATE).edit();
         editor.putString("token" , token.getKey());
         editor.apply();
+        loadToken(context);
     }
 
     public InternalData getInternalData() {
         return internalData;
+    }
+
+    public void loadToken(Context context){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.SP_KEY , context.MODE_PRIVATE);
+        String token = sharedPreferences.getString("token" , null);
+        internalData.token = new Token(token);
+    }
+
+    public String getToken() {
+        return internalData.token.getKey();
     }
 }

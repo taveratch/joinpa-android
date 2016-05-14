@@ -7,6 +7,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import io.joinpa.joinpa.models.Token;
+import io.joinpa.joinpa.models.User;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -48,6 +49,14 @@ public class LoadService{
         call.enqueue(callBack);
     }
 
+    public void verify(String token , Observer observer) {
+        APIService apiService = getAPIService();
+        Call<User> call = apiService.verify(token);
+        ServerCallBack<User> callBack = new ServerCallBack<User>();
+        callBack.addObserver(observer);
+        call.enqueue(callBack);
+    }
+
     class ServerCallBack<T> extends Observable implements Callback<T>{
 
         @Override
@@ -62,4 +71,6 @@ public class LoadService{
             // TODO: 5/13/16 AD handle error
         }
     }
+
+
 }

@@ -19,7 +19,10 @@ import butterknife.OnClick;
 import io.joinpa.joinpa.R;
 import io.joinpa.joinpa.managers.App;
 import io.joinpa.joinpa.managers.LoadService;
+import io.joinpa.joinpa.models.ObjectResponse;
+import io.joinpa.joinpa.models.SignInResponse;
 import io.joinpa.joinpa.models.Token;
+import io.joinpa.joinpa.models.User;
 import retrofit2.Response;
 
 public class SigninActivity extends AppCompatActivity implements Observer{
@@ -37,6 +40,8 @@ public class SigninActivity extends AppCompatActivity implements Observer{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
         app = App.getInstance();
+        // TODO: 5/14/16 AD remove this line and load token in splash screen
+        app.loadToken(this);
         ButterKnife.bind(this);
     }
 
@@ -47,26 +52,23 @@ public class SigninActivity extends AppCompatActivity implements Observer{
         Map<String,String> map = new HashMap<>();
         map.put("username", username);
         map.put("password" , password);
-        LoadService loadService = LoadService.newInstance();
-        loadService.signIn(map,this);
+        SignInResponse signInResponse = new SignInResponse(map,this);
+        signInResponse.addObserver(this);
+        signInResponse.execute();
         showLoadingDialog();
     }
 
     @Override
     public void update(Observable observable, Object o) {
         if ( o == null ) return;
-        if (!o.getClass().equals(Response.class)) return;
-        Response<Token> response = (Response<Token>)o;
-        if(response.isSuccessful()) {
-            Token token = response.body();
-            app.saveToken(token , this);
+        if (!(o instanceof ObjectResponse)) return;
+        ObjectResponse objectResponse = (ObjectResponse)o;
+        Log.e("xxx", "xxx");
+        if(objectResponse.isSuccess()) {
+            Response<User> response = (Response<User>)objectResponse.getData();
+            Log.e("email",response.body().getEmail());
         }else{
-            // TODO: 5/14/16 AD handle error
-            try {
-                Log.e("error message", response.errorBody().string());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            Log.e("error message1" , objectResponse.getMessage());
         }
         progressDialog.dismiss();
     }
