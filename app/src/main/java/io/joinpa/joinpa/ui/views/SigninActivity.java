@@ -1,12 +1,12 @@
 package io.joinpa.joinpa.ui.views;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Observable;
@@ -16,11 +16,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.joinpa.joinpa.R;
-import io.joinpa.joinpa.managers.APIService;
-import io.joinpa.joinpa.managers.HttpManager;
 import io.joinpa.joinpa.managers.LoadService;
 import io.joinpa.joinpa.models.Token;
-import okhttp3.RequestBody;
 import retrofit2.Response;
 
 public class SigninActivity extends AppCompatActivity implements Observer{
@@ -58,7 +55,21 @@ public class SigninActivity extends AppCompatActivity implements Observer{
             Token token = response.body();
             Log.e("key : " , token.getKey());
         }else{
-            //todo handle errors
+            // TODO: 5/14/16 AD handle error
+            try {
+                Log.e("error message", response.errorBody().string());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
+
+    @OnClick(R.id.layout_bottom)
+    public void navigateToSignUp() {
+        Intent intent = new Intent(this , SignUpActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+
 }

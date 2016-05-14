@@ -1,7 +1,6 @@
 package io.joinpa.joinpa.ui.views;
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,9 +8,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
-import android.view.WindowManager;
 import android.widget.EditText;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Observable;
@@ -26,7 +25,6 @@ import io.joinpa.joinpa.managers.LoadService;
 import io.joinpa.joinpa.models.Token;
 import io.joinpa.joinpa.ui.adapters.UserAvatarAdapter;
 
-import io.joinpa.joinpa.R;
 import retrofit2.Response;
 
 public class SignUpActivity extends AppCompatActivity implements Observer {
@@ -111,11 +109,11 @@ public class SignUpActivity extends AppCompatActivity implements Observer {
 
     }
 
-    @OnClick(R.id.sign_in_link)
+    @OnClick(R.id.sign_up_tab)
     public void toSignInPage() {
-        // Redirect to sign in page
         Intent intent = new Intent(SignUpActivity.this, SigninActivity.class);
         startActivity(intent);
+        finish();
     }
 
     @Override
@@ -156,7 +154,18 @@ public class SignUpActivity extends AppCompatActivity implements Observer {
             Log.e("key : " , token.getKey());
         }
         else {
-            //todo handle errors
+            // TODO: 5/14/16 AD handle error
+            try {
+                Log.e("error message", response.errorBody().string());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        toSignInPage();
     }
 }
