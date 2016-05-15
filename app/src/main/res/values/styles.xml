@@ -22,4 +22,11 @@
         <item name="colorControlActivated">@color/colorAccent</item>
     </style>
 
+    <style name="ToolBarStyle">
+        <item name="android:theme">@style/Theme.AppCompat.Light</item>
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="titleTextColor">#FFF</item>
+        <item name="android:textColor">#FFF</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+    </style>
 </resources>

@@ -8,5 +8,7 @@
     <dimen name="logo_size">120dp</dimen>
     <dimen name="avatar_size">40dp</dimen>
     <dimen name="avatar_margin">5dp</dimen>
-
+    <dimen name="sidebar_icon_margin">20dp</dimen>
+    <dimen name="sidebar_text_size">16dp</dimen>
+    <dimen name="sidebar_icon_size">50dp</dimen>
 </resources>
