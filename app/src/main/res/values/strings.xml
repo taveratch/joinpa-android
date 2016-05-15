@@ -10,4 +10,9 @@
     <string name="not_member">Not a member ?</string>
     <string name="join_now">Join us now</string>
     <string name="please_wait">Please wait</string>
+    <string name="explore">Explore</string>
+    <string name="my_events">My events</string>
+    <string name="invites">Invites</string>
+    <string name="recent_events">Recent events</string>
+    <string name="friends">Friends</string>
 </resources>
