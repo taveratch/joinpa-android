@@ -16,10 +16,16 @@ import java.util.Observer;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnItemClick;
 import io.joinpa.joinpa.R;
 import io.joinpa.joinpa.models.SideBarItem;
 import io.joinpa.joinpa.ui.adapters.SideBarAdapter;
 import io.joinpa.joinpa.ui.fragments.ExploreFragment;
+import io.joinpa.joinpa.ui.fragments.FriendFragment;
+import io.joinpa.joinpa.ui.fragments.InvitesFragment;
+import io.joinpa.joinpa.ui.fragments.MyEventFragment;
+import io.joinpa.joinpa.ui.fragments.ObservableFragment;
+import io.joinpa.joinpa.ui.fragments.RecentEventsFragment;
 
 public class MainActivity extends AppCompatActivity implements Observer {
 
@@ -27,7 +33,12 @@ public class MainActivity extends AppCompatActivity implements Observer {
     ListView lvSideBar;
 
     private MenuDrawer menuDrawer;
-    private ExploreFragment exploreFragment;
+    private List<ObservableFragment> fragmentList;
+    private ObservableFragment exploreFragment;
+    private ObservableFragment friendFragment;
+    private ObservableFragment invitesFragment;
+    private ObservableFragment myEventFragment;
+    private ObservableFragment recentEventFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +52,15 @@ public class MainActivity extends AppCompatActivity implements Observer {
     }
 
     public void initComponents() {
+
         //Create explore fragment and add this as observer to toggle left menu drawer.
-        exploreFragment = new ExploreFragment();
-        exploreFragment.addObserver(this);
+        fragmentList = new ArrayList<ObservableFragment>();
+        fragmentList.add(new ExploreFragment());
+        fragmentList.add(new MyEventFragment());
+        fragmentList.add(new InvitesFragment());
+        fragmentList.add(new RecentEventsFragment());
+        fragmentList.add(new FriendFragment());
+        for(ObservableFragment fm : fragmentList) fm.addObserver(this);
 
         List<SideBarItem> sideBarItems = new ArrayList<>();
         sideBarItems.add(new SideBarItem(getString(R.string.explore) , R.drawable.sidebar_explore_icon));
@@ -67,11 +84,8 @@ public class MainActivity extends AppCompatActivity implements Observer {
 
     public void switchFragment(int id) {
         // TODO: 5/15/16 AD Add more fragment
-        switch (id) {
-            case 0 :
-                replaceFragment(exploreFragment);
-                break;
-        }
+        ObservableFragment fm = fragmentList.get(id);
+        replaceFragment(fm);
     }
 
     /**
@@ -81,6 +95,16 @@ public class MainActivity extends AppCompatActivity implements Observer {
      */
     @Override
     public void update(Observable observable, Object o) {
+        toggleMenu();
+    }
+
+    public void toggleMenu() {
         menuDrawer.toggleMenu(true);
+    }
+
+    @OnItemClick(R.id.lv_sidebar)
+    public void onItemClicked(int position) {
+        switchFragment(position);
+        toggleMenu();
     }
 }

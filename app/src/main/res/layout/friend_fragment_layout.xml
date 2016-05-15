@@ -15,6 +15,6 @@
             android:layout_gravity="center"
             android:textColor="#FFF"
             android:textSize="@dimen/text_heading"
-            android:text="@string/explore"/>
+            android:text="@string/friends"/>
     </android.support.v7.widget.Toolbar>
 </LinearLayout>
