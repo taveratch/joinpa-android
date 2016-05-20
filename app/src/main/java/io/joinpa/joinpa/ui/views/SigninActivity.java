@@ -29,7 +29,7 @@ import io.joinpa.joinpa.models.Token;
 import io.joinpa.joinpa.models.User;
 import retrofit2.Response;
 
-public class SigninActivity extends AppCompatActivity implements Observer{
+public class SigninActivity extends AppCompatActivity implements Observer {
 
     @BindView(R.id.et_username)
     EditText etUsername;
@@ -50,7 +50,7 @@ public class SigninActivity extends AppCompatActivity implements Observer{
     }
 
     @OnClick(R.id.btnSignin)
-    public void signin() {
+    public void signIn() {
         String username = etUsername.getText().toString();
         String password = etPassword.getText().toString();
         Map<String,String> map = new HashMap<>();

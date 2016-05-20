@@ -33,6 +33,9 @@ public class SignUpActivity extends AppCompatActivity implements Observer {
     private String password;
     private String cpassword;
     private String email;
+    private String avatar;
+
+    private UserAvatarAdapter adapter;
 
     @BindView(R.id.choose_avatar_view)
     RecyclerView recyclerView;
@@ -95,12 +98,14 @@ public class SignUpActivity extends AppCompatActivity implements Observer {
         password = passwordWrapper.getEditText().getText().toString();
         cpassword = cpasswordWrapper.getEditText().getText().toString();
         email = emailWrapper.getEditText().getText().toString();
+        avatar = adapter.getSelectedAvatar() + "";
 
         if (validateForm()) {
             Map<String,String> map = new HashMap<>();
             map.put("username", username);
             map.put("password" , password);
             map.put("email" , email);
+            map.put("avatar", avatar);
             LoadService loadService = LoadService.newInstance();
             loadService.signUp(map,this);
         }
@@ -125,7 +130,7 @@ public class SignUpActivity extends AppCompatActivity implements Observer {
         LinearLayoutManager llm = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(llm);
 
-        UserAvatarAdapter adapter = new UserAvatarAdapter();
+        adapter = new UserAvatarAdapter();
         recyclerView.setAdapter(adapter);
 
         // Set EditText to password field input
