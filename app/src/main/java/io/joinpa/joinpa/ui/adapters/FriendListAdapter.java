@@ -87,7 +87,7 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Vi
         if(position==0) {
             // TODO: 5/20/16 AD start search new friend activity
         }else{
-            Friend friend = friendList.get(position);
+            Friend friend = friendList.get(position-1);
             ViewHolderList listHolder = (ViewHolderList)holder;
             binderHelper.bind(listHolder.layout,friend.getUsername()); //second parameter is unique string to identify the data.
             listHolder.tvUsername.setText(friend.getUsername());
@@ -119,6 +119,6 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Vi
 
     @Override
     public int getItemCount() {
-        return friendList.size();
+        return friendList.size()+1;
     }
 }

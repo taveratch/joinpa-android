@@ -16,6 +16,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.joinpa.joinpa.R;
+import io.joinpa.joinpa.managers.App;
 import io.joinpa.joinpa.models.Friend;
 import io.joinpa.joinpa.ui.adapters.FriendListAdapter;
 
@@ -33,28 +34,19 @@ public class FriendFragment extends ObservableFragment {
     @BindView(R.id.rv)
     RecyclerView rv;
 
+    private App app;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.friend_fragment_layout , container , false);
         ButterKnife.bind(this,view);
+        app = App.getInstance();
         initComponents();
         return view;
     }
 
     public void initComponents() {
-
-        List<Friend> friendList = new ArrayList<>();
-        friendList.add(null);
-        Friend f1 = new Friend();
-        f1.setUsername("tonyslark");
-        Friend f2 = new Friend();
-        f2.setUsername("jason.b");
-        Friend f3 = new Friend();
-        f3.setUsername("freddy.c");
-        friendList.add(f1);
-        friendList.add(f2);
-        friendList.add(f3);
+        List<Friend> friendList = app.getUser().getFriendList();
         FriendListAdapter adapter = new FriendListAdapter(this.getContext(),friendList);
         rv.setLayoutManager(new LinearLayoutManager(this.getContext()));
         rv.setAdapter(adapter);
