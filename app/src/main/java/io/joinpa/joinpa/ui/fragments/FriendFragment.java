@@ -46,22 +46,7 @@ public class FriendFragment extends ObservableFragment {
     }
 
     public void initComponents() {
-<<<<<<< 22217071ce0c1191fb98a419bf73699d9ec927c8
         List<Friend> friendList = app.getUser().getFriendList();
-=======
-
-        List<Friend> friendList = new ArrayList<>();
-        friendList.add(null);
-        Friend f1 = new Friend();
-        f1.setUsername("tonyslark");
-        Friend f2 = new Friend();
-        f2.setUsername("jason.b");
-        Friend f3 = new Friend();
-        f3.setUsername("freddy.c");
-        friendList.add(f1);
-        friendList.add(f2);
-        friendList.add(f3);
->>>>>>> [#119977243] Added item for add new friend
         FriendListAdapter adapter = new FriendListAdapter(this.getContext(),friendList);
         rv.setLayoutManager(new LinearLayoutManager(this.getContext()));
         rv.setAdapter(adapter);
