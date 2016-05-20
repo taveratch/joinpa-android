@@ -5,6 +5,8 @@
     android:layout_height="match_parent"
     tools:context="io.joinpa.joinpa.ui.views.SigninActivity"
     android:orientation="vertical"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:weightSum="2">
 
     <RelativeLayout
