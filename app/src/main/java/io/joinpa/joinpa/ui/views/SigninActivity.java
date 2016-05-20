@@ -63,10 +63,10 @@ public class SigninActivity extends AppCompatActivity implements Observer{
         if ( o == null ) return;
         if (!(o instanceof ObjectResponse)) return;
         ObjectResponse objectResponse = (ObjectResponse)o;
-        Log.e("xxx", "xxx");
         if(objectResponse.isSuccess()) {
             Response<User> response = (Response<User>)objectResponse.getData();
             Log.e("email",response.body().getEmail());
+            navigateToMain();
         }else{
             Log.e("error message1" , objectResponse.getMessage());
         }
@@ -85,5 +85,11 @@ public class SigninActivity extends AppCompatActivity implements Observer{
         progressDialog.setMessage(getString(R.string.please_wait));
         progressDialog.setCancelable(false);
         progressDialog.show();
+    }
+
+    public void navigateToMain() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

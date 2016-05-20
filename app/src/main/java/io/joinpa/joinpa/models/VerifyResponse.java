@@ -2,6 +2,9 @@ package io.joinpa.joinpa.models;
 
 import android.util.Log;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
@@ -33,6 +36,7 @@ public class VerifyResponse extends ObjectResponse {
         if(response.isSuccessful()) {
             setSuccess(true);
             setMessage("Success");
+            Log.e("rrrr" , response.body().getUsername());
             setData(response);
         }else{
             try {

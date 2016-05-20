@@ -93,7 +93,7 @@
                         android:hint="@string/password"
                         android:textSize="@dimen/text_body"
                         android:id="@+id/et_password"
-                        />
+                        android:password="true" />
 
                 </android.support.design.widget.TextInputLayout>
                 <Button
