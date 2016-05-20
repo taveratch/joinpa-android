@@ -16,4 +16,5 @@
     <string name="recent_events">Recent events</string>
     <string name="friends">Friends</string>
     <string name="search">Search</string>
+    <string name="add_new_friend">Add new friend</string>
 </resources>
