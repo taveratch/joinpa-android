@@ -29,4 +29,11 @@
         <item name="android:textColor">#FFF</item>
         <item name="android:layout_height">?attr/actionBarSize</item>
     </style>
+
+    <style name="SignInUpButton" parent="@style/Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@drawable/rounded_button</item>
+        <item name="android:height">@dimen/sign_in_up_button_height</item>
+        <item name="android:width">@dimen/sign_in_up_button_width</item>
+        <item name="android:textColor">#FFF</item>
+    </style>
 </resources>
