@@ -34,6 +34,7 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Vi
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
+<<<<<<< 260cd4b2382afac9474aea516654704ff03f7276
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this , itemView);
@@ -42,6 +43,8 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Vi
 
     class ViewHolderList extends ViewHolder {
 
+=======
+>>>>>>> [#119977243] Added friend list layout with fake data
         @BindView(R.id.tv_username)
         TextView tvUsername;
 
@@ -54,6 +57,7 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Vi
         @BindView(R.id.removeLayout)
         FrameLayout removeLayout;
 
+<<<<<<< 260cd4b2382afac9474aea516654704ff03f7276
         public ViewHolderList(View itemView) {
             super(itemView);
         }
@@ -80,10 +84,26 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Vi
     @Override
     public int getItemViewType(int position) {
         return position;
+=======
+        public ViewHolder(View itemView) {
+            super(itemView);
+            ButterKnife.bind(this , itemView);
+        }
+
+
+
+    }
+
+    @Override
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.friend_item_layout , parent , false);
+        return new ViewHolder(view);
+>>>>>>> [#119977243] Added friend list layout with fake data
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+<<<<<<< 260cd4b2382afac9474aea516654704ff03f7276
         if(position==0) {
             // TODO: 5/20/16 AD start search new friend activity
         }else{
@@ -99,6 +119,12 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Vi
                 }
             });
         }
+=======
+        Friend friend = friendList.get(position);
+        binderHelper.bind(holder.layout,friend.getUsername()); //second parameter is unique string to identify the data.
+        holder.tvUsername.setText(friend.getUsername());
+        // TODO: 5/20/16 AD set avatar
+>>>>>>> [#119977243] Added friend list layout with fake data
     }
 
     /**
@@ -119,6 +145,10 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Vi
 
     @Override
     public int getItemCount() {
+<<<<<<< 260cd4b2382afac9474aea516654704ff03f7276
         return friendList.size()+1;
+=======
+        return friendList.size();
+>>>>>>> [#119977243] Added friend list layout with fake data
     }
 }
