@@ -67,6 +67,12 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Vi
         binderHelper.bind(holder.layout,friend.getUsername()); //second parameter is unique string to identify the data.
         holder.tvUsername.setText(friend.getUsername());
         // TODO: 5/20/16 AD set avatar
+        holder.removeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO: 5/20/16 AD remove friend
+            }
+        });
     }
 
     /**
