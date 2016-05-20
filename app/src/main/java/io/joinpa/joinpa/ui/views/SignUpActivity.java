@@ -45,9 +45,11 @@ public class SignUpActivity extends AppCompatActivity implements Observer {
     private String email;
     private String avatar;
 
+
     private UserAvatarAdapter adapter;
     private ProgressDialog progressDialog;
     private App app;
+
 
     @BindView(R.id.choose_avatar_view)
     RecyclerView recyclerView;
