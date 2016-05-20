@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 
 import io.joinpa.joinpa.models.InternalData;
 import io.joinpa.joinpa.models.Token;
+import io.joinpa.joinpa.models.User;
 
 /**
  * Created by TAWEESOFT on 5/14/16 AD.
@@ -28,7 +29,7 @@ public class App {
         loadToken(context);
     }
 
-    public InternalData getInternalData() {
+    private InternalData getInternalData() {
         return internalData;
     }
 
@@ -38,7 +39,15 @@ public class App {
         internalData.token = new Token(token);
     }
 
-    public String getToken() {
-        return internalData.token.getKey();
+    public Token getToken() {
+        return getInternalData().token;
+    }
+
+    public void setUser(User user) {
+        getInternalData().user = user;
+    }
+
+    public User getUser() {
+        return getInternalData().user;
     }
 }
