@@ -34,6 +34,14 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Vi
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
+        public ViewHolder(View itemView) {
+            super(itemView);
+            ButterKnife.bind(this , itemView);
+        }
+    }
+
+    class ViewHolderList extends ViewHolder {
+
         @BindView(R.id.tv_username)
         TextView tvUsername;
 
@@ -46,33 +54,51 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Vi
         @BindView(R.id.removeLayout)
         FrameLayout removeLayout;
 
-        public ViewHolder(View itemView) {
+        public ViewHolderList(View itemView) {
             super(itemView);
-            ButterKnife.bind(this , itemView);
         }
-
-
-
     }
+
+    class ViewHolderAddFriend extends ViewHolder {
+        public ViewHolderAddFriend(View itemView) {
+            super(itemView);
+        }
+    }
+
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.friend_item_layout , parent , false);
-        return new ViewHolder(view);
+        View view = null;
+        if(viewType == 0){
+            view = LayoutInflater.from(context).inflate(R.layout.add_new_friend_item_layout , parent,false);
+            return new ViewHolderAddFriend(view);
+        }
+        view = LayoutInflater.from(context).inflate(R.layout.friend_item_layout , parent , false);
+        return new ViewHolderList(view);
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Friend friend = friendList.get(position);
-        binderHelper.bind(holder.layout,friend.getUsername()); //second parameter is unique string to identify the data.
-        holder.tvUsername.setText(friend.getUsername());
-        // TODO: 5/20/16 AD set avatar
-        holder.removeLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // TODO: 5/20/16 AD remove friend
-            }
-        });
+        if(position==0) {
+            // TODO: 5/20/16 AD start search new friend activity
+        }else{
+            Friend friend = friendList.get(position);
+            ViewHolderList listHolder = (ViewHolderList)holder;
+            binderHelper.bind(listHolder.layout,friend.getUsername()); //second parameter is unique string to identify the data.
+            listHolder.tvUsername.setText(friend.getUsername());
+            // TODO: 5/20/16 AD set avatar
+            listHolder.removeLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // TODO: 5/20/16 AD remove friend
+                }
+            });
+        }
     }
 
     /**
