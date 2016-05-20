@@ -27,10 +27,12 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
     compile 'com.android.support:recyclerview-v7:+'
+    compile 'com.android.support:cardview-v7:23.0.+'
     compile 'com.squareup.retrofit2:retrofit:2.0.2'
     compile 'com.squareup.retrofit2:converter-gson:2.0.1'
     compile 'com.jakewharton:butterknife:8.0.1'
     apt 'com.jakewharton:butterknife-compiler:8.0.1'
     compile 'net.simonvt.menudrawer:menudrawer:3.0.6'
     compile 'com.bignerdranch.android:recyclerview-multiselect:0.2'
+
 }
