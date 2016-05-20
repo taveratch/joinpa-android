@@ -1,6 +1,9 @@
 package io.joinpa.joinpa.ui.views;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -17,6 +20,7 @@ import java.util.Observer;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.OnItemClick;
 import io.joinpa.joinpa.R;
 import io.joinpa.joinpa.managers.App;
@@ -114,4 +118,24 @@ public class MainActivity extends AppCompatActivity implements Observer {
         switchFragment(position);
         toggleMenu();
     }
+
+    @OnClick(R.id.layout_signout)
+    public void signOut() {
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        dialogBuilder.setTitle(getString(R.string.sign_out));
+        dialogBuilder.setMessage(getString(R.string.sign_out_dialog_message));
+        dialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                app.clear(MainActivity.this);
+                Intent intent = new Intent(MainActivity.this , SigninActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        dialogBuilder.setNegativeButton("No" , null);
+        dialogBuilder.create().show();
+    }
+
+
 }
