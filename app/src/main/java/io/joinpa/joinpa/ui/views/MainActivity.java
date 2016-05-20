@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import net.simonvt.menudrawer.MenuDrawer;
 
@@ -18,6 +19,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnItemClick;
 import io.joinpa.joinpa.R;
+import io.joinpa.joinpa.managers.App;
 import io.joinpa.joinpa.models.SideBarItem;
 import io.joinpa.joinpa.ui.adapters.SideBarAdapter;
 import io.joinpa.joinpa.ui.fragments.ExploreFragment;
@@ -32,6 +34,9 @@ public class MainActivity extends AppCompatActivity implements Observer {
     @BindView(R.id.lv_sidebar)
     ListView lvSideBar;
 
+    @BindView(R.id.tv_username)
+    TextView tvUsername;
+
     private MenuDrawer menuDrawer;
     private List<ObservableFragment> fragmentList;
     private ObservableFragment exploreFragment;
@@ -39,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
     private ObservableFragment invitesFragment;
     private ObservableFragment myEventFragment;
     private ObservableFragment recentEventFragment;
-
+    private App app;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,11 +53,13 @@ public class MainActivity extends AppCompatActivity implements Observer {
         menuDrawer.setMenuView(R.layout.sidebar_layout);
         ButterKnife.bind(menuDrawer);
         ButterKnife.bind(this);
+        app = App.getInstance();
         initComponents();
     }
 
     public void initComponents() {
-
+        //Show username in tv_username
+        tvUsername.setText(app.getUser().getUsername());
         //Create explore fragment and add this as observer to toggle left menu drawer.
         fragmentList = new ArrayList<ObservableFragment>();
         fragmentList.add(new ExploreFragment());
