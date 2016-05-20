@@ -27,6 +27,6 @@ public class FormValidator {
     }
 
     public static boolean validatePassword(String p1, String p2) {
-        return p1.equals(p2) && p1.length() > 6;
+        return p1.equals(p2);
     }
 }
