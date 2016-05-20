@@ -20,7 +20,7 @@ public class User {
     @SerializedName("avatar")
     private int avatar;
 
-    @SerializedName("friendList")
+    @SerializedName("friends")
     private List<Friend> friendList;
 
     @SerializedName("friendRequest")
