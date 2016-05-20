@@ -13,6 +13,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import butterknife.BindView;
+import io.joinpa.joinpa.R;
 import butterknife.ButterKnife;
 import io.joinpa.joinpa.managers.SwipeRevealLayout;
 import io.joinpa.joinpa.managers.ViewBinderHelper;
