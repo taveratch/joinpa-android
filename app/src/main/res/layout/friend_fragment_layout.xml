@@ -45,12 +45,20 @@
 
             <EditText
                 android:layout_width="match_parent"
+<<<<<<< HEAD
                 android:layout_height="50dp"
                 android:background="@drawable/rounded_edittext"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:id="@+id/et_search"
                 android:singleLine="true" />
+=======
+                android:layout_height="40dp"
+                android:background="@drawable/rounded_edittext"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:id="@+id/et_search" />
+>>>>>>> 74a945a14b63ba9b7ac16c68e0e8b4a7b54f6f83
         </LinearLayout>
 
         <LinearLayout

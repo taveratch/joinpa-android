@@ -32,6 +32,9 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.0.1'
     apt 'com.jakewharton:butterknife-compiler:8.0.1'
     compile 'net.simonvt.menudrawer:menudrawer:3.0.6'
+<<<<<<< HEAD
     compile 'com.bignerdranch.android:recyclerview-multiselect:0.2'
+=======
+>>>>>>> 74a945a14b63ba9b7ac16c68e0e8b4a7b54f6f83
     compile 'com.chauthai.swipereveallayout:swipe-reveal-layout:1.2.0'
 }
