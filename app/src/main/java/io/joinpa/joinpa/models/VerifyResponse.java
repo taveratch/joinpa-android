@@ -1,14 +1,8 @@
 package io.joinpa.joinpa.models;
 
 import android.util.Log;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
 import java.io.IOException;
 import java.util.Observable;
-import java.util.Observer;
-
 import io.joinpa.joinpa.managers.LoadService;
 import retrofit2.Response;
 
