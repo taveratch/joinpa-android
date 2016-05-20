@@ -20,10 +20,11 @@ public class SignUpResponse extends ObjectResponse {
     private Map<String,String> data;
     private Context context;
     private Observer observer;
-
+    private App app;
     public SignUpResponse(Map<String , String> data , Context context){
         this.data = data;
         this.context = context;
+        app = App.getInstance();
     }
 
     @Override
