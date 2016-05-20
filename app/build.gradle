@@ -32,13 +32,6 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.0.1'
     apt 'com.jakewharton:butterknife-compiler:8.0.1'
     compile 'net.simonvt.menudrawer:menudrawer:3.0.6'
-<<<<<<< a3ed53e900a47c1b70a171cfb4b7cb67d7b963dc
     compile 'com.bignerdranch.android:recyclerview-multiselect:0.2'
-<<<<<<< 260cd4b2382afac9474aea516654704ff03f7276
     compile 'com.chauthai.swipereveallayout:swipe-reveal-layout:1.2.0'
-=======
-=======
-    compile 'com.chauthai.swipereveallayout:swipe-reveal-layout:1.2.0'
->>>>>>> [#119977243] Added friend list layout with fake data
->>>>>>> [#119977243] Added friend list layout with fake data
 }
