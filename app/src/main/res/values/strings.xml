@@ -17,4 +17,5 @@
     <string name="friends">Friends</string>
     <string name="sign_out">Sign out</string>
     <string name="sign_out_dialog_message">Are you sure to sign out from this device ?</string>
+    <string name="search">Search</string>
 </resources>
