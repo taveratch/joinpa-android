@@ -16,10 +16,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.joinpa.joinpa.R;
-<<<<<<< 340dad269d95eab42a45bc9f35cfe24b6d1e0283
 import io.joinpa.joinpa.managers.App;
-=======
->>>>>>> [#119977243] Added friend list layout with fake data
 import io.joinpa.joinpa.models.Friend;
 import io.joinpa.joinpa.ui.adapters.FriendListAdapter;
 
@@ -37,10 +34,7 @@ public class FriendFragment extends ObservableFragment {
     @BindView(R.id.rv)
     RecyclerView rv;
 
-<<<<<<< 340dad269d95eab42a45bc9f35cfe24b6d1e0283
     private App app;
-=======
->>>>>>> [#119977243] Added friend list layout with fake data
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -52,22 +46,7 @@ public class FriendFragment extends ObservableFragment {
     }
 
     public void initComponents() {
-<<<<<<< 340dad269d95eab42a45bc9f35cfe24b6d1e0283
         List<Friend> friendList = app.getUser().getFriendList();
-=======
-
-        List<Friend> friendList = new ArrayList<>();
-        friendList.add(null);
-        Friend f1 = new Friend();
-        f1.setUsername("tonyslark");
-        Friend f2 = new Friend();
-        f2.setUsername("jason.b");
-        Friend f3 = new Friend();
-        f3.setUsername("freddy.c");
-        friendList.add(f1);
-        friendList.add(f2);
-        friendList.add(f3);
->>>>>>> [#119977243] Added friend list layout with fake data
         FriendListAdapter adapter = new FriendListAdapter(this.getContext(),friendList);
         rv.setLayoutManager(new LinearLayoutManager(this.getContext()));
         rv.setAdapter(adapter);
