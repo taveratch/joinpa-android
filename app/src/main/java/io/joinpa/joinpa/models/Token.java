@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by TAWEESOFT on 5/13/16 AD.
  */
 public class Token {
+    
     @SerializedName("key")
     private String key;
 

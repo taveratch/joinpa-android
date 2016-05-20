@@ -1,18 +1,35 @@
 package io.joinpa.joinpa.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 /**
  * Created by TAWEESOFT on 5/13/16 AD.
  */
 public class User {
+    @SerializedName("_id")
+    private String id;
 
+    @SerializedName("username")
     private String username;
+
+    @SerializedName("email")
     private String email;
+
+    @SerializedName("avatar")
     private int avatar;
+
+    @SerializedName("friendList")
     private List<Friend> friendList;
+
+    @SerializedName("friendRequest")
     private List<Friend> friendRequest;
+
+    @SerializedName("password")
     private String password;
+
+    @SerializedName("confirmPassword")
     private String confirmPassword;
 
     public String getUsername() {
