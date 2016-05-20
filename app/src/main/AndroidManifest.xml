@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".ui.views.MainActivity"
+        <activity android:name=".ui.views.SigninActivity"
             android:screenOrientation="portrait">
             <!--android:configChanges="orientation|screenSize"-->
             <!--android:windowSoftInputMode="stateVisible|adjustPan">-->
@@ -24,6 +24,9 @@
             android:configChanges="orientation|screenSize"
             android:windowSoftInputMode="stateVisible|adjustPan">
         </activity>
+        <activity android:name=".ui.views.MainActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|screenSize"></activity>
     </application>
 
 </manifest>

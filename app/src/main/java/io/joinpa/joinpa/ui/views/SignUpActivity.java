@@ -97,10 +97,10 @@ public class SignUpActivity extends AppCompatActivity implements Observer {
         email = emailWrapper.getEditText().getText().toString();
 
         if (validateForm()) {
-
             Map<String,String> map = new HashMap<>();
             map.put("username", username);
             map.put("password" , password);
+            map.put("email" , email);
             LoadService loadService = LoadService.newInstance();
             loadService.signUp(map,this);
         }
