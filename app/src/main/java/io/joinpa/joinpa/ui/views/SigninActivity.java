@@ -6,6 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -19,6 +22,7 @@ import butterknife.OnClick;
 import io.joinpa.joinpa.R;
 import io.joinpa.joinpa.managers.App;
 import io.joinpa.joinpa.managers.LoadService;
+import io.joinpa.joinpa.models.Message;
 import io.joinpa.joinpa.models.ObjectResponse;
 import io.joinpa.joinpa.models.SignInResponse;
 import io.joinpa.joinpa.models.Token;
@@ -65,10 +69,15 @@ public class SigninActivity extends AppCompatActivity implements Observer{
         ObjectResponse objectResponse = (ObjectResponse)o;
         if(objectResponse.isSuccess()) {
             Response<User> response = (Response<User>)objectResponse.getData();
-            Log.e("email",response.body().getEmail());
+            User user = response.body();
+            app.setUser(user); //Save User to App
             navigateToMain();
         }else{
-            Log.e("error message1" , objectResponse.getMessage());
+            // TODO: 5/20/16 AD handle error
+            Gson gson = new Gson();
+            Message message = gson.fromJson(objectResponse.getMessage() , Message.class);
+            Log.e("error message1" , message.getMessage());
+            Toast.makeText(this, message.getMessage(), Toast.LENGTH_SHORT).show();
         }
         progressDialog.dismiss();
     }

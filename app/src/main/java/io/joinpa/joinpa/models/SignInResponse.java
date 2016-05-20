@@ -37,7 +37,7 @@ public class SignInResponse extends ObjectResponse{
         if(response.isSuccessful()) {
             Token token = response.body();
             app.saveToken(token , context);
-            VerifyResponse verifyResponse = new VerifyResponse(app.getToken());
+            VerifyResponse verifyResponse = new VerifyResponse(app.getToken().getKey());
             verifyResponse.addObserver(observer);
             verifyResponse.execute();
         }else{
