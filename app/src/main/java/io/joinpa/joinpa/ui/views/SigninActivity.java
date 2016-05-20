@@ -10,7 +10,6 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Observable;
@@ -21,11 +20,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.joinpa.joinpa.R;
 import io.joinpa.joinpa.managers.App;
-import io.joinpa.joinpa.managers.LoadService;
 import io.joinpa.joinpa.models.Message;
-import io.joinpa.joinpa.models.ObjectResponse;
-import io.joinpa.joinpa.models.SignInResponse;
-import io.joinpa.joinpa.models.Token;
+import io.joinpa.joinpa.managers.Commands.ObjectResponse;
+import io.joinpa.joinpa.managers.Commands.SignInResponse;
 import io.joinpa.joinpa.models.User;
 import retrofit2.Response;
 

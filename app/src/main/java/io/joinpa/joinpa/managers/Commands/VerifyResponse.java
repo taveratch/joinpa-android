@@ -1,4 +1,4 @@
-package io.joinpa.joinpa.models;
+package io.joinpa.joinpa.managers.Commands;
 
 import android.util.Log;
 import java.io.IOException;
@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Observable;
 import io.joinpa.joinpa.managers.LoadService;
+import io.joinpa.joinpa.models.User;
 import retrofit2.Response;
 
 /**

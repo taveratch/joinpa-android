@@ -1,4 +1,4 @@
-package io.joinpa.joinpa.models;
+package io.joinpa.joinpa.managers.Commands;
 
 import java.util.Observable;
 import java.util.Observer;

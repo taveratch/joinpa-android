@@ -11,4 +11,8 @@
     <dimen name="sidebar_icon_margin">20dp</dimen>
     <dimen name="sidebar_text_size">16dp</dimen>
     <dimen name="sidebar_icon_size">50dp</dimen>
+    <dimen name="component_header_margin">3dp</dimen>
+    <dimen name="list_component_margin">10dp</dimen>
+    <dimen name="inside_avatar_padding">4dp</dimen>
+    <dimen name="remove_icon_size">25dp</dimen>
 </resources>
