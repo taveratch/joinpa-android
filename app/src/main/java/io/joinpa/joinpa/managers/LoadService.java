@@ -49,9 +49,10 @@ public class LoadService{
         call.enqueue(callBack);
     }
 
-    public void verify(String token , Observer observer) {
+    public void verify(Map<String,String> data , Observer observer) {
+        RequestBody requestBody = getRequestBody(data);
         APIService apiService = getAPIService();
-        Call<User> call = apiService.verify(token);
+        Call<User> call = apiService.verify(data.get("token") , requestBody);
         ServerCallBack<User> callBack = new ServerCallBack<User>();
         callBack.addObserver(observer);
         call.enqueue(callBack);
