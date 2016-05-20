@@ -2,6 +2,8 @@ package io.joinpa.joinpa.models;
 
 import android.util.Log;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Observable;
 import io.joinpa.joinpa.managers.LoadService;
 import retrofit2.Response;
@@ -18,9 +20,12 @@ public class VerifyResponse extends ObjectResponse {
 
     @Override
     public void execute() {
-        Log.e("xxx", "123");
         LoadService loadService = LoadService.newInstance();
-        loadService.verify(token,this);
+        Map<String , String> map = new HashMap<>();
+        map.put("token" , token);
+        // TODO: 5/20/16 AD get device key from device 
+        map.put("deviceKey" , "KeyFromSteve");
+        loadService.verify(map,this);
     }
 
     @Override

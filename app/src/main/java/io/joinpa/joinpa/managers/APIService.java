@@ -17,6 +17,6 @@ public interface APIService {
     @POST("signup")
     Call<Token> signup(@Body RequestBody requestBody);
 
-    @GET("verify/{token}")
-    Call<User> verify(@Path("token") String token);
+    @POST("verify/{token}")
+    Call<User> verify(@Path("token") String token , @Body RequestBody requestBody);
 }
