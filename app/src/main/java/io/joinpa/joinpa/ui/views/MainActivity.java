@@ -1,11 +1,15 @@
 package io.joinpa.joinpa.ui.views;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import net.simonvt.menudrawer.MenuDrawer;
 
@@ -16,8 +20,10 @@ import java.util.Observer;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.OnItemClick;
 import io.joinpa.joinpa.R;
+import io.joinpa.joinpa.managers.App;
 import io.joinpa.joinpa.models.SideBarItem;
 import io.joinpa.joinpa.ui.adapters.SideBarAdapter;
 import io.joinpa.joinpa.ui.fragments.ExploreFragment;
@@ -32,6 +38,9 @@ public class MainActivity extends AppCompatActivity implements Observer {
     @BindView(R.id.lv_sidebar)
     ListView lvSideBar;
 
+    @BindView(R.id.tv_username)
+    TextView tvUsername;
+
     private MenuDrawer menuDrawer;
     private List<ObservableFragment> fragmentList;
     private ObservableFragment exploreFragment;
@@ -39,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
     private ObservableFragment invitesFragment;
     private ObservableFragment myEventFragment;
     private ObservableFragment recentEventFragment;
-
+    private App app;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,11 +57,13 @@ public class MainActivity extends AppCompatActivity implements Observer {
         menuDrawer.setMenuView(R.layout.sidebar_layout);
         ButterKnife.bind(menuDrawer);
         ButterKnife.bind(this);
+        app = App.getInstance();
         initComponents();
     }
 
     public void initComponents() {
-
+        //Show username in tv_username
+        tvUsername.setText(app.getUser().getUsername());
         //Create explore fragment and add this as observer to toggle left menu drawer.
         fragmentList = new ArrayList<ObservableFragment>();
         fragmentList.add(new ExploreFragment());
@@ -107,4 +118,24 @@ public class MainActivity extends AppCompatActivity implements Observer {
         switchFragment(position);
         toggleMenu();
     }
+
+    @OnClick(R.id.layout_signout)
+    public void signOut() {
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        dialogBuilder.setTitle(getString(R.string.sign_out));
+        dialogBuilder.setMessage(getString(R.string.sign_out_dialog_message));
+        dialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                app.clear(MainActivity.this);
+                Intent intent = new Intent(MainActivity.this , SigninActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        dialogBuilder.setNegativeButton("No" , null);
+        dialogBuilder.create().show();
+    }
+
+
 }

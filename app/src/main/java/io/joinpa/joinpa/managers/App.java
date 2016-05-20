@@ -29,6 +29,13 @@ public class App {
         loadToken(context);
     }
 
+    private void clearToken(Context context) {
+        getInternalData().token = null;
+        SharedPreferences.Editor editor = context.getSharedPreferences(Constants.SP_KEY , context.MODE_PRIVATE).edit();
+        editor.clear();
+        editor.apply();
+    }
+
     private InternalData getInternalData() {
         return internalData;
     }
@@ -49,5 +56,10 @@ public class App {
 
     public User getUser() {
         return getInternalData().user;
+    }
+
+    public void clear(Context context) {
+        clearToken(context);
+        setUser(null);
     }
 }
