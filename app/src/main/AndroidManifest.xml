@@ -27,9 +27,9 @@
         <activity
             android:name=".ui.views.MainActivity"
             android:configChanges="orientation|screenSize"
-
             android:screenOrientation="portrait" />
         <activity android:name=".ui.views.EventActivity">
+            android:windowSoftInputMode="stateHidden|adjustPan">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
