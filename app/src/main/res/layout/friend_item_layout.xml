@@ -11,7 +11,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="@dimen/list_item_height"
         app:dragEdge="right"
         android:id="@+id/swipeLayout"
         app:mode="same_level">

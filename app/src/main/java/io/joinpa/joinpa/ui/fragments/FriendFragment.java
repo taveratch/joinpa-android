@@ -45,6 +45,7 @@ public class FriendFragment extends ObservableFragment {
     public void initComponents() {
 
         List<Friend> friendList = new ArrayList<>();
+        friendList.add(null);
         Friend f1 = new Friend();
         f1.setUsername("tonyslark");
         Friend f2 = new Friend();
