@@ -19,4 +19,6 @@
     <dimen name="inside_avatar_padding">4dp</dimen>
     <dimen name="remove_icon_size">25dp</dimen>
     <dimen name="list_item_height">50dp</dimen>
+    <dimen name="inside_image_action_padding">12dp</dimen>
+    <dimen name="add_friend_plus_size">15dp</dimen>
 </resources>
