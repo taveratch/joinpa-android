@@ -39,7 +39,9 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_username"
                 android:text="Username"
-                android:layout_gravity="center" />
+                android:layout_gravity="center"
+                android:textColor="@color/colorBlueGray"
+                android:textStyle="bold" />
 
             <ImageView
                 android:layout_width="@dimen/avatar_size"
