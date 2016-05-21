@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
+import io.joinpa.joinpa.models.Element;
 import io.joinpa.joinpa.models.Token;
 import io.joinpa.joinpa.models.User;
 import okhttp3.RequestBody;
@@ -18,7 +19,11 @@ import retrofit2.Response;
  */
 public class LoadService{
 
-    private LoadService () {}
+    private App app;
+
+    private LoadService () {
+        app = App.getInstance();
+    }
 
     public static LoadService newInstance() {
         return new LoadService();
@@ -54,6 +59,15 @@ public class LoadService{
         APIService apiService = getAPIService();
         Call<User> call = apiService.verify(data.get("token") , requestBody);
         ServerCallBack<User> callBack = new ServerCallBack<User>();
+        callBack.addObserver(observer);
+        call.enqueue(callBack);
+    }
+
+    public void searchFriend(Map<String, String> data , Observer observer) {
+        RequestBody requestBody = getRequestBody(data);
+        APIService apiService = getAPIService();
+        Call<Element> call = apiService.searchFriend("bearer " + app.getToken().getKey() , requestBody);
+        ServerCallBack<Element> callBack = new ServerCallBack<>();
         callBack.addObserver(observer);
         call.enqueue(callBack);
     }

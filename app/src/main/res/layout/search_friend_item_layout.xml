@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/list_component_margin">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/list_item_height"
+        android:background="@drawable/rounded_list_item"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/avatar_size"
+            android:layout_height="@dimen/avatar_size"
+            android:id="@+id/img_avatar"
+            android:layout_gravity="left|center_vertical"
+            android:layout_marginLeft="@dimen/sidebar_icon_margin"
+            android:src="@drawable/user_icon"
+            android:padding="@dimen/inside_avatar_padding"
+            android:background="@drawable/blue_circle" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_username"
+                android:text="Username"
+                android:textColor="@color/colorBlueGray"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/tv_friend_count"
+                android:textColor="@color/colorBlueGray" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="@dimen/add_friend_plus_size"
+            android:layout_height="match_parent"
+            android:id="@+id/img_add"
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginRight="@dimen/sidebar_icon_margin"
+            android:src="@drawable/add_friend_action" />
+    </FrameLayout>
+</LinearLayout>

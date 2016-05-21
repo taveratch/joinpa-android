@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="io.joinpa.joinpa.ui.views.SearchNewFriendActivity"
+    android:background="@color/colorPrimary">
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:id="@+id/toolbar"
+        app:navigationIcon="@drawable/ic_close_black_24dp"
+        style="@style/ToolBarStyle">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="#FFF"
+            android:textSize="@dimen/text_heading"
+            android:text="@string/search_new_friend"/>
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView4"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/search_new_friend_banner"
+            android:layout_marginLeft="@dimen/sidebar_icon_margin"
+            android:layout_marginRight="@dimen/sidebar_icon_margin" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/search"
+                android:id="@+id/textView7"
+                android:textColor="#FFF"
+                android:layout_marginBottom="@dimen/component_header_margin" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/list_item_height"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/rounded_edittext">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/list_item_height"
+                    android:paddingLeft="@dimen/activity_horizontal_margin"
+                    android:paddingRight="@dimen/activity_horizontal_margin"
+                    android:id="@+id/et_search"
+                    android:singleLine="true"
+                    android:backgroundTint="#FFF"
+                    android:layout_toLeftOf="@+id/img_search"
+                    android:layout_toStartOf="@+id/img_search" />
+
+                <ImageView
+                    android:layout_width="@dimen/list_item_height"
+                    android:layout_height="@dimen/list_item_height"
+                    android:id="@+id/img_search"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/rounded_search_friend_button"
+                    android:src="@drawable/ic_search_black_24dp"
+                    android:padding="@dimen/inside_image_action_padding" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_weight="13.23" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/friends"
+                android:id="@+id/textView8"
+                android:textColor="#FFF"
+                android:layout_marginBottom="@dimen/component_header_margin" />
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/rv" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

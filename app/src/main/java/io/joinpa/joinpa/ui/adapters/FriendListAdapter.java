@@ -1,6 +1,7 @@
 package io.joinpa.joinpa.ui.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -18,6 +20,7 @@ import butterknife.ButterKnife;
 import io.joinpa.joinpa.managers.SwipeRevealLayout;
 import io.joinpa.joinpa.managers.ViewBinderHelper;
 import io.joinpa.joinpa.models.Friend;
+import io.joinpa.joinpa.ui.views.SearchNewFriendActivity;
 
 /**
  * Created by TAWEESOFT on 5/20/16 AD.
@@ -60,6 +63,10 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Vi
     }
 
     class ViewHolderAddFriend extends ViewHolder {
+
+        @BindView(R.id.add_friend_layout)
+        LinearLayout addFriendLayout;
+
         public ViewHolderAddFriend(View itemView) {
             super(itemView);
         }
@@ -85,7 +92,14 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Vi
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         if(position==0) {
-            // TODO: 5/20/16 AD start search new friend activity
+            ViewHolderAddFriend addFriendHolder = (ViewHolderAddFriend)holder;
+            addFriendHolder.addFriendLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context , SearchNewFriendActivity.class);
+                    context.startActivity(intent);
+                }
+            });
         }else{
             Friend friend = friendList.get(position-1);
             ViewHolderList listHolder = (ViewHolderList)holder;
