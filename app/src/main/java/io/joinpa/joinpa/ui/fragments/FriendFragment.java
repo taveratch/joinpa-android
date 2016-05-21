@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +36,12 @@ public class FriendFragment extends ObservableFragment {
     @BindView(R.id.rv)
     RecyclerView rv;
 
+    @BindView(R.id.layout_friend_request)
+    FrameLayout layoutFriendRequest;
+
+    @BindView(R.id.tv_friend_request_count)
+    TextView tvFriendRequestCount;
+
     private App app;
     @Nullable
     @Override
@@ -47,6 +55,7 @@ public class FriendFragment extends ObservableFragment {
 
     public void initComponents() {
         List<Friend> friendList = app.getUser().getFriendList();
+        List<Friend> friendRequests = app.getUser().getFriendRequest();
         FriendListAdapter adapter = new FriendListAdapter(this.getContext(),friendList);
         rv.setLayoutManager(new LinearLayoutManager(this.getContext()));
         rv.setAdapter(adapter);
@@ -57,6 +66,8 @@ public class FriendFragment extends ObservableFragment {
                 notifyObservers();
             }
         });
+        if(friendRequests.size() == 0) layoutFriendRequest.setVisibility(View.GONE);
+        tvFriendRequestCount.setText(friendRequests.size()+"");
     }
 
 }
