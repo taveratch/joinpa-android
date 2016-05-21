@@ -29,4 +29,10 @@ public interface APIService {
 
     @POST("friend/request")
     Call<Message> sendFriendRequest(@Header("Authorization") String value , @Body RequestBody requestBody);
+
+    @POST("friend/accept-request")
+    Call<Message> acceptFriendRequest(@Header("Authorization") String value , @Body RequestBody requestBody);
+
+    @GET("friend/friends")
+    Call<Element> getFriendList(@Header("Authorization") String value);
 }
