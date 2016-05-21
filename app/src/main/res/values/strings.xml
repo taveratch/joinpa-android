@@ -20,4 +20,5 @@
     <string name="search">Search</string>
     <string name="add_new_friend">Add new friend</string>
     <string name="search_new_friend">Search new friends</string>
+    <string name="friend_requests">Friend requests</string>
 </resources>

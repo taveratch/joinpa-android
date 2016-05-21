@@ -82,6 +82,23 @@ public class LoadService{
         call.enqueue(callBack);
     }
 
+    public void acceptFriendRequest(Map<String,String> data , Observer observer) {
+        RequestBody requestBody = getRequestBody(data);
+        APIService apiService = getAPIService();
+        Call<Message> call = apiService.acceptFriendRequest("bearer " + app.getToken().getKey() , requestBody);
+        ServerCallBack<Message> callBack = new ServerCallBack<>();
+        callBack.addObserver(observer);
+        call.enqueue(callBack);
+    }
+
+    public void getFriendList(Observer observer) {
+        APIService apiService = getAPIService();
+        Call<Element> call = apiService.getFriendList("bearer " + app.getToken().getKey());
+        ServerCallBack<Element> callBack = new ServerCallBack<>();
+        callBack.addObserver(observer);
+        call.enqueue(callBack);
+    }
+
     class ServerCallBack<T> extends Observable implements Callback<T>{
 
         @Override
