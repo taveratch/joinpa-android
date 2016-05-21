@@ -23,7 +23,7 @@ public class User {
     @SerializedName("friends")
     private List<Friend> friendList;
 
-    @SerializedName("friendRequest")
+    @SerializedName("friendRequests")
     private List<Friend> friendRequest;
 
     @SerializedName("password")
