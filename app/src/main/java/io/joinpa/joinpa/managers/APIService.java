@@ -1,6 +1,7 @@
 package io.joinpa.joinpa.managers;
 
 import io.joinpa.joinpa.models.Element;
+import io.joinpa.joinpa.models.Message;
 import io.joinpa.joinpa.models.Token;
 import io.joinpa.joinpa.models.User;
 import okhttp3.RequestBody;
@@ -25,4 +26,7 @@ public interface APIService {
 
     @POST("friend/search")
     Call<Element> searchFriend(@Header("Authorization") String value , @Body RequestBody requestBody);
+
+    @POST("friend/request")
+    Call<Message> sendFriendRequest(@Header("Authorization") String value , @Body RequestBody requestBody);
 }

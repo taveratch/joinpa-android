@@ -7,6 +7,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import io.joinpa.joinpa.models.Element;
+import io.joinpa.joinpa.models.Message;
 import io.joinpa.joinpa.models.Token;
 import io.joinpa.joinpa.models.User;
 import okhttp3.RequestBody;
@@ -68,6 +69,15 @@ public class LoadService{
         APIService apiService = getAPIService();
         Call<Element> call = apiService.searchFriend("bearer " + app.getToken().getKey() , requestBody);
         ServerCallBack<Element> callBack = new ServerCallBack<>();
+        callBack.addObserver(observer);
+        call.enqueue(callBack);
+    }
+
+    public void sendFriendRequest(Map<String, String> data , Observer observer) {
+        RequestBody requestBody = getRequestBody(data);
+        APIService apiService = getAPIService();
+        Call<Message> call = apiService.sendFriendRequest("bearer " + app.getToken().getKey() , requestBody);
+        ServerCallBack<Message> callBack = new ServerCallBack<>();
         callBack.addObserver(observer);
         call.enqueue(callBack);
     }
