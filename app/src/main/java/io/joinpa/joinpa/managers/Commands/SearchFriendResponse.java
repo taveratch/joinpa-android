@@ -31,25 +31,4 @@ public class SearchFriendResponse extends ObjectResponse {
         loadService.searchFriend(map,this);
     }
 
-    @Override
-    public void update(Observable observable, Object data) {
-        if(data == null) return;
-        Response<Element> response = (Response<Element>)data;
-        if(response.isSuccessful()) {
-            setSuccess(true);
-            setMessage("Success");
-            setData(response);
-        }else{
-
-            try {
-                setSuccess(false);
-                setMessage(response.errorBody().string());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        setChanged();
-        notifyObservers(this);
-    }
-
 }
