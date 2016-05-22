@@ -11,13 +11,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.views.SigninActivity"
-            android:configChanges="orientation|screenSize"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan">
-
-        </activity>
-        <activity
             android:name=".ui.views.SignUpActivity"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"
@@ -28,15 +21,21 @@
             android:name=".ui.views.MainActivity"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.views.EventActivity">
-            android:windowSoftInputMode="stateHidden|adjustPan">
+        <activity android:name=".ui.views.SigninActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".ui.views.SearchNewFriendActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"
+            ></activity>
     </application>
 
 </manifest>
