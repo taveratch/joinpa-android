@@ -7,6 +7,7 @@ import io.joinpa.joinpa.models.User;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.HEAD;
 import retrofit2.http.Header;
@@ -35,4 +36,7 @@ public interface APIService {
 
     @GET("friend/friends")
     Call<Element> getFriendList(@Header("Authorization") String value);
+
+    @POST("friend/unfriend")
+    Call<Message> unfriend(@Header("Authorization") String value , @Body RequestBody requestBody);
 }

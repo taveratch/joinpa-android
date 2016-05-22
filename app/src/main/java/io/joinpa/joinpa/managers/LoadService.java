@@ -99,6 +99,15 @@ public class LoadService{
         call.enqueue(callBack);
     }
 
+    public void unfriend(Map<String,String> data , Observer observer) {
+        RequestBody requestBody = getRequestBody(data);
+        APIService apiService = getAPIService();
+        Call<Message> call = apiService.unfriend("bearer " + app.getToken().getKey() , requestBody);
+        ServerCallBack<Message> callBack = new ServerCallBack<>();
+        callBack.addObserver(observer);
+        call.enqueue(callBack);
+    }
+
     class ServerCallBack<T> extends Observable implements Callback<T>{
 
         @Override

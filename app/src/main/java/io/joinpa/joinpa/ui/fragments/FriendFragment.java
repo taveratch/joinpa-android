@@ -65,6 +65,7 @@ public class FriendFragment extends ObservableFragment implements Observer{
         List<Friend> friendList = app.getUser().getFriendList();
         final List<Friend> friendRequests = app.getUser().getFriendRequest();
         FriendListAdapter adapter = new FriendListAdapter(this.getContext(),friendList);
+        adapter.setObserver(this);
         rv.setLayoutManager(new LinearLayoutManager(this.getContext()));
         rv.setAdapter(adapter);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
