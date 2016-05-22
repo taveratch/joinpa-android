@@ -20,10 +20,10 @@ public class User {
     @SerializedName("avatar")
     private int avatar;
 
-    @SerializedName("friendList")
+    @SerializedName("friends")
     private List<Friend> friendList;
 
-    @SerializedName("friendRequest")
+    @SerializedName("friendRequests")
     private List<Friend> friendRequest;
 
     @SerializedName("password")
@@ -86,5 +86,13 @@ public class User {
 
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

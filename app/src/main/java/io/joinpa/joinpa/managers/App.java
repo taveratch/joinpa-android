@@ -3,6 +3,9 @@ package io.joinpa.joinpa.managers;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import java.util.List;
+
+import io.joinpa.joinpa.models.Friend;
 import io.joinpa.joinpa.models.InternalData;
 import io.joinpa.joinpa.models.Token;
 import io.joinpa.joinpa.models.User;
@@ -61,5 +64,10 @@ public class App {
     public void clear(Context context) {
         clearToken(context);
         setUser(null);
+    }
+
+    public void refreshFriendList(List<Friend> friends) {
+        getUser().getFriendList().clear();
+        getUser().getFriendList().addAll(friends);
     }
 }
