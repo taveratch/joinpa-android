@@ -1,6 +1,5 @@
 package io.joinpa.joinpa.ui.adapters;
 
-import android.app.usage.UsageEvents;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,7 +44,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.event_item, parent, false);
+                .inflate(R.layout.explore_event_item, parent, false);
 
         ViewHolder vh = new ViewHolder(v);
 
