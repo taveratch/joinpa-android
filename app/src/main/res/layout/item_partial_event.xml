@@ -7,7 +7,7 @@
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:id="@+id/user_image"
+            android:id="@+id/image_user"
             android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
@@ -20,18 +20,18 @@
             android:text="username"
             android:id="@+id/username"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/user_image"
-            android:layout_toEndOf="@+id/user_image"
+            android:layout_toRightOf="@+id/image_user"
+            android:layout_toEndOf="@+id/image_user"
             android:textColor="#ffffff"
-            android:textSize="@dimen/text_small"/>
+            android:textSize="@dimen/text_small" />
+
     </RelativeLayout>
 
     <ImageView
         android:layout_width="280dp"
         android:layout_height="0.5dp"
         android:background="#ffffff"
-        android:layout_gravity="center"/>
-
+        android:layout_gravity="center" />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -49,17 +49,19 @@
                 android:id="@+id/imageView4"
                 android:layout_margin="5dp"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/sidebar_myevent_icon"/>
+                android:src="@drawable/sidebar_myevent_icon" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Event name"
-                android:id="@+id/event_name"
+                android:id="@+id/text_event_name"
                 android:layout_gravity="center_horizontal"
                 android:textColor="#ffffff"
-                android:textSize="@dimen/text_small"/>
+                android:textSize="@dimen/text_small" />
+
         </LinearLayout>
+
     </FrameLayout>
 
     <RelativeLayout
@@ -73,7 +75,7 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text="11 people joined"
-            android:id="@+id/textView4"
+            android:id="@+id/text_num_joined"
             android:textColor="#ffffff"/>
 
         <ImageView
@@ -109,23 +111,21 @@
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:id="@+id/time_icon"
+                    android:id="@+id/image_time"
                     android:layout_margin="5dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_access_time_white_24dp"/>
+                    android:src="@drawable/ic_time"/>
 
                 <TextView
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:text="Date and Time"
-                    android:id="@+id/time_label"
+                    android:id="@+id/text_time"
                     android:textAlignment="center"
                     android:textColor="#ffffff"
                     android:textSize="@dimen/text_small"/>
 
             </LinearLayout>
-
-
 
         </FrameLayout>
 
@@ -143,24 +143,24 @@
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:id="@+id/location_icon"
+                    android:id="@+id/image_location"
                     android:layout_margin="5dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_location_on_white_24dp"/>
+                    android:src="@drawable/ic_location"/>
 
                 <TextView
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:text="Location"
-                    android:id="@+id/location_label"
+                    android:id="@+id/text_location"
                     android:textAlignment="center"
                     android:textColor="#ffffff"
                     android:textSize="@dimen/text_small"/>
 
             </LinearLayout>
 
-
         </FrameLayout>
 
     </LinearLayout>
+
 </merge>

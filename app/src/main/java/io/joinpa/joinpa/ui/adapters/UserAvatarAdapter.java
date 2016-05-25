@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.bignerdranch.android.multiselector.MultiSelector;
 import com.bignerdranch.android.multiselector.SingleSelector;
@@ -51,7 +50,7 @@ public class UserAvatarAdapter extends RecyclerView.Adapter<UserAvatarAdapter.Vi
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.avatar_item, parent, false);
+                .inflate(R.layout.item_avatar, parent, false);
 
         ViewHolder vh = new ViewHolder(v);
 
@@ -66,8 +65,6 @@ public class UserAvatarAdapter extends RecyclerView.Adapter<UserAvatarAdapter.Vi
 
     @Override
     public int getItemCount() {
-        //TODO
-
         return 8;
     }
 

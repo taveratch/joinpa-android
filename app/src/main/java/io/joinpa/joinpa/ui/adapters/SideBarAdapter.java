@@ -27,11 +27,11 @@ public class SideBarAdapter extends ArrayAdapter<SideBarItem> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder = null;
-        if(convertView == null){
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.sidebar_item_layout,null);
+        if (convertView == null) {
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_sidebar,null);
             holder = new ViewHolder(convertView);
             convertView.setTag(holder);
-        }else{
+        } else {
             holder = (ViewHolder)convertView.getTag();
         }
 

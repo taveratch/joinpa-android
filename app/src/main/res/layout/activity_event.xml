@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Event name"
-            android:id="@+id/event_name"
+            android:id="@+id/text_event_name"
             android:layout_gravity="left|bottom"
             android:textSize="@dimen/text_heading"
             android:layout_margin="10dp" />
@@ -25,6 +25,7 @@
             android:layout_height="100dp"
             android:id="@+id/imageView3"
             android:layout_gravity="center" />
+
     </FrameLayout>
 
     <LinearLayout
