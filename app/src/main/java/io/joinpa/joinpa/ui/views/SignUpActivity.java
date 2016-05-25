@@ -14,7 +14,6 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Observable;
@@ -26,30 +25,15 @@ import butterknife.OnClick;
 import io.joinpa.joinpa.R;
 import io.joinpa.joinpa.managers.App;
 import io.joinpa.joinpa.managers.FormValidator;
-import io.joinpa.joinpa.managers.LoadService;
 import io.joinpa.joinpa.models.Message;
 import io.joinpa.joinpa.models.ObjectResponse;
-import io.joinpa.joinpa.models.SignInResponse;
 import io.joinpa.joinpa.models.SignUpResponse;
-import io.joinpa.joinpa.models.Token;
 import io.joinpa.joinpa.models.User;
 import io.joinpa.joinpa.ui.adapters.UserAvatarAdapter;
 
 import retrofit2.Response;
 
 public class SignUpActivity extends AppCompatActivity implements Observer {
-
-    private String username;
-    private String password;
-    private String cpassword;
-    private String email;
-    private String avatar;
-
-
-    private UserAvatarAdapter adapter;
-    private ProgressDialog progressDialog;
-    private App app;
-
 
     @BindView(R.id.choose_avatar_view)
     RecyclerView recyclerView;
@@ -78,7 +62,62 @@ public class SignUpActivity extends AppCompatActivity implements Observer {
     @BindView(R.id.email_input)
     EditText emailInput;
 
-    public boolean validateForm() {
+    private String username;
+    private String password;
+    private String cpassword;
+    private String email;
+    private String avatar;
+
+    private UserAvatarAdapter adapter;
+    private ProgressDialog progressDialog;
+    private App app;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_sign_up);
+        app = App.getInstance();
+        ButterKnife.bind(this);
+
+        LinearLayoutManager llm = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(llm);
+
+        adapter = new UserAvatarAdapter();
+        recyclerView.setAdapter(adapter);
+
+        // Set EditText to password field input
+        passwordInput.setTransformationMethod(new PasswordTransformationMethod());
+        cpasswordInput.setTransformationMethod(new PasswordTransformationMethod());
+
+    }
+
+    @Override
+    public void update(Observable observable, Object data) {
+        if ( data == null ) return;
+        if (!(data instanceof ObjectResponse)) return;
+        ObjectResponse objectResponse = (ObjectResponse)data;
+        if (objectResponse.isSuccess()) {
+            Response<User> response = (Response<User>)objectResponse.getData();
+            User user = response.body();
+            app.setUser(user); //Save User to App
+            navigateToMain();
+        } else {
+            // TODO: 5/20/16 AD handle error
+            Gson gson = new Gson();
+            Message message = gson.fromJson(objectResponse.getMessage() , Message.class);
+            Log.e("error message1" , message.getMessage());
+            Toast.makeText(this, message.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+        progressDialog.dismiss();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        toSignInPage();
+    }
+
+    private boolean validateForm() {
 
         if (!FormValidator.validateUsername(username)) {
             usernameWrapper.setError("Username must contain only a-z and is longer than 3 characters");
@@ -103,7 +142,7 @@ public class SignUpActivity extends AppCompatActivity implements Observer {
     }
 
     @OnClick(R.id.sign_up_button)
-    public void signUp() {
+    private void signUp() {
 
         username = usernameWrapper.getEditText().getText().toString();
         password = passwordWrapper.getEditText().getText().toString();
@@ -127,77 +166,25 @@ public class SignUpActivity extends AppCompatActivity implements Observer {
     }
 
     @OnClick(R.id.sign_up_tab)
-    public void toSignInPage() {
-        Intent intent = new Intent(SignUpActivity.this, SigninActivity.class);
+    private void toSignInPage() {
+        Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
         startActivity(intent);
         finish();
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up);
-        app = App.getInstance();
-        ButterKnife.bind(this);
-
-        LinearLayoutManager llm = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        recyclerView.setLayoutManager(llm);
-
-        adapter = new UserAvatarAdapter();
-        recyclerView.setAdapter(adapter);
-
-        // Set EditText to password field input
-        passwordInput.setTransformationMethod(new PasswordTransformationMethod());
-        cpasswordInput.setTransformationMethod(new PasswordTransformationMethod());
-
-        // Get value from user inputs
 
 
-        // Check user inputs
-
-
-        // Sign up
-
-
-    }
-
-
-    @Override
-    public void update(Observable observable, Object data) {
-        if ( data == null ) return;
-        if (!(data instanceof ObjectResponse)) return;
-        ObjectResponse objectResponse = (ObjectResponse)data;
-        if(objectResponse.isSuccess()) {
-            Response<User> response = (Response<User>)objectResponse.getData();
-            User user = response.body();
-            app.setUser(user); //Save User to App
-            navigateToMain();
-        }else{
-            // TODO: 5/20/16 AD handle error
-            Gson gson = new Gson();
-            Message message = gson.fromJson(objectResponse.getMessage() , Message.class);
-            Log.e("error message1" , message.getMessage());
-            Toast.makeText(this, message.getMessage(), Toast.LENGTH_SHORT).show();
-        }
-        progressDialog.dismiss();
-    }
-
-    public void showLoadingDialog() {
+    private void showLoadingDialog() {
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage(getString(R.string.please_wait));
         progressDialog.setCancelable(false);
         progressDialog.show();
     }
 
-    public void navigateToMain() {
+    private void navigateToMain() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        toSignInPage();
-    }
 }

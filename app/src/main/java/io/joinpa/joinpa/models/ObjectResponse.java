@@ -8,7 +8,8 @@ import io.joinpa.joinpa.managers.App;
 /**
  * Created by TAWEESOFT on 5/14/16 AD.
  */
-public abstract class ObjectResponse extends Observable implements Observer{
+public abstract class ObjectResponse extends Observable implements Observer {
+
     private boolean isSuccess;
     private String message;
     private Object data;

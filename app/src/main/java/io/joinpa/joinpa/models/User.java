@@ -8,6 +8,7 @@ import java.util.List;
  * Created by TAWEESOFT on 5/13/16 AD.
  */
 public class User {
+
     @SerializedName("_id")
     private String id;
 

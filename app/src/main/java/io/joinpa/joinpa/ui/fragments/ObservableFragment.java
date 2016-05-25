@@ -9,6 +9,7 @@ import java.util.Observer;
  * Created by TAWEESOFT on 5/15/16 AD.
  */
 public abstract class ObservableFragment extends Fragment {
+
     class Observable extends java.util.Observable {
         public void setChanged() {
             super.setChanged();

@@ -11,14 +11,16 @@ import io.joinpa.joinpa.models.User;
  * Created by TAWEESOFT on 5/14/16 AD.
  */
 public class App {
+
     private static App app;
     private InternalData internalData;
+
     private App() {
         internalData = InternalData.getInstance();
     }
 
     public static App getInstance() {
-        if( app == null ) app = new App();
+        if ( app == null ) app = new App();
         return app;
     }
 

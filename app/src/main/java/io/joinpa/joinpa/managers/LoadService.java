@@ -16,7 +16,7 @@ import retrofit2.Response;
 /**
  * Created by TAWEESOFT on 5/13/16 AD.
  */
-public class LoadService{
+public class LoadService {
 
     private LoadService () {}
 
@@ -31,6 +31,7 @@ public class LoadService{
     public APIService getAPIService() {
         return HttpManager.getInstance().getAPIService(APIService.class);
     }
+
     public void signIn(Map<String, String> data , Observer observer) {
         RequestBody requestBody = getRequestBody(data);
         APIService apiService = getAPIService();
@@ -58,7 +59,7 @@ public class LoadService{
         call.enqueue(callBack);
     }
 
-    class ServerCallBack<T> extends Observable implements Callback<T>{
+    class ServerCallBack<T> extends Observable implements Callback<T> {
 
         @Override
         public void onResponse(Call<T> call, Response<T> response) {

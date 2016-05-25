@@ -22,13 +22,13 @@ public class FriendFragment extends ObservableFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.friend_fragment_layout , container , false);
-        ButterKnife.bind(this,view);
+        View view = inflater.inflate(R.layout.fragment_friends, container, false);
+        ButterKnife.bind(this, view);
         initComponents();
         return view;
     }
 
-    public void initComponents() {
+    private void initComponents() {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

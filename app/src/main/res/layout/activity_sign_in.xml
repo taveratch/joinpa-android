@@ -3,10 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="io.joinpa.joinpa.ui.views.SigninActivity"
+    tools:context=".ui.views.SignInActivity"
     android:orientation="vertical"
-    android:focusable="true"
-    android:focusableInTouchMode="true"
     android:weightSum="2">
 
     <RelativeLayout
@@ -39,7 +37,9 @@
                 android:textColor="#FFF"
                 android:textSize="@dimen/text_heading"
                 android:layout_marginTop="7dp" />
+
         </LinearLayout>
+
     </RelativeLayout>
 
     <RelativeLayout
@@ -99,6 +99,7 @@
                         android:singleLine="true" />
 
                 </android.support.design.widget.TextInputLayout>
+
                 <Button
                     android:layout_width="wrap_content"
                     android:text="@string/sign_in"
@@ -107,7 +108,9 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/activity_vertical_margin"
                     android:layout_height="@dimen/sign_in_up_button_height" />
+
             </LinearLayout>
+
         </RelativeLayout>
 
         <FrameLayout
@@ -152,8 +155,11 @@
                     android:layout_toRightOf="@+id/textView3"
                     android:layout_toEndOf="@+id/textView3"
                     android:src="@drawable/right_arrow" />
+
             </RelativeLayout>
+
         </FrameLayout>
 
     </RelativeLayout>
+
 </LinearLayout>

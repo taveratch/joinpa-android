@@ -15,12 +15,13 @@ import retrofit2.Response;
 /**
  * Created by TAWEESOFT on 5/14/16 AD.
  */
-public class SignInResponse extends ObjectResponse{
+public class SignInResponse extends ObjectResponse {
 
     private Map<String,String> data;
     private Context context;
     private Observer observer;
-    public SignInResponse(Map<String , String> data , Context context){
+
+    public SignInResponse(Map<String , String> data , Context context) {
         this.data = data;
         this.context = context;
     }
@@ -35,14 +36,15 @@ public class SignInResponse extends ObjectResponse{
     public void update(Observable observable, Object o) {
         Response<Token> response = (Response<Token>)o;
         Log.e("signin" , response.isSuccessful()+"");
-        if(response.isSuccessful()) {
+
+        if (response.isSuccessful()) {
             Token token = response.body();
             app.saveToken(token , context);
             Log.e("token from signin" , token.getKey());
             VerifyResponse verifyResponse = new VerifyResponse(app.getToken().getKey());
             verifyResponse.addObserver(observer);
             verifyResponse.execute();
-        }else{
+        } else {
             try {
                 String errorMessage = response.errorBody().string();
                 Log.e("error message", errorMessage);
