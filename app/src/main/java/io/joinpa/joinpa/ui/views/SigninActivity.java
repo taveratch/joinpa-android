@@ -81,7 +81,7 @@ public class SignInActivity extends AppCompatActivity implements Observer {
     }
 
     @OnClick(R.id.layout_bottom)
-    private void navigateToSignUp() {
+    public void navigateToSignUp() {
         Intent intent = new Intent(this , SignUpActivity.class);
         startActivity(intent);
         finish();
