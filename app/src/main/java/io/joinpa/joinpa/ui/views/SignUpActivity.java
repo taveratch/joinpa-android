@@ -142,7 +142,7 @@ public class SignUpActivity extends AppCompatActivity implements Observer {
     }
 
     @OnClick(R.id.sign_up_button)
-    public void signUp() {
+    private void signUp() {
 
         username = usernameWrapper.getEditText().getText().toString();
         password = passwordWrapper.getEditText().getText().toString();
