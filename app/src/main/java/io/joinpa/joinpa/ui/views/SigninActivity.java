@@ -26,7 +26,7 @@ import io.joinpa.joinpa.managers.Commands.SignInResponse;
 import io.joinpa.joinpa.models.User;
 import retrofit2.Response;
 
-public class SigninActivity extends AppCompatActivity implements Observer {
+public class SignInActivity extends AppCompatActivity implements Observer {
 
     @BindView(R.id.et_username)
     EditText etUsername;
@@ -36,10 +36,11 @@ public class SigninActivity extends AppCompatActivity implements Observer {
 
     private ProgressDialog progressDialog;
     private App app;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signin);
+        setContentView(R.layout.activity_sign_in);
         app = App.getInstance();
         // TODO: 5/14/16 AD remove this line and load token in splash screen
         app.loadToken(this);
@@ -52,8 +53,8 @@ public class SigninActivity extends AppCompatActivity implements Observer {
         String password = etPassword.getText().toString();
         Map<String,String> map = new HashMap<>();
         map.put("username", username);
-        map.put("password" , password);
-        SignInResponse signInResponse = new SignInResponse(map,this);
+        map.put("password", password);
+        SignInResponse signInResponse = new SignInResponse(map, this);
         signInResponse.addObserver(this);
         signInResponse.execute();
         showLoadingDialog();
@@ -69,7 +70,7 @@ public class SigninActivity extends AppCompatActivity implements Observer {
             User user = response.body();
             app.setUser(user); //Save User to App
             navigateToMain();
-        }else{
+        } else {
             // TODO: 5/20/16 AD handle error
             Gson gson = new Gson();
             Message message = gson.fromJson(objectResponse.getMessage() , Message.class);
@@ -80,20 +81,20 @@ public class SigninActivity extends AppCompatActivity implements Observer {
     }
 
     @OnClick(R.id.layout_bottom)
-    public void navigateToSignUp() {
+    private void navigateToSignUp() {
         Intent intent = new Intent(this , SignUpActivity.class);
         startActivity(intent);
         finish();
     }
 
-    public void showLoadingDialog() {
+    private void showLoadingDialog() {
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage(getString(R.string.please_wait));
         progressDialog.setCancelable(false);
         progressDialog.show();
     }
 
-    public void navigateToMain() {
+    private void navigateToMain() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();

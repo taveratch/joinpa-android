@@ -21,7 +21,7 @@
             android:name=".ui.views.MainActivity"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.views.SigninActivity"
+        <activity android:name=".ui.views.SignInActivity"
             android:windowSoftInputMode="stateHidden|adjustPan"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait">

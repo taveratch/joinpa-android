@@ -15,13 +15,6 @@
             android:layout_gravity="center"
             android:textColor="#FFF"
             android:textSize="@dimen/text_heading"
-            android:text="@string/explore"/>
+            android:text="@string/friends"/>
     </android.support.v7.widget.Toolbar>
-
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/event_recyclerView">
-
-    </android.support.v7.widget.RecyclerView>
 </LinearLayout>

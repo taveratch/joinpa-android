@@ -15,6 +15,7 @@ import retrofit2.Response;
 public class VerifyResponse extends ObjectResponse {
 
     private String token;
+
     public VerifyResponse(String token) {
         this.token = token;
     }
@@ -23,22 +24,22 @@ public class VerifyResponse extends ObjectResponse {
     public void execute() {
         LoadService loadService = LoadService.newInstance();
         Map<String , String> map = new HashMap<>();
-        map.put("token" , token);
+        map.put("token", token);
         // TODO: 5/20/16 AD get device key from device 
-        map.put("deviceKey" , "KeyFromSteve");
-        loadService.verify(map,this);
+        map.put("deviceKey", "KeyFromSteve");
+        loadService.verify(map, this);
     }
 
     @Override
     public void update(Observable observable, Object o) {
-        if( o == null ) return;
+        if ( o == null ) return;
         Response<User> response = (Response<User>)o;
-        if(response.isSuccessful()) {
+        if (response.isSuccessful()) {
             setSuccess(true);
             setMessage("Success");
-            Log.e("rrrr" , response.body().getUsername());
+            Log.e("rrrr", response.body().getUsername());
             setData(response);
-        }else{
+        } else {
             try {
                 setSuccess(false);
                 setMessage(response.errorBody().string());

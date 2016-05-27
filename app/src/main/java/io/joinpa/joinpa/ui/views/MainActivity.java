@@ -6,8 +6,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -41,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
     @BindView(R.id.tv_username)
     TextView tvUsername;
 
+    private App app;
     private MenuDrawer menuDrawer;
     private List<ObservableFragment> fragmentList;
     private ObservableFragment exploreFragment;
@@ -48,55 +47,17 @@ public class MainActivity extends AppCompatActivity implements Observer {
     private ObservableFragment invitesFragment;
     private ObservableFragment myEventFragment;
     private ObservableFragment recentEventFragment;
-    private App app;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         menuDrawer = MenuDrawer.attach(this);
         menuDrawer.setContentView(R.layout.activity_main);
-        menuDrawer.setMenuView(R.layout.sidebar_layout);
+        menuDrawer.setMenuView(R.layout.sidebar);
         ButterKnife.bind(menuDrawer);
         ButterKnife.bind(this);
         app = App.getInstance();
         initComponents();
-    }
-
-    public void initComponents() {
-        //Show username in tv_username
-        tvUsername.setText(app.getUser().getUsername());
-        //Create explore fragment and add this as observer to toggle left menu drawer.
-        fragmentList = new ArrayList<ObservableFragment>();
-        fragmentList.add(new ExploreFragment());
-        fragmentList.add(new MyEventFragment());
-        fragmentList.add(new InvitesFragment());
-        fragmentList.add(new RecentEventsFragment());
-        fragmentList.add(new FriendFragment());
-        for(ObservableFragment fm : fragmentList) fm.addObserver(this);
-
-        List<SideBarItem> sideBarItems = new ArrayList<>();
-        sideBarItems.add(new SideBarItem(getString(R.string.explore) , R.drawable.sidebar_explore_icon));
-        sideBarItems.add(new SideBarItem(getString(R.string.my_events) , R.drawable.sidebar_myevent_icon));
-        sideBarItems.add(new SideBarItem(getString(R.string.invites) , R.drawable.sidebar_invites_icon));
-        sideBarItems.add(new SideBarItem(getString(R.string.recent_events) , R.drawable.sidebar_recent_icon));
-        sideBarItems.add(new SideBarItem(getString(R.string.friends) , R.drawable.sidebar_friend_icon));
-
-        SideBarAdapter sideBarAdapter = new SideBarAdapter(this,R.layout.sidebar_item_layout , sideBarItems);
-        lvSideBar.setAdapter(sideBarAdapter);
-
-        switchFragment(0); //Show primary fragment which is Explore
-    }
-
-    public void replaceFragment(Fragment fragmnet) {
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.framel_fragments, fragmnet)
-                .addToBackStack(null)
-                .commit();
-    }
-
-    public void switchFragment(int id) {
-        // TODO: 5/15/16 AD Add more fragment
-        ObservableFragment fm = fragmentList.get(id);
-        replaceFragment(fm);
     }
 
     /**
@@ -107,6 +68,45 @@ public class MainActivity extends AppCompatActivity implements Observer {
     @Override
     public void update(Observable observable, Object o) {
         toggleMenu();
+    }
+
+    private void initComponents() {
+        //Show username in tv_username
+        tvUsername.setText(app.getUser().getUsername());
+        //Create explore fragment and add this as observer to toggle left menu drawer.
+        fragmentList = new ArrayList<ObservableFragment>();
+        fragmentList.add(new ExploreFragment());
+        fragmentList.add(new MyEventFragment());
+        fragmentList.add(new InvitesFragment());
+        fragmentList.add(new RecentEventsFragment());
+        fragmentList.add(new FriendFragment());
+
+        for(ObservableFragment fm : fragmentList) fm.addObserver(this);
+
+        List<SideBarItem> sideBarItems = new ArrayList<>();
+        sideBarItems.add(new SideBarItem(getString(R.string.explore), R.drawable.sidebar_explore_icon));
+        sideBarItems.add(new SideBarItem(getString(R.string.my_events), R.drawable.sidebar_myevent_icon));
+        sideBarItems.add(new SideBarItem(getString(R.string.invites), R.drawable.sidebar_invites_icon));
+        sideBarItems.add(new SideBarItem(getString(R.string.recent_events), R.drawable.sidebar_recent_icon));
+        sideBarItems.add(new SideBarItem(getString(R.string.friends), R.drawable.sidebar_friend_icon));
+
+        SideBarAdapter sideBarAdapter = new SideBarAdapter(this, R.layout.item_sidebar, sideBarItems);
+        lvSideBar.setAdapter(sideBarAdapter);
+
+        switchFragment(0); //Show primary fragment which is Explore
+    }
+
+    private void replaceFragment(Fragment fragmnet) {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.framel_fragments, fragmnet)
+                .addToBackStack(null)
+                .commit();
+    }
+
+    private void switchFragment(int id) {
+        // TODO: 5/15/16 AD Add more fragment
+        ObservableFragment fm = fragmentList.get(id);
+        replaceFragment(fm);
     }
 
     public void toggleMenu() {
@@ -128,12 +128,12 @@ public class MainActivity extends AppCompatActivity implements Observer {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 app.clear(MainActivity.this);
-                Intent intent = new Intent(MainActivity.this , SigninActivity.class);
+                Intent intent = new Intent(MainActivity.this, SignInActivity.class);
                 startActivity(intent);
                 finish();
             }
         });
-        dialogBuilder.setNegativeButton("No" , null);
+        dialogBuilder.setNegativeButton("No", null);
         dialogBuilder.create().show();
     }
 

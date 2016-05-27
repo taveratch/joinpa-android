@@ -3,8 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:focusable="true"
-    android:focusableInTouchMode="true"
     tools:context="io.joinpa.joinpa.ui.views.SignUpActivity">
 
     <FrameLayout
@@ -19,7 +17,6 @@
             android:text="@string/app_name"
             android:layout_gravity="center"
             android:textSize="@dimen/text_heading" />
-
 
     </FrameLayout>
 
@@ -46,9 +43,7 @@
             android:id="@+id/choose_avatar_view"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_below="@id/avatar_label">
-
-        </android.support.v7.widget.RecyclerView>
+            android:layout_below="@id/avatar_label"/>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -63,8 +58,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/username"
                 android:textSize="@dimen/text_body"
-                android:id="@+id/username_input"
-                />
+                android:id="@+id/username_input" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -81,8 +75,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/password"
                 android:textSize="@dimen/text_body"
-                android:id="@+id/password_input"
-                />
+                android:id="@+id/password_input" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -122,8 +115,6 @@
 
         </android.support.design.widget.TextInputLayout>
 
-
-
         <Button
             android:layout_width="wrap_content"
             android:layout_height="@dimen/sign_in_up_button_height"
@@ -155,8 +146,8 @@
                 android:text="@string/already_join"
                 android:textColor="#ffffff"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="10dp"
-                />
+                android:layout_marginRight="10dp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -166,10 +157,9 @@
                 android:layout_alignTop="@+id/t1"
                 android:layout_toRightOf="@+id/t1"
                 android:layout_toEndOf="@+id/t1"
-                android:id="@+id/sign_in_link"/>
+                android:id="@+id/sign_in_link" />
 
         </RelativeLayout>
-
 
     </FrameLayout>
 
