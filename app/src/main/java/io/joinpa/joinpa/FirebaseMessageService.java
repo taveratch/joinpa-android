@@ -21,9 +21,8 @@ public class FirebaseMessageService extends FirebaseMessagingService {
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-        super.onMessageReceived(remoteMessage);
-        Log.d("QQQQQ", "From: " + remoteMessage.getFrom());
-        Log.d("QQQQQ", "Notification Message Body: " + remoteMessage.getNotification().getBody());
+        // TODO: 5/28/16 AD Handle message and show notification
+        Log.e("Received Message Noti" , remoteMessage.getNotification().getBody());
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
         builder.setSmallIcon(R.drawable.logo);
         builder.setContentTitle(remoteMessage.getNotification().getTitle());
