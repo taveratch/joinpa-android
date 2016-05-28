@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "472972918645",
+    "firebase_url": "https://praxis-water-93307.firebaseio.com",
+    "project_id": "praxis-water-93307",
+    "storage_bucket": "praxis-water-93307.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:472972918645:android:def2dcc9db438804",
+        "android_client_info": {
+          "package_name": "io.joinpa.joinpa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "472972918645-f20roa8e4jrol4q119jth4niksp29bfe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEQFmDJhXvCpAGw49yh5QQv8no3kM724s"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
