@@ -15,5 +15,12 @@
             android:layout_height="wrap_content"
             style="@style/toolbarTextTitle"
             android:text="@string/my_events"/>
+        <ImageView
+            android:id="@+id/img_create_new_event"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/sidebar_icon_margin"
+            android:layout_gravity="right"
+            android:src="@drawable/ic_add_black_24dp"/>
     </android.support.v7.widget.Toolbar>
 </LinearLayout>

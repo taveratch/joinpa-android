@@ -42,8 +42,9 @@ public class SignInActivity extends AppCompatActivity implements Observer {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
         app = App.getInstance();
-        // TODO: 5/14/16 AD remove this line and load token in splash screen
+        // TODO: 5/14/16 AD remove these lines and load token in splash screen
         app.loadToken(this);
+        app.loadInternalEvent(this);
         ButterKnife.bind(this);
     }
 

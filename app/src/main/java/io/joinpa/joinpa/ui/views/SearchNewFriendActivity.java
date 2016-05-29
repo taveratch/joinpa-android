@@ -70,7 +70,6 @@ public class SearchNewFriendActivity extends AppCompatActivity implements Observ
         if(objectResponse.isSuccess()) {
             Response<Element> response = (Response<Element>)objectResponse.getData();
             List<Friend> result = response.body().getSearchList();
-            Log.e("yyyy" , result.size()+"");
             showSearchResult(result);
         }else{
             // TODO: 5/21/16 AD handle error
