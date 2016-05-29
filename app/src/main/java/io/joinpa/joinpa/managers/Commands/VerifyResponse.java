@@ -1,10 +1,15 @@
 package io.joinpa.joinpa.managers.Commands;
 
 import android.util.Log;
+
+import com.google.firebase.iid.FirebaseInstanceId;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Observable;
+
+import io.joinpa.joinpa.managers.App;
 import io.joinpa.joinpa.managers.LoadService;
 import io.joinpa.joinpa.models.User;
 import retrofit2.Response;
@@ -22,11 +27,12 @@ public class VerifyResponse extends ObjectResponse {
 
     @Override
     public void execute() {
+        App app = App.getInstance();
         LoadService loadService = LoadService.newInstance();
         Map<String , String> map = new HashMap<>();
         map.put("token", token);
-        // TODO: 5/20/16 AD get device key from device 
-        map.put("deviceKey", "KeyFromSteve");
+        map.put("deviceKey", FirebaseInstanceId.getInstance().getToken());
+        Log.e("deviceKey" , FirebaseInstanceId.getInstance().getToken());
         loadService.verify(map, this);
     }
 

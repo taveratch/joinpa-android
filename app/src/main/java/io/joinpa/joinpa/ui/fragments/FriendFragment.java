@@ -29,6 +29,7 @@ import io.joinpa.joinpa.managers.Commands.GetFriendListResponse;
 import io.joinpa.joinpa.models.Friend;
 import io.joinpa.joinpa.ui.adapters.FriendListAdapter;
 import io.joinpa.joinpa.ui.adapters.FriendRequestAdapter;
+import io.joinpa.joinpa.ui.dialogs.FriendRequestDialog;
 
 /**
  * Created by TAWEESOFT on 5/15/16 AD.
@@ -86,27 +87,7 @@ public class FriendFragment extends ObservableFragment implements Observer{
     }
 
     public void showFriendRequestDialog(List<Friend> friendRequests) {
-        final Dialog dialog = new Dialog(FriendFragment.this.getContext());
-        dialog.setContentView(R.layout.friend_request_list_layout);
-        FriendRequestAdapter friendRequestAdapter = new FriendRequestAdapter(FriendFragment.this.getContext(),friendRequests);
-        RecyclerView rv = ButterKnife.findById(dialog,R.id.rv);
-        Button btn_close = ButterKnife.findById(dialog,R.id.btn_close);
-        btn_close.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-        rv.setLayoutManager(new LinearLayoutManager(FriendFragment.this.getContext()));
-        rv.setAdapter(friendRequestAdapter);
-        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-                GetFriendListResponse getFriendListResponse = new GetFriendListResponse();
-                getFriendListResponse.addObserver(FriendFragment.this);
-                getFriendListResponse.execute();
-            }
-        });
+        FriendRequestDialog dialog = new FriendRequestDialog(getContext(),friendRequests,this);
         dialog.show();
     }
     /**
