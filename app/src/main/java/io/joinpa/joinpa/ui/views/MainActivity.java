@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -35,6 +36,9 @@ public class MainActivity extends AppCompatActivity implements Observer {
 
     @BindView(R.id.lv_sidebar)
     ListView lvSideBar;
+
+    @BindView(R.id.img_avatar)
+    ImageView imgAvatar;
 
     @BindView(R.id.tv_username)
     TextView tvUsername;
@@ -73,6 +77,8 @@ public class MainActivity extends AppCompatActivity implements Observer {
     private void initComponents() {
         //Show username in tv_username
         tvUsername.setText(app.getUser().getUsername());
+        //Show avatar
+        imgAvatar.setImageResource(app.getInternalData().avatarNormal[app.getUser().getAvatar()]);
         //Create explore fragment and add this as observer to toggle left menu drawer.
         fragmentList = new ArrayList<ObservableFragment>();
         fragmentList.add(new ExploreFragment());

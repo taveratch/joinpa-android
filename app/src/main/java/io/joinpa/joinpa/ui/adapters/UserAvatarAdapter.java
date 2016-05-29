@@ -15,14 +15,20 @@ import com.bignerdranch.android.multiselector.SwappingHolder;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.joinpa.joinpa.R;
+import io.joinpa.joinpa.managers.App;
 
 
 public class UserAvatarAdapter extends RecyclerView.Adapter<UserAvatarAdapter.ViewHolder> {
 
     private static MultiSelector selector = new SingleSelector();
     private static int selectedAvatar = 0;
+    private App app;
 
-    public static class ViewHolder extends SwappingHolder implements View.OnClickListener {
+    public UserAvatarAdapter() {
+        app = App.getInstance();
+    }
+
+    public class ViewHolder extends SwappingHolder implements View.OnClickListener {
 
         @BindView(R.id.avatar_image_view)
         ImageView avatar;
@@ -37,9 +43,10 @@ public class UserAvatarAdapter extends RecyclerView.Adapter<UserAvatarAdapter.Vi
         @Override
         public void onClick(View v) {
             selectedAvatar = getAdapterPosition();
-            selector.setSelectable(true); // enter selection mode
-            selector.setSelected(this, true); // set myViewHolder to selected
+//            selector.setSelectable(true); // enter selection mode
+//            selector.setSelected(this, true); // set myViewHolder to selected
             Log.e("Click", "Clicked on " + getAdapterPosition());
+            UserAvatarAdapter.this.notifyDataSetChanged();
         }
     }
 
@@ -59,13 +66,16 @@ public class UserAvatarAdapter extends RecyclerView.Adapter<UserAvatarAdapter.Vi
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-//        holder.avatar.setImageResource();
-        holder.avatar.setBackgroundColor(Color.BLUE);
+        holder.avatar.setImageResource(app.getInternalData().avatarNormal[position]);
+        if(position == selectedAvatar)
+            holder.avatar.setBackgroundResource(R.drawable.green_circle);
+        else
+            holder.avatar.setBackgroundResource(R.drawable.blue_circle);
     }
 
     @Override
     public int getItemCount() {
-        return 8;
+        return app.getInternalData().avatarNormal.length;
     }
 
 

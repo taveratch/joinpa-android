@@ -10,44 +10,43 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <service
-            android:name=".FirebaseMessageService">
+        <service android:name=".FirebaseMessageService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-        <service
-            android:name=".FirebaseId">
+        <service android:name=".FirebaseId">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
+
         <activity
             android:name=".ui.views.SignUpActivity"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan"></activity>
-
-
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".ui.views.MainActivity"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.views.SignInActivity"
-            android:windowSoftInputMode="stateHidden|adjustPan"
+        <activity
+            android:name=".ui.views.SignInActivity"
             android:configChanges="orientation|screenSize"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.views.SearchNewFriendActivity"
-            android:windowSoftInputMode="stateHidden|adjustPan"
+        <activity
+            android:name=".ui.views.SearchNewFriendActivity"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"
-            ></activity>
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity android:name=".ui.views.NewEventActivity"></activity>
     </application>
 
 </manifest>
