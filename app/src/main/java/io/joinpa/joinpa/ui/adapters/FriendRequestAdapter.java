@@ -18,6 +18,7 @@ import java.util.Observer;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.joinpa.joinpa.R;
+import io.joinpa.joinpa.managers.App;
 import io.joinpa.joinpa.managers.Commands.AcceptFriendRequestResponse;
 import io.joinpa.joinpa.managers.Commands.ObjectResponse;
 import io.joinpa.joinpa.models.Friend;
@@ -31,10 +32,11 @@ public class FriendRequestAdapter extends RecyclerView.Adapter<FriendRequestAdap
 
     private Context context;
     private List<Friend> friendRequest;
-
+    private App app;
     public FriendRequestAdapter(Context context, List<Friend> friendRequest) {
         this.context = context;
         this.friendRequest = friendRequest;
+        app = App.getInstance();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -67,7 +69,8 @@ public class FriendRequestAdapter extends RecyclerView.Adapter<FriendRequestAdap
     public void onBindViewHolder(ViewHolder holder, final int position) {
         final Friend friend = friendRequest.get(position);
         holder.tvUsername.setText(friend.getUsername());
-        // TODO: 5/21/16 AD set avatar
+        holder.imgAvatar.setImageResource(app.getInternalData().avatarNormal[friend.getAvatar()]);
+        holder.imgAvatar.setBackgroundResource(R.drawable.blue_circle);
         holder.btnAccept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

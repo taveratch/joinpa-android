@@ -21,6 +21,7 @@ import java.util.Observer;
 import butterknife.BindView;
 import io.joinpa.joinpa.R;
 import butterknife.ButterKnife;
+import io.joinpa.joinpa.managers.App;
 import io.joinpa.joinpa.managers.Commands.GetFriendListResponse;
 import io.joinpa.joinpa.managers.Commands.ObjectResponse;
 import io.joinpa.joinpa.managers.Commands.UnFriendResponse;
@@ -41,10 +42,12 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Vi
     private List<Friend> friendList;
     private final ViewBinderHelper binderHelper = new ViewBinderHelper();
     private Observer observer;
+    private App app;
 
     public FriendListAdapter(Context context , List<Friend> friendList) {
         this.context = context;
         this.friendList = friendList;
+        app = App.getInstance();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -117,7 +120,8 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Vi
             ViewHolderList listHolder = (ViewHolderList)holder;
             binderHelper.bind(listHolder.layout,friend.getUsername()); //second parameter is unique string to identify the data.
             listHolder.tvUsername.setText(friend.getUsername());
-            // TODO: 5/20/16 AD set avatar
+            listHolder.imgAvatar.setImageResource(app.getInternalData().avatarNormal[friend.getAvatar()]);
+            listHolder.imgAvatar.setBackgroundResource(R.drawable.blue_circle);
             listHolder.removeLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

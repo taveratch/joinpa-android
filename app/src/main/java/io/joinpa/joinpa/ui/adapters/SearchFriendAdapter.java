@@ -18,6 +18,7 @@ import java.util.Observer;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.joinpa.joinpa.R;
+import io.joinpa.joinpa.managers.App;
 import io.joinpa.joinpa.managers.Commands.ObjectResponse;
 import io.joinpa.joinpa.managers.Commands.SendFriendRequestResponse;
 import io.joinpa.joinpa.models.Friend;
@@ -31,10 +32,12 @@ public class SearchFriendAdapter extends RecyclerView.Adapter<SearchFriendAdapte
 
     private List<Friend> searchResult;
     private Context context;
+    private App app;
 
     public SearchFriendAdapter(Context context , List<Friend> searchResult) {
         this.context = context;
         this.searchResult = searchResult;
+        app = App.getInstance();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -79,7 +82,8 @@ public class SearchFriendAdapter extends RecyclerView.Adapter<SearchFriendAdapte
             });
         }else
             holder.imgAdd.setImageResource(R.drawable.already_friend_action);
-        // TODO: 5/21/16 AD set image avatar
+        holder.imgAvatar.setImageResource(app.getInternalData().avatarNormal[friend.getAvatar()]);
+        holder.imgAvatar.setBackgroundResource(R.drawable.blue_circle);
         holder.tvUsername.setText(friend.getUsername());
         holder.tvFriendCount.setText(friend.getFriendList().size() + " friends");
     }
