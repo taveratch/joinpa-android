@@ -9,6 +9,9 @@
         android:layout_height="@dimen/avatar_size"
         android:id="@+id/avatar_image_view"
         android:layout_gravity="center_horizontal"
-        android:layout_margin="@dimen/avatar_margin" />
+        android:layout_margin="@dimen/avatar_margin"
+        android:padding="@dimen/inside_avatar_padding"
+        android:src="@drawable/avatar_1"
+        android:background="@drawable/blue_circle" />
 
 </LinearLayout>

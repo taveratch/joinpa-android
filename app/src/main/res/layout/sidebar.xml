@@ -17,7 +17,9 @@
             android:layout_height="@dimen/sidebar_icon_size"
             android:id="@+id/img_avatar"
             android:layout_margin="@dimen/sidebar_icon_margin"
-            android:src="@drawable/sidebar_account_icon" />
+            android:src="@drawable/avatar_1"
+            android:padding="@dimen/inside_avatar_padding"
+            android:background="@drawable/white_circle" />
 
         <TextView
             android:layout_width="wrap_content"

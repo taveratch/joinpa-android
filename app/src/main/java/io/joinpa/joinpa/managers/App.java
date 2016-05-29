@@ -41,7 +41,7 @@ public class App {
         editor.apply();
     }
 
-    private InternalData getInternalData() {
+    public InternalData getInternalData() {
         return internalData;
     }
 
@@ -72,4 +72,6 @@ public class App {
         getUser().getFriendList().clear();
         getUser().getFriendList().addAll(friends);
     }
+
+
 }
