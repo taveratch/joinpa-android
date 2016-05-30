@@ -10,16 +10,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Observer;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.joinpa.joinpa.R;
+import io.joinpa.joinpa.managers.App;
 import io.joinpa.joinpa.managers.Commands.GetPublicEventResponse;
 import io.joinpa.joinpa.managers.Commands.ObjectResponse;
 import io.joinpa.joinpa.models.Event;
 import io.joinpa.joinpa.models.EventElement;
+import io.joinpa.joinpa.models.Place;
 import io.joinpa.joinpa.ui.adapters.EventAdapter;
 import retrofit2.Response;
 
@@ -82,6 +86,16 @@ public class ExploreFragment extends ObservableFragment implements Observer {
 
         LinearLayoutManager llm = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(llm);
+
+        events = new ArrayList<Event>();
+
+        // ADD fake data
+        Event event = new Event();
+        event.setHost(App.getInstance().getUser());
+        event.setName("Sing a song");
+        event.setPlace(new Place("Library", 1 , 1));
+        event.setDate(new Date());
+        events.add(event);
 
         adapter = new EventAdapter(this.getContext(), events);
         recyclerView.setAdapter(adapter);

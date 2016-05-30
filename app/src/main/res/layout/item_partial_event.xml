@@ -12,6 +12,8 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_margin="5dp"
+            android:padding="2dp"
+            android:background="@drawable/blue_circle"
             android:src="@drawable/sidebar_account_icon" />
 
         <TextView
@@ -22,20 +24,21 @@
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/image_user"
             android:layout_toEndOf="@+id/image_user"
-            android:textColor="#ffffff"
-            android:textSize="@dimen/text_small" />
+            android:textSize="@dimen/text_small"
+            android:textStyle="bold"/>
 
     </RelativeLayout>
 
     <ImageView
         android:layout_width="280dp"
         android:layout_height="0.5dp"
-        android:background="#ffffff"
+        android:background="@color/colorPrimary"
         android:layout_gravity="center" />
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp">
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp">
 
         <LinearLayout
             android:orientation="vertical"
@@ -44,11 +47,13 @@
             android:layout_gravity="center">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:id="@+id/imageView4"
                 android:layout_margin="5dp"
                 android:layout_gravity="center_horizontal"
+                android:padding="10dp"
+                android:background="@drawable/blue_circle_alpha"
                 android:src="@drawable/sidebar_myevent_icon" />
 
             <TextView
@@ -57,8 +62,7 @@
                 android:text="Event name"
                 android:id="@+id/text_event_name"
                 android:layout_gravity="center_horizontal"
-                android:textColor="#ffffff"
-                android:textSize="@dimen/text_small" />
+                android:textSize="@dimen/text_body" />
 
         </LinearLayout>
 
@@ -67,7 +71,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:background="#80FFFFFF">
+        android:background="@color/colorBlueGray">
 
         <TextView
             android:layout_width="wrap_content"
@@ -90,10 +94,47 @@
 
     </RelativeLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/image_time"
+                android:layout_margin="5dp"
+                android:layout_gravity="bottom|center"
+                android:src="@drawable/ic_time" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/image_location"
+                android:layout_margin="5dp"
+                android:layout_gravity="bottom|center"
+                android:src="@drawable/ic_location"/>
+
+        </FrameLayout>
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="30dp"
         android:orientation="horizontal"
         android:weightSum="2">
 
@@ -108,21 +149,12 @@
                 android:layout_gravity="center"
                 android:orientation="vertical">
 
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:id="@+id/image_time"
-                    android:layout_margin="5dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_time"/>
-
                 <TextView
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:text="Date"
                     android:id="@+id/text_date"
                     android:textAlignment="center"
-                    android:textColor="#ffffff"
                     android:textSize="@dimen/text_small"/>
 
                 <TextView
@@ -131,7 +163,6 @@
                     android:text="Time"
                     android:id="@+id/text_time"
                     android:textAlignment="center"
-                    android:textColor="#ffffff"
                     android:textSize="12sp" />
 
             </LinearLayout>
@@ -143,32 +174,18 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:id="@+id/image_location"
-                    android:layout_margin="5dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_location"/>
-
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:text="Location"
-                    android:id="@+id/text_location"
-                    android:textAlignment="center"
-                    android:textColor="#ffffff"
-                    android:textSize="@dimen/text_small"/>
-
-            </LinearLayout>
+                android:text="Location"
+                android:textAlignment="center"
+                android:id="@+id/text_location"
+                android:layout_gravity="top|center"
+                android:textSize="@dimen/text_small"/>
 
         </FrameLayout>
+
+
 
     </LinearLayout>
 
