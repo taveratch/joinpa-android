@@ -26,4 +26,5 @@
     <string name="create_my_event">Create my event</string>
     <string name="choose_icon">Choose icon</string>
     <string name="event_name">Event name</string>
+    <string name="select_frined">Select friends</string>
 </resources>

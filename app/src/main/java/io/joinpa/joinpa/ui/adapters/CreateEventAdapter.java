@@ -1,6 +1,7 @@
 package io.joinpa.joinpa.ui.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.Layout;
 import android.util.Log;
@@ -19,6 +20,7 @@ import io.joinpa.joinpa.R;
 import io.joinpa.joinpa.managers.App;
 import io.joinpa.joinpa.models.Event;
 import io.joinpa.joinpa.ui.dialogs.NewCustomEventDialog;
+import io.joinpa.joinpa.ui.views.SelectFriendActivity;
 
 /**
  * Created by TAWEESOFT on 5/29/16 AD.
@@ -41,7 +43,7 @@ public class CreateEventAdapter extends RecyclerView.Adapter<CreateEventAdapter.
         }
     }
 
-    class ItemViewHolder extends ViewHolder {
+    class ItemViewHolder extends ViewHolder implements View.OnClickListener{
 
         @BindView(R.id.img_event_icon)
         ImageView imgEventIcon;
@@ -51,6 +53,16 @@ public class CreateEventAdapter extends RecyclerView.Adapter<CreateEventAdapter.
 
         public ItemViewHolder(View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            int index = getAdapterPosition();
+            Event event = events.get(index);
+            Intent intent = new Intent(CreateEventAdapter.this.context , SelectFriendActivity.class);
+            intent.putExtra("event" , event);
+            CreateEventAdapter.this.context.startActivity(intent);
         }
     }
 
