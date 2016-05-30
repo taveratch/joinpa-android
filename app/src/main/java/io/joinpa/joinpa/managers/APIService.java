@@ -1,6 +1,7 @@
 package io.joinpa.joinpa.managers;
 
 import io.joinpa.joinpa.models.Element;
+import io.joinpa.joinpa.models.EventElement;
 import io.joinpa.joinpa.models.Message;
 import io.joinpa.joinpa.models.Token;
 import io.joinpa.joinpa.models.User;
@@ -39,4 +40,7 @@ public interface APIService {
 
     @POST("friend/unfriend")
     Call<Message> unfriend(@Header("Authorization") String value , @Body RequestBody requestBody);
+
+    @GET("event/publicEvent")
+    Call<EventElement> getPublicEvents(@Header("Authorization") String value);
 }

@@ -36,7 +36,7 @@ import retrofit2.Response;
 /**
  * Created by TAWEESOFT on 5/20/16 AD.
  */
-public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.ViewHolder> implements Observer{
+public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.ViewHolder> implements Observer {
 
     private Context context;
     private List<Friend> friendList;

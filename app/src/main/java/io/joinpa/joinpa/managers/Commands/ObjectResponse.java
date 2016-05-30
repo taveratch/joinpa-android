@@ -49,10 +49,10 @@ public abstract class ObjectResponse extends Observable implements Observer {
 
     @Override
     public void update(Observable observable, Object data) {
-        if( data == null ) return;
+        if (data == null) return;
         Response<?> response = (Response<?>)data;
         setSuccess(response.isSuccessful());
-        if(!isSuccess())
+        if (!isSuccess())
             try {
                 setMessage(response.errorBody().string());
             } catch (IOException e) {

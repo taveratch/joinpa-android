@@ -119,11 +119,20 @@
                 <TextView
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:text="Date and Time"
-                    android:id="@+id/text_time"
+                    android:text="Date"
+                    android:id="@+id/text_date"
                     android:textAlignment="center"
                     android:textColor="#ffffff"
                     android:textSize="@dimen/text_small"/>
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Time"
+                    android:id="@+id/text_time"
+                    android:textAlignment="center"
+                    android:textColor="#ffffff"
+                    android:textSize="12sp" />
 
             </LinearLayout>
 

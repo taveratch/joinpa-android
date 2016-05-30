@@ -7,6 +7,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import io.joinpa.joinpa.models.Element;
+import io.joinpa.joinpa.models.EventElement;
 import io.joinpa.joinpa.models.Message;
 import io.joinpa.joinpa.models.Token;
 import io.joinpa.joinpa.models.User;
@@ -109,7 +110,15 @@ public class LoadService {
         call.enqueue(callBack);
     }
 
-    class ServerCallBack<T> extends Observable implements Callback<T>{
+    public void getPublicEvents(Observer observer) {
+        APIService apiService = getAPIService();
+        Call<EventElement> call = apiService.getPublicEvents("bearer "+ app.getToken().getKey());
+        ServerCallBack<EventElement> callBack = new ServerCallBack<>();
+        callBack.addObserver(observer);
+        call.enqueue(callBack);
+    }
+
+    class ServerCallBack<T> extends Observable implements Callback<T> {
 
         @Override
         public void onResponse(Call<T> call, Response<T> response) {
