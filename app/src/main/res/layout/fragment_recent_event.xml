@@ -8,7 +8,7 @@
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:id="@+id/toolbar"
-        app:navigationIcon="@drawable/toolbar_menu_button"
+        app:navigationIcon="@drawable/ic_menu"
         style="@style/ToolBarStyle">
         <TextView
             android:layout_width="wrap_content"

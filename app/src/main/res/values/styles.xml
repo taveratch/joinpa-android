@@ -22,7 +22,7 @@
         <item name="colorControlActivated">@color/colorAccent</item>
     </style>
 
-    <style name="ToolBarStyle">
+    <style name="ToolBarStyle" parent="@style/Widget.AppCompat.Toolbar">
         <item name="android:theme">@style/Theme.AppCompat.Light</item>
         <item name="android:background">@color/colorPrimary</item>
         <item name="titleTextColor">#FFF</item>
@@ -45,7 +45,7 @@
     </style>
 
     <style name="toolbarTextTitle">
-        <item name="android:textSize">@dimen/text_heading</item>
+        <item name="android:textSize">@dimen/text_toolbar_title</item>
         <item name="android:textColor">@color/colorWhite</item>
         <item name="android:layout_gravity">center</item>
     </style>
