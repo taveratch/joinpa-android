@@ -34,6 +34,8 @@ import io.joinpa.joinpa.ui.fragments.RecentEventsFragment;
 
 public class MainActivity extends AppCompatActivity implements Observer {
 
+    private final int SIGNOUT_POSITION = 5;
+
     @BindView(R.id.lv_sidebar)
     ListView lvSideBar;
 
@@ -46,11 +48,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
     private App app;
     private MenuDrawer menuDrawer;
     private List<ObservableFragment> fragmentList;
-    private ObservableFragment exploreFragment;
-    private ObservableFragment friendFragment;
-    private ObservableFragment invitesFragment;
-    private ObservableFragment myEventFragment;
-    private ObservableFragment recentEventFragment;
+    private List<SideBarItem> sideBarItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,12 +87,13 @@ public class MainActivity extends AppCompatActivity implements Observer {
 
         for(ObservableFragment fm : fragmentList) fm.addObserver(this);
 
-        List<SideBarItem> sideBarItems = new ArrayList<>();
+        sideBarItems = new ArrayList<>();
         sideBarItems.add(new SideBarItem(getString(R.string.explore), R.drawable.sidebar_explore_icon));
         sideBarItems.add(new SideBarItem(getString(R.string.my_events), R.drawable.sidebar_myevent_icon));
         sideBarItems.add(new SideBarItem(getString(R.string.invites), R.drawable.sidebar_invites_icon));
         sideBarItems.add(new SideBarItem(getString(R.string.recent_events), R.drawable.sidebar_recent_icon));
         sideBarItems.add(new SideBarItem(getString(R.string.friends), R.drawable.sidebar_friend_icon));
+        sideBarItems.add(new SideBarItem(getString(R.string.sign_out), R.drawable.sidebar_signout_icon));
 
         SideBarAdapter sideBarAdapter = new SideBarAdapter(this, R.layout.item_sidebar, sideBarItems);
         lvSideBar.setAdapter(sideBarAdapter);
@@ -121,11 +120,13 @@ public class MainActivity extends AppCompatActivity implements Observer {
 
     @OnItemClick(R.id.lv_sidebar)
     public void onItemClicked(int position) {
-        switchFragment(position);
-        toggleMenu();
+        if (position == sideBarItems.size() - 1) signOut();
+        else {
+            switchFragment(position);
+            toggleMenu();
+        }
     }
 
-    @OnClick(R.id.layout_signout)
     public void signOut() {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         dialogBuilder.setTitle(getString(R.string.sign_out));
