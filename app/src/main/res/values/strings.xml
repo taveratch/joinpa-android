@@ -24,4 +24,6 @@
     <string name="friend_requests">Friend requests</string>
     <string name="create_new_event">Create new event</string>
     <string name="create_my_event">Create my event</string>
+    <string name="choose_icon">Choose icon</string>
+    <string name="event_name">Event name</string>
 </resources>
