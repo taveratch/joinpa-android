@@ -27,4 +27,14 @@
     <string name="choose_icon">Choose icon</string>
     <string name="event_name">Event name</string>
     <string name="select_frined">Select friends</string>
+    <string name="event_details">Event details</string>
+    <string name="visibility">Visibility</string>
+    <string name="hidden">Hidden</string>
+    <string name="hidden_desc">Shown to only invited friends</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
+    <string name="click_here_to_choose_date">Click here to choose date</string>
+    <string name="click_here_to_choose_time">Click here to choose time</string>
+    <string name="location">Location</string>
+    <string name="add_new_locatiln">Add new location</string>
 </resources>

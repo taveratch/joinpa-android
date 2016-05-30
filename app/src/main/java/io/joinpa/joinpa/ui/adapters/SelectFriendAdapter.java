@@ -95,4 +95,8 @@ public class SelectFriendAdapter extends RecyclerView.Adapter<SelectFriendAdapte
     public int getItemCount() {
         return friendList.size();
     }
+
+    public List<Friend> getSelectedFriends() {
+        return selectedFriends;
+    }
 }
