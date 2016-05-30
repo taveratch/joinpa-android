@@ -3,8 +3,13 @@ package io.joinpa.joinpa.managers;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.util.List;
 
+import io.joinpa.joinpa.models.Event;
 import io.joinpa.joinpa.models.Friend;
 import io.joinpa.joinpa.models.InternalData;
 import io.joinpa.joinpa.models.Token;
@@ -17,9 +22,10 @@ public class App {
 
     private static App app;
     private InternalData internalData;
-
+    private Gson gson;
     private App() {
         internalData = InternalData.getInstance();
+        gson = new Gson();
     }
 
     public static App getInstance() {
@@ -72,6 +78,22 @@ public class App {
         getUser().getFriendList().clear();
         getUser().getFriendList().addAll(friends);
     }
+
+    public void loadInternalEvent(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.SP_KEY , context.MODE_PRIVATE);
+        String eventsJson = sharedPreferences.getString(Constants.SP_EVENT_KEY , "[]");
+        Type type = new TypeToken<List<Event>>(){}.getType();
+        getInternalData().events = gson.fromJson(eventsJson,type);
+    }
+
+    public void saveInternalEvent(Context context) {
+        SharedPreferences.Editor editor = context.getSharedPreferences(Constants.SP_KEY , context.MODE_PRIVATE).edit();
+        String eventsJson = gson.toJson(getInternalData().events);
+        editor.putString(Constants.SP_EVENT_KEY , eventsJson);
+        editor.apply();
+    }
+
+
 
 
 }

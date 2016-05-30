@@ -1,5 +1,13 @@
 package io.joinpa.joinpa.models;
 
+import android.content.SharedPreferences;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.List;
+
 import io.joinpa.joinpa.R;
 
 /**
@@ -25,6 +33,24 @@ public class InternalData {
             R.drawable.avatar_11,
             R.drawable.avatar_12
     };
+
+    public int[] eventIcon = {
+            R.drawable.event_1,
+            R.drawable.event_2,
+            R.drawable.event_3,
+            R.drawable.event_4,
+            R.drawable.event_5,
+            R.drawable.event_6,
+            R.drawable.event_7,
+            R.drawable.event_8,
+            R.drawable.event_9,
+            R.drawable.event_10,
+            R.drawable.event_11,
+            R.drawable.event_12,
+    };
+
+    public List<Event> events = null;
+
     private InternalData() {}
 
     public static InternalData getInstance() {
