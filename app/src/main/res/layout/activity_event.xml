@@ -9,58 +9,142 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:background="@color/colorPrimary">
+        android:background="@color/colorBlueGray"
+        android:padding="@dimen/activity_horizontal_margin">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Event name"
+            android:textColor="#ffffff"
             android:id="@+id/text_event_name"
             android:layout_gravity="left|bottom"
-            android:textSize="@dimen/text_heading"
-            android:layout_margin="10dp" />
+            android:textSize="@dimen/text_heading" />
 
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:id="@+id/imageView3"
-            android:layout_gravity="center" />
+            android:id="@+id/image_event_icon"
+            android:layout_gravity="center"
+            android:src="@drawable/event_3" />
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:id="@+id/btn_close"
+            android:src="@drawable/ic_close_black_24dp"
+            android:layout_gravity="left|top" />
 
     </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:orientation="vertical"
+        android:weightSum="5">
 
        <RelativeLayout
            android:layout_width="match_parent"
-           android:layout_height="70dp">
+           android:layout_height="65dp"
+           android:layout_weight="1">
+
+           <LinearLayout
+               android:layout_width="50dp"
+               android:layout_height="wrap_content"
+               android:orientation="vertical"
+               android:id="@+id/layout_host_icon"
+               android:layout_centerVertical="true"
+               android:layout_marginRight="40dp">
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="HOST"
+                   android:layout_gravity="center"
+                   android:textSize="10sp"/>
+
+               <ImageView
+                   android:layout_width="30dp"
+                   android:layout_height="30dp"
+                   android:src="@drawable/user_icon"
+                   android:layout_gravity="center" />
+
+           </LinearLayout>
+
+           <LinearLayout
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:orientation="vertical"
+               android:layout_toRightOf="@+id/layout_host_icon"
+               android:layout_centerVertical="true">
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:id="@+id/text_host_name"
+                   android:text="taweesoft"
+                   android:textStyle="bold" />
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:id="@+id/text_num_host_friends"
+                   android:text="14 friends"
+                   android:textSize="@dimen/text_small" />
+
+           </LinearLayout>
 
        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="70dp">
+            android:layout_height="65dp"
+            android:layout_weight="1">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_centerVertical="true"
+                android:id="@+id/layout_date_icon"
+                android:layout_marginRight="40dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Date"
+                    android:text="DATE"
                     android:layout_gravity="center"
-                    android:textSize="12dp"/>
+                    android:textSize="10sp" />
 
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:background="@color/colorRed"/>
+                    android:src="@drawable/ic_time"
+                    android:layout_gravity="center" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/layout_date_icon"
+                android:orientation="vertical"
+                android:layout_centerVertical="true"
+                android:id="@+id/linearLayout3">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/text_date"
+                    android:text="Wed, 30 Nov" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/text_time"
+                    android:text="10.00 am" />
 
             </LinearLayout>
 
@@ -68,17 +152,135 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="70dp">
+            android:layout_height="65dp"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_centerVertical="true"
+                android:id="@+id/layout_visibility_icon"
+                android:layout_marginRight="40dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TYPE"
+                    android:layout_gravity="center"
+                    android:textSize="10sp" />
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_lock"
+                    android:layout_gravity="center" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/layout_visibility_icon"
+                android:layout_centerVertical="true"
+                android:id="@+id/text_visibility"
+                android:text="Private"
+                android:textStyle="bold" />
+
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:id="@+id/switch_visibility" />
 
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="70dp">
+            android:layout_height="65dp"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_centerVertical="true"
+                android:id="@+id/layout_location_icon"
+                android:layout_marginRight="40dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PLACE"
+                    android:layout_gravity="center"
+                    android:textSize="10sp" />
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_location"
+                    android:layout_gravity="center" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/layout_location_icon"
+                android:layout_centerVertical="true"
+                android:text="Library"
+                android:textStyle="bold" />
+
+            <Button
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:id="@+id/btn_see_map"
+                android:text="Show map" />
 
         </RelativeLayout>
 
-
     </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:background="@color/colorPrimary">
+
+        <LinearLayout
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="40dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/layout_coming_icon"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/user_icon" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Who's coming"
+            android:textColor="#ffffff"
+            android:layout_toRightOf="@+id/layout_coming_icon"
+            android:layout_centerVertical="true" />
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="10dp"
+            android:src="@drawable/right_arrow"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true" />
+
+    </RelativeLayout>
 
 </LinearLayout>
