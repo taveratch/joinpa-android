@@ -35,6 +35,7 @@ public class MapFragment extends SupportMapFragment implements GoogleApiClient.C
 
     private GoogleApiClient mGoogleApiClient;
     private Location mCurrentLocation;
+    private double lat,lon;
 
     private final int[] MAP_TYPES = { GoogleMap.MAP_TYPE_SATELLITE,
             GoogleMap.MAP_TYPE_NORMAL,
@@ -139,13 +140,14 @@ public class MapFragment extends SupportMapFragment implements GoogleApiClient.C
 
     @Override
     public void onMapLongClick(LatLng latLng) {
+        getMap().clear();
         MarkerOptions options = new MarkerOptions().position( latLng );
         options.title( getAddressFromLatLng( latLng ) );
-//        options.title(name);
         options.icon( BitmapDescriptorFactory.fromBitmap(
                 BitmapFactory.decodeResource(getResources(),
-                        R.mipmap.ic_launcher)) );
-
+                        R.drawable.map_pin)) );
+        lat = latLng.latitude;
+        lon = latLng.longitude;
         getMap().addMarker( options );
     }
 
@@ -167,5 +169,13 @@ public class MapFragment extends SupportMapFragment implements GoogleApiClient.C
     public boolean onMarkerClick(Marker marker) {
         marker.showInfoWindow();
         return true;
+    }
+
+    public double getLat() {
+        return lat;
+    }
+
+    public double getLon() {
+        return lon;
     }
 }

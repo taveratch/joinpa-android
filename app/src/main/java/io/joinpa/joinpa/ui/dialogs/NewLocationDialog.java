@@ -19,7 +19,11 @@ import com.google.android.gms.maps.SupportMapFragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
+import butterknife.OnClick;
 import io.joinpa.joinpa.R;
+import io.joinpa.joinpa.managers.App;
+import io.joinpa.joinpa.managers.Notifier;
+import io.joinpa.joinpa.models.Place;
 import io.joinpa.joinpa.ui.fragments.MapFragment;
 
 /**
@@ -44,10 +48,14 @@ public class NewLocationDialog extends Dialog{
 
     private static MapFragment mapFragment;
     private Context context;
+    private App app;
+    private Notifier notifier;
 
-    public NewLocationDialog(Context context) {
+    public NewLocationDialog(Context context, Notifier notifier) {
         super(context);
         this.context = context;
+        this.notifier = notifier;
+        app = App.getInstance();
     }
 
     @Override
@@ -90,5 +98,18 @@ public class NewLocationDialog extends Dialog{
                     .remove(mapFragment)
                     .commit();
         }
+    }
+
+    @OnClick(R.id.btn_save)
+    public void save() {
+        String locationName = etLocationName.getText().toString().trim();
+        if(locationName.length() == 0) return;
+        double lat = mapFragment.getLat();
+        double lon = mapFragment.getLon();
+        Place place = new Place(locationName,lat,lon);
+        app.getPlaceManager().addPlace(getContext(),place);
+        notifier.setChanged();
+        notifier.notifyObservers();
+        dismiss();
     }
 }

@@ -23,8 +23,9 @@ public class PlaceManager {
         this.places = places;
     }
 
-    public void addPlace(Place place) {
+    public void addPlace(Context context,Place place) {
         places.add(place);
+        saveInternalPlace(context);
     }
 
     public void setPlaces(List<Place> places) {

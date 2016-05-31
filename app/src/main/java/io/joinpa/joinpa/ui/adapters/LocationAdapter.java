@@ -14,6 +14,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.joinpa.joinpa.R;
+import io.joinpa.joinpa.managers.Notifier;
 import io.joinpa.joinpa.models.Place;
 import io.joinpa.joinpa.ui.dialogs.NewLocationDialog;
 
@@ -25,11 +26,13 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
     private Context context;
     private List<Place> places;
     private int selectedPlace = 0;
+    private Notifier notifier;
 
-    public LocationAdapter(Context context, List<Place> places) {
+    public LocationAdapter(Context context, List<Place> places,Notifier notifier) {
         AppCompatActivity a = (AppCompatActivity)context;
         this.context = context;
         this.places = places;
+        this.notifier = notifier;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -46,7 +49,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
 
         @Override
         public void onClick(View v) {
-            NewLocationDialog dialog = new NewLocationDialog(context);
+            NewLocationDialog dialog = new NewLocationDialog(context,notifier);
             dialog.show();
         }
     }
@@ -60,6 +63,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
 
         public ItemLocationViewHolder(View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
         }
 
         @Override
@@ -89,7 +93,14 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
         Place place = places.get(position);
         ItemLocationViewHolder itemHolder = (ItemLocationViewHolder)holder;
         itemHolder.tvLocation.setText(place.getName());
-        if(selectedPlace == position) itemHolder.layout.setBackgroundResource(R.drawable.rounded_edittext_blue_gray);
+        if(selectedPlace == position) {
+            itemHolder.layout.setBackgroundResource(R.drawable.rounded_edittext_blue_gray);
+            itemHolder.tvLocation.setTextColor(context.getResources().getColor(R.color.colorWhite));
+        }
+        else {
+            itemHolder.layout.setBackgroundResource(R.drawable.rounded_edittext);
+            itemHolder.tvLocation.setTextColor(context.getResources().getColor(R.color.colorBlueGray));
+        }
     }
 
 

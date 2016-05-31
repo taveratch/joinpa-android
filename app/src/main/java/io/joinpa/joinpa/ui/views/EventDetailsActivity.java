@@ -9,6 +9,8 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import java.util.Date;
+import java.util.Observable;
+import java.util.Observer;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -17,10 +19,11 @@ import butterknife.OnClick;
 import io.joinpa.joinpa.R;
 import io.joinpa.joinpa.managers.App;
 import io.joinpa.joinpa.managers.DateTimeHolder;
+import io.joinpa.joinpa.managers.Notifier;
 import io.joinpa.joinpa.models.Event;
 import io.joinpa.joinpa.ui.adapters.LocationAdapter;
 
-public class EventDetailsActivity extends AppCompatActivity {
+public class EventDetailsActivity extends AppCompatActivity implements Observer{
 
     @BindView(R.id.tv_choose_date)
     TextView tvChooseDate;
@@ -35,6 +38,8 @@ public class EventDetailsActivity extends AppCompatActivity {
     private App app;
     private Event event;
     private DateTimeHolder dateTimeHolder;
+    private Notifier notifier;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,8 +51,9 @@ public class EventDetailsActivity extends AppCompatActivity {
     }
 
     public void initComponents() {
+        initNotifier();
         dateTimeHolder = new DateTimeHolder(this,tvChooseDate,tvChooseTime);
-        locationAdapter = new LocationAdapter(this,app.getPlaceManager().getPlaces());
+        locationAdapter = new LocationAdapter(this,app.getPlaceManager().getPlaces(),notifier);
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setAdapter(locationAdapter);
     }
@@ -68,5 +74,15 @@ public class EventDetailsActivity extends AppCompatActivity {
             event.setPrivate(false);
         else
             event.setPrivate(true);
+    }
+
+    @Override
+    public void update(Observable observable, Object data) {
+        locationAdapter.notifyDataSetChanged();
+    }
+
+    public void initNotifier() {
+        notifier = new Notifier();
+        notifier.addObserver(this);
     }
 }

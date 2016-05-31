@@ -26,7 +26,8 @@
             android:id="@+id/et_location_name"
             android:background="@drawable/rounded_edittext_blue_border"
             android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin" />
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:singleLine="true" />
 
     </LinearLayout>
 
