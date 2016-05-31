@@ -1,5 +1,6 @@
 package io.joinpa.joinpa.ui.views;
 
+import android.app.DatePickerDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -7,12 +8,15 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import java.util.Date;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import io.joinpa.joinpa.R;
 import io.joinpa.joinpa.managers.App;
+import io.joinpa.joinpa.managers.DateTimeHolder;
 import io.joinpa.joinpa.models.Event;
 import io.joinpa.joinpa.ui.adapters.LocationAdapter;
 
@@ -30,7 +34,7 @@ public class EventDetailsActivity extends AppCompatActivity {
     private LocationAdapter locationAdapter;
     private App app;
     private Event event;
-
+    private DateTimeHolder dateTimeHolder;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +46,7 @@ public class EventDetailsActivity extends AppCompatActivity {
     }
 
     public void initComponents() {
+        dateTimeHolder = new DateTimeHolder(this,tvChooseDate,tvChooseTime);
         locationAdapter = new LocationAdapter(this,app.getPlaceManager().getPlaces());
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setAdapter(locationAdapter);
@@ -49,16 +54,19 @@ public class EventDetailsActivity extends AppCompatActivity {
 
     @OnClick(R.id.tv_choose_date)
     public void openDatePicker() {
-
+        dateTimeHolder.openDateDialog();
     }
 
     @OnClick(R.id.tv_choose_time)
     public void openTimePicker() {
-
+        dateTimeHolder.openTimeDialog();
     }
 
     @OnCheckedChanged(R.id.sw_visibility)
     public void setVisibility(boolean isChecked) {
-
+        if (isChecked)
+            event.setPrivate(false);
+        else
+            event.setPrivate(true);
     }
 }
