@@ -38,4 +38,6 @@
     <string name="location">Location</string>
     <string name="add_new_location">Add new location</string>
     <string name="google_map_API_key">AIzaSyBaeOEcU8izVNcc7rvJr1u1goehSbje-vo</string>
+    <string name="use_google_map">Use Google Map</string>
+    <string name="use_map_desc">Show a place with pinned location</string>
 </resources>

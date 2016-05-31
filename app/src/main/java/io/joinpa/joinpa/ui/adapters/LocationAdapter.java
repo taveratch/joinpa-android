@@ -1,6 +1,7 @@
 package io.joinpa.joinpa.ui.adapters;
 
 import android.content.Context;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.joinpa.joinpa.R;
 import io.joinpa.joinpa.models.Place;
+import io.joinpa.joinpa.ui.dialogs.NewLocationDialog;
 
 /**
  * Created by TAWEESOFT on 5/30/16 AD.
@@ -25,6 +27,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
     private int selectedPlace = 0;
 
     public LocationAdapter(Context context, List<Place> places) {
+        AppCompatActivity a = (AppCompatActivity)context;
         this.context = context;
         this.places = places;
     }
@@ -43,7 +46,8 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
 
         @Override
         public void onClick(View v) {
-            // TODO: 5/31/16 AD Add new location activity
+            NewLocationDialog dialog = new NewLocationDialog(context);
+            dialog.show();
         }
     }
 
@@ -71,11 +75,12 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
         if(viewType == -1) {
             view = LayoutInflater.from(context)
                         .inflate(R.layout.item_add_new_location,parent,false);
+            return new CreateLocationViewHolder(view);
         }else {
             view = LayoutInflater.from(context)
                     .inflate(R.layout.item_location, parent, false);
         }
-        return new ViewHolder(view);
+        return new ItemLocationViewHolder(view);
     }
 
     @Override
