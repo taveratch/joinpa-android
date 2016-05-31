@@ -1,5 +1,6 @@
 package io.joinpa.joinpa.ui.views;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -60,7 +61,9 @@ public class SelectFriendActivity extends AppCompatActivity implements Observer 
     public void next() {
         List<Friend> selectedFriend = adapter.getSelectedFriends();
         event.setPendingList(selectedFriend);
-        // TODO: 5/30/16 AD send event to EventDetailsActivity 
+        Intent intent = new Intent(this,EventDetailsActivity.class);
+        intent.putExtra("event" , event);
+        startActivity(intent);
     }
 
     @Override
