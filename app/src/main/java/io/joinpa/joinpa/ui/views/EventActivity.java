@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import io.joinpa.joinpa.R;
 
 public class EventActivity extends AppCompatActivity {
@@ -36,11 +37,21 @@ public class EventActivity extends AppCompatActivity {
     @BindView(R.id.text_location)
     TextView eventLocation;
 
-    @BindView(R.id.btn_close)
-    Button closeBtn;
+    @OnClick(R.id.layout_coming_pane)
+    public void seeComingPeople() {
+        // TODO
+    }
 
-    @BindView(R.id.btn_see_map)
-    Button seeMapBtn;
+    @OnClick(R.id.btn_close)
+    public void close() {
+
+    }
+
+    @OnClick(R.id.btn_see_map)
+    public void showMap() {
+
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,4 +59,6 @@ public class EventActivity extends AppCompatActivity {
         setContentView(R.layout.activity_event);
         ButterKnife.bind(this);
     }
+
+
 }
