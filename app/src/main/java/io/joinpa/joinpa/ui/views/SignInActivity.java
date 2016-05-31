@@ -44,7 +44,8 @@ public class SignInActivity extends AppCompatActivity implements Observer {
         app = App.getInstance();
         // TODO: 5/14/16 AD remove these lines and load token in splash screen
         app.loadToken(this);
-        app.loadInternalEvent(this);
+        app.getEventManager().loadInternalEvent(this);
+        app.getPlaceManager().loadInternalPlace(this);
         ButterKnife.bind(this);
     }
 

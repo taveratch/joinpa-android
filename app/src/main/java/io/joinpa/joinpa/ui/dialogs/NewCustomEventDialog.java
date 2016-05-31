@@ -59,7 +59,7 @@ public class NewCustomEventDialog extends ObservableDialog {
         event.setIcon(adapter.getSelectedItem());
         EventManager eventManager = app.getEventManager();
         eventManager.addEvent(event);
-        app.saveInternalEvent(getContext());
+        eventManager.saveInternalEvent(getContext());
         setChanged();
         notifyObservers();
         dismiss();

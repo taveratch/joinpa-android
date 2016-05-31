@@ -86,7 +86,7 @@ public class SelectFriendAdapter extends RecyclerView.Adapter<SelectFriendAdapte
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Friend friend = friendList.get(position);
-        holder.imgAvatar.setImageResource(app.getInternalData().eventIcon[friend.getAvatar()]);
+        holder.imgAvatar.setImageResource(app.getInternalData().avatarNormal[friend.getAvatar()]);
         holder.imgAvatar.setBackgroundResource(R.drawable.blue_circle);
         holder.tvUsername.setText(friend.getUsername());
     }

@@ -51,9 +51,11 @@ public class InternalData {
     };
 
     public List<Event> events = null;
+    public List<Place> places = null;
 
     private InternalData() {
         events = new ArrayList<>();
+        places = new ArrayList<>();
     }
 
     public static InternalData getInstance() {

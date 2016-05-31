@@ -36,5 +36,5 @@
     <string name="click_here_to_choose_date">Click here to choose date</string>
     <string name="click_here_to_choose_time">Click here to choose time</string>
     <string name="location">Location</string>
-    <string name="add_new_locatiln">Add new location</string>
+    <string name="add_new_location">Add new location</string>
 </resources>
