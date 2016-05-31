@@ -1,0 +1,25 @@
+package io.joinpa.joinpa.util;
+
+import android.app.ProgressDialog;
+import android.content.Context;
+
+import io.joinpa.joinpa.R;
+
+/**
+ * Created by Peter on 5/31/2016 AD.
+ */
+public class ProgressDialogUtil {
+
+    private static ProgressDialog dialog;
+
+    public static void show(Context context, String message) {
+        dialog = new ProgressDialog(context);
+        dialog.setMessage(message);
+        dialog.setCancelable(false);
+        dialog.show();
+    }
+
+    public static void hide() {
+        if (dialog.isShowing()) dialog.hide();
+    }
+}

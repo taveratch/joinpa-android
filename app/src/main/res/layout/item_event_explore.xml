@@ -30,6 +30,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
                     android:text="@string/join"
+                    android:id="@+id/btn_join"
                     style="@style/JoinButton"/>
 
             </RelativeLayout>
