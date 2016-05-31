@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/blue_alpha_circle2"></item>
+    <item android:top="25px" android:right="25px" android:left="25px" android:bottom="25px" android:drawable="@drawable/blue_alpha_circle"></item>
+    <item android:top="30px" android:right="30px" android:left="30px" android:bottom="30px" android:drawable="@drawable/blue_circle"></item>
+</layer-list>

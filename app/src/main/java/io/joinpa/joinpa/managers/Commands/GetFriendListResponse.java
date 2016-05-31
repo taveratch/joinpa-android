@@ -12,12 +12,14 @@ import retrofit2.Response;
 /**
  * Created by TAWEESOFT on 5/21/16 AD.
  */
-public class GetFriendListResponse extends ObjectResponse{
+public class GetFriendListResponse extends ObjectResponse {
 
     private App app;
+
     public GetFriendListResponse() {
         app = App.getInstance();
     }
+
     @Override
     public void execute() {
         LoadService loadService = LoadService.newInstance();

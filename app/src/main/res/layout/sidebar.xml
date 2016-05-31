@@ -53,35 +53,6 @@
         android:dividerHeight="0dp"
         android:layout_below="@+id/view"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_above="@+id/layout_signout" />
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/layout_signout">
-
-        <ImageView
-            android:layout_width="@dimen/sidebar_icon_size"
-            android:layout_height="@dimen/sidebar_icon_size"
-            android:id="@+id/imageView3"
-            android:layout_margin="@dimen/sidebar_icon_margin"
-            android:src="@drawable/sidebar_signout_icon" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/sign_out"
-            android:id="@+id/text_num_joined"
-            android:textStyle="bold"
-            android:textColor="#FFF"
-            android:textSize="@dimen/sidebar_text_size" />
-
-    </LinearLayout>
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

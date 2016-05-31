@@ -75,13 +75,13 @@ public class ViewBinderHelper {
             }
         });
 
-        // first time binding.
+        // first ic_time binding.
         if (!mapStates.containsKey(id)) {
             mapStates.put(id, SwipeRevealLayout.STATE_CLOSE);
             swipeLayout.close(false);
         }
 
-        // not the first time, then close or open depends on the current state.
+        // not the first ic_time, then close or open depends on the current state.
         else {
             int state = mapStates.get(id);
 
@@ -137,7 +137,7 @@ public class ViewBinderHelper {
     }
 
     /**
-     * @param openOnlyOne If set to true, then only one row can be opened at a time.
+     * @param openOnlyOne If set to true, then only one row can be opened at a ic_time.
      */
     public void setOpenOnlyOne(boolean openOnlyOne) {
         this.openOnlyOne = openOnlyOne;

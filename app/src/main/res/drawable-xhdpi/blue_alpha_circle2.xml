@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="oval"
-    android:thicknessRatio="10">
+    android:shape="oval">
     <solid
-        android:color="#7F26C6DA"
+        android:color="#1F26C6DA"
         ></solid>
     <size
         android:width="@dimen/avatar_size"

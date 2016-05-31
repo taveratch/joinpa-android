@@ -1,43 +1,47 @@
 package io.joinpa.joinpa.ui.adapters;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.format.DateUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Observer;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import io.joinpa.joinpa.R;
+import io.joinpa.joinpa.managers.App;
+import io.joinpa.joinpa.managers.Commands.JoinEventResponse;
+import io.joinpa.joinpa.models.Event;
+import io.joinpa.joinpa.models.Friend;
+import io.joinpa.joinpa.util.DateUtil;
+import io.joinpa.joinpa.util.ProgressDialogUtil;
 
 /**
  * Created by Peter on 5/20/2016 AD.
  */
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> {
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    private App app;
 
-        @BindView(R.id.image_user)
-        ImageView userImage;
+    private Context context;
+    private List<Event> events;
+    private Observer observer;
 
-        @BindView(R.id.username)
-        TextView username;
-
-        @BindView(R.id.text_event_name)
-        TextView eventName;
-
-        @BindView(R.id.text_time)
-        TextView timeLabel;
-
-        @BindView(R.id.text_location)
-        TextView location;
-
-        public ViewHolder(View v) {
-            super(v);
-            ButterKnife.bind(this, v);
-        }
-
+    public EventAdapter(Context context, List<Event> events) {
+        this.context = context;
+        this.events = events;
+        app = App.getInstance();
     }
 
     @Override
@@ -49,17 +53,92 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         ViewHolder vh = new ViewHolder(v);
 
         return vh;
-
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
+        Event event = events.get(position);
+        Date date = event.getDate();
+        int avatar = event.getHost().getAvatar();
+        int eventImg = event.getIcon();
+        int numJoined = event.getJoinedList().size();
+        String joinText = "Be the first to join this event";
+        if (numJoined > 0) joinText = numJoined + " people joined";
+
+        holder.userImage.setImageResource(app.getInternalData().avatarNormal[avatar]);
+        holder.eventImage.setImageResource(app.getInternalData().eventIcon[eventImg]);
+
+        holder.username.setText(event.getHost().getUsername());
+        holder.eventName.setText(event.getName());
+        holder.numJoined.setText(joinText);
+        holder.dateLabel.setText(DateUtil.getDay(date));
+        holder.timeLabel.setText(DateUtil.getTime(date));
+        holder.location.setText(event.getPlace().getName());
     }
 
     @Override
     public int getItemCount() {
-        return 4;
+        return events.size();
+    }
+
+    public void setObserver(Observer observer) {
+        this.observer = observer;
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+
+        @BindView(R.id.image_user)
+        ImageView userImage;
+
+        @BindView(R.id.username)
+        TextView username;
+
+        @BindView(R.id.image_event_icon)
+        ImageView eventImage;
+
+        @BindView(R.id.text_event_name)
+        TextView eventName;
+
+        @BindView(R.id.text_num_joined)
+        TextView numJoined;
+
+        @BindView(R.id.text_date)
+        TextView dateLabel;
+
+        @BindView(R.id.text_time)
+        TextView timeLabel;
+
+        @BindView(R.id.text_location)
+        TextView location;
+
+        private Event event;
+
+        public ViewHolder(View v) {
+            super(v);
+            ButterKnife.bind(this, v);
+            v.setOnClickListener(this);
+        }
+
+        @OnClick(R.id.btn_join)
+        public void joinEvent() {
+            // TODO click to join event
+
+            Event event = events.get(getAdapterPosition());
+            events.remove(event);
+            notifyItemRemoved(getAdapterPosition());
+
+            ProgressDialogUtil.show(context, "Joining event..");
+            JoinEventResponse response = new JoinEventResponse(event.getId());
+            response.addObserver(observer);
+            response.execute();
+
+        }
+
+        @Override
+        public void onClick(View v) {
+            // TODO click to show event info
+        }
     }
 
 }

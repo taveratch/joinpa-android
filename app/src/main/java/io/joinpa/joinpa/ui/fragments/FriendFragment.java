@@ -34,7 +34,7 @@ import io.joinpa.joinpa.ui.dialogs.FriendRequestDialog;
 /**
  * Created by TAWEESOFT on 5/15/16 AD.
  */
-public class FriendFragment extends ObservableFragment implements Observer{
+public class FriendFragment extends ObservableFragment implements Observer {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -65,10 +65,13 @@ public class FriendFragment extends ObservableFragment implements Observer{
     public void initComponents() {
         List<Friend> friendList = app.getUser().getFriendList();
         final List<Friend> friendRequests = app.getUser().getFriendRequest();
-        FriendListAdapter adapter = new FriendListAdapter(this.getContext(),friendList);
+
+        FriendListAdapter adapter = new FriendListAdapter(this.getContext(), friendList);
         adapter.setObserver(this);
+
         rv.setLayoutManager(new LinearLayoutManager(this.getContext()));
         rv.setAdapter(adapter);
+
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -76,8 +79,10 @@ public class FriendFragment extends ObservableFragment implements Observer{
                 notifyObservers();
             }
         });
+
         if(friendRequests.size() == 0) layoutFriendRequest.setVisibility(View.GONE);
-        tvFriendRequestCount.setText(friendRequests.size()+"");
+        tvFriendRequestCount.setText(friendRequests.size() + "");
+
         layoutFriendRequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

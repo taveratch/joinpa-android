@@ -33,6 +33,7 @@ public class FriendRequestAdapter extends RecyclerView.Adapter<FriendRequestAdap
     private Context context;
     private List<Friend> friendRequest;
     private App app;
+
     public FriendRequestAdapter(Context context, List<Friend> friendRequest) {
         this.context = context;
         this.friendRequest = friendRequest;

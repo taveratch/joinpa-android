@@ -1,5 +1,8 @@
 package io.joinpa.joinpa.models;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -8,16 +11,44 @@ import java.util.List;
  */
 public class Event {
 
+    @SerializedName("_id")
+    private String id;
+
+    @SerializedName("name")
     private String name;
+
+    @SerializedName("host")
     private User host;
+
+    @SerializedName("date")
     private Date date;
+
+    @SerializedName("icon")
     private int icon;
+
     private boolean isPrivate;
+
+    @SerializedName("place")
     private Place place;
+
+    @SerializedName("joinedList")
     private List<Friend> joinedList;
+
+    @SerializedName("pendingList")
     private List<Friend> pendingList;
+
+    @SerializedName("declinedList")
     private List<Friend> declinedList;
+
     private long timeStamp;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
