@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 import io.joinpa.joinpa.models.Event;
@@ -17,10 +18,12 @@ import io.joinpa.joinpa.models.Event;
 public class EventManager {
 
     private List<Event> eventList;
+    private List<Event> tempEventList;
     private Gson gson = new Gson();
 
     public EventManager(List<Event> eventList) {
         this.eventList = eventList;
+        tempEventList = new ArrayList<>();
     }
 
     public void addEvent(Event event) {
@@ -53,4 +56,14 @@ public class EventManager {
         editor.putString(Constants.SP_EVENT_KEY , eventsJson);
         editor.apply();
     }
+
+    public List<Event> getTempEventList() {
+        return tempEventList;
+    }
+
+    public void setTempEventList(List<Event> tempEventList) {
+        this.tempEventList.clear();
+        this.tempEventList.addAll(tempEventList);
+    }
+
 }

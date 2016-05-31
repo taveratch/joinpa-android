@@ -1,18 +1,14 @@
 package io.joinpa.joinpa.ui.adapters;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.text.format.DateUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Observer;
@@ -24,7 +20,6 @@ import io.joinpa.joinpa.R;
 import io.joinpa.joinpa.managers.App;
 import io.joinpa.joinpa.managers.Commands.JoinEventResponse;
 import io.joinpa.joinpa.models.Event;
-import io.joinpa.joinpa.models.Friend;
 import io.joinpa.joinpa.ui.views.EventActivity;
 import io.joinpa.joinpa.util.DateUtil;
 import io.joinpa.joinpa.util.ProgressDialogUtil;
@@ -114,8 +109,6 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         @BindView(R.id.text_location)
         TextView location;
 
-        private Event event;
-
         public ViewHolder(View v) {
             super(v);
             ButterKnife.bind(this, v);
@@ -124,10 +117,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
 
         @OnClick(R.id.btn_join)
         public void joinEvent() {
-            // TODO click to join event
-
-            Event event = events.get(getAdapterPosition());
-            events.remove(event);
+            Event event = events.remove(getAdapterPosition());
             notifyItemRemoved(getAdapterPosition());
 
             ProgressDialogUtil.show(context, "Joining event..");
@@ -139,12 +129,9 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
 
         @Override
         public void onClick(View v) {
-            Event event = events.get(getAdapterPosition());
-            // TODO: 5/31/2016 AD send real event from App
             Intent intent = new Intent(context, EventActivity.class);
-            intent.putExtra("event" , event);
-
-            // TODO click to show event info
+            intent.putExtra("event_index" , getAdapterPosition());
+            context.startActivity(intent);
         }
     }
 
