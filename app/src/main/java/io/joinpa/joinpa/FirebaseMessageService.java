@@ -28,6 +28,7 @@ public class FirebaseMessageService extends FirebaseMessagingService {
         builder.setContentTitle(remoteMessage.getNotification().getTitle());
         builder.setContentText(remoteMessage.getNotification().getBody());
         Intent intent = new Intent(this , SignInActivity.class);
+
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
 // Adds the back stack for the Intent (but not the Intent itself)
         stackBuilder.addParentStack(SignInActivity.class);

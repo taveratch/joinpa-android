@@ -50,6 +50,7 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Vi
         app = App.getInstance();
     }
 
+    // TODO: 5/31/16 AD remove viewholder and use ViewHolder.java from P
     class ViewHolder extends RecyclerView.ViewHolder {
 
         public ViewHolder(View itemView) {

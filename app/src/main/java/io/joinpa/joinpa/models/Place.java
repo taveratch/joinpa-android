@@ -1,9 +1,11 @@
 package io.joinpa.joinpa.models;
 
+import java.io.Serializable;
+
 /**
  * Created by TAWEESOFT on 5/29/16 AD.
  */
-public class Place {
+public class Place implements Serializable {
     private String name;
     private double lat,lon;
 

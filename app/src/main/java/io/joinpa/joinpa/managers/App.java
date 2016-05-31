@@ -22,10 +22,14 @@ public class App {
 
     private static App app;
     private InternalData internalData;
+    private EventManager eventManager;
+    private PlaceManager placeManager;
     private Gson gson;
     private App() {
         internalData = InternalData.getInstance();
         gson = new Gson();
+        eventManager = new EventManager(internalData.events);
+        placeManager = new PlaceManager(internalData.places);
     }
 
     public static App getInstance() {
@@ -79,21 +83,12 @@ public class App {
         getUser().getFriendList().addAll(friends);
     }
 
-    public void loadInternalEvent(Context context) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.SP_KEY , context.MODE_PRIVATE);
-        String eventsJson = sharedPreferences.getString(Constants.SP_EVENT_KEY , "[]");
-        Type type = new TypeToken<List<Event>>(){}.getType();
-        getInternalData().events = gson.fromJson(eventsJson,type);
+
+    public EventManager getEventManager() {
+        return eventManager;
     }
 
-    public void saveInternalEvent(Context context) {
-        SharedPreferences.Editor editor = context.getSharedPreferences(Constants.SP_KEY , context.MODE_PRIVATE).edit();
-        String eventsJson = gson.toJson(getInternalData().events);
-        editor.putString(Constants.SP_EVENT_KEY , eventsJson);
-        editor.apply();
+    public PlaceManager getPlaceManager() {
+        return placeManager;
     }
-
-
-
-
 }

@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/list_item_height"
         android:id="@+id/add_friend_layout"
-        android:background="@drawable/rounded_list_item"
+        android:background="@drawable/rounded_edittext"
         android:gravity="center_vertical|center_horizontal">
 
         <ImageView
@@ -21,7 +21,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/create_my_event"
+            android:text="@string/add_new_location"
             android:id="@+id/textView6"
             android:textColor="@color/colorPrimary"
             android:textStyle="bold" />

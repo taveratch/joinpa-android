@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 import io.joinpa.joinpa.R;
@@ -50,8 +51,12 @@ public class InternalData {
     };
 
     public List<Event> events = null;
+    public List<Place> places = null;
 
-    private InternalData() {}
+    private InternalData() {
+        events = new ArrayList<>();
+        places = new ArrayList<>();
+    }
 
     public static InternalData getInstance() {
         if (internalData == null) internalData = new InternalData();

@@ -49,4 +49,15 @@
         <item name="android:textColor">@color/colorWhite</item>
         <item name="android:layout_gravity">center</item>
     </style>
+
+    <style name="dialogHeaderStyle">
+        <item name="android:layout_marginTop">@dimen/dialog_header_top_margin</item>
+        <item name="android:layout_marginBottom">@dimen/dialog_header_bottom_margin</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="dialogButtonStyle" parent="@style/Base.Widget.AppCompat.Button.Borderless">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
 </resources>

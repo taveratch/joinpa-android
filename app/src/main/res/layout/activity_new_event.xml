@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         app:navigationIcon="@drawable/ic_close_black_24dp"
         style="@style/ToolBarStyle"
-        android:id="@+id/view2">
+        android:id="@+id/toolbar">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -22,7 +22,7 @@
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:id="@+id/imageView7"
-        android:layout_below="@+id/view2"
+        android:layout_below="@+id/toolbar"
         android:layout_centerHorizontal="true"
         android:src="@drawable/all_event_icon" />
     <android.support.v7.widget.RecyclerView
