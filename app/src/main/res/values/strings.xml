@@ -37,4 +37,5 @@
     <string name="click_here_to_choose_time">Click here to choose time</string>
     <string name="location">Location</string>
     <string name="add_new_location">Add new location</string>
+    <string name="google_map_API_key">AIzaSyBaeOEcU8izVNcc7rvJr1u1goehSbje-vo</string>
 </resources>
