@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/list_item_height"
         android:id="@+id/add_friend_layout"
-        android:background="@drawable/rounded_edittext"
+        android:background="@drawable/rounded_list_item"
         android:gravity="center_vertical|center_horizontal">
 
         <ImageView

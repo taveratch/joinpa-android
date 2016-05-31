@@ -35,6 +35,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
         this.notifier = notifier;
     }
 
+    // TODO: 5/31/16 AD Remove ViewHolder and use from P
     class ViewHolder extends RecyclerView.ViewHolder {
         public ViewHolder(View itemView) {
             super(itemView);

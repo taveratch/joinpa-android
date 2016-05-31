@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/list_item_height"
     android:layout_marginBottom="@dimen/list_component_margin"
-    android:background="#FFF"
+    android:background="@drawable/rounded_list_item"
     android:orientation="horizontal"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/layout">

@@ -17,6 +17,13 @@
             android:layout_gravity="center"
             style="@style/toolbarTextTitle"
             android:text="@string/event_details" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_gravity="right"
+            android:src="@drawable/ic_check_black_24dp"
+            android:id="@+id/img_ok" />
     </android.support.v7.widget.Toolbar>
 
     <LinearLayout

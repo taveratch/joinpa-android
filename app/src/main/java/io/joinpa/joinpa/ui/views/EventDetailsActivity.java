@@ -5,6 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -34,6 +37,12 @@ public class EventDetailsActivity extends AppCompatActivity implements Observer{
     @BindView(R.id.rv)
     RecyclerView rv;
 
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
+    @BindView(R.id.img_ok)
+    ImageView imgOk;
+
     private LocationAdapter locationAdapter;
     private App app;
     private Event event;
@@ -56,6 +65,12 @@ public class EventDetailsActivity extends AppCompatActivity implements Observer{
         locationAdapter = new LocationAdapter(this,app.getPlaceManager().getPlaces(),notifier);
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setAdapter(locationAdapter);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     @OnClick(R.id.tv_choose_date)
@@ -84,5 +99,10 @@ public class EventDetailsActivity extends AppCompatActivity implements Observer{
     public void initNotifier() {
         notifier = new Notifier();
         notifier.addObserver(this);
+    }
+
+    @OnClick(R.id.img_ok)
+    public void save() {
+
     }
 }

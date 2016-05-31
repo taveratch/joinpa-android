@@ -7,10 +7,11 @@
     tools:context="io.joinpa.joinpa.ui.views.SelectFriendActivity"
     android:background="@color/colorPrimary">
     <android.support.v7.widget.Toolbar
+
         android:layout_width="match_parent"
         app:navigationIcon="@drawable/ic_arrow_back_black_24dp"
         style="@style/ToolBarStyle"
-        android:id="@+id/view2">
+        android:id="@+id/toolbar">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -30,7 +31,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/view2"
+        android:layout_below="@+id/toolbar"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginRight="@dimen/activity_horizontal_margin"

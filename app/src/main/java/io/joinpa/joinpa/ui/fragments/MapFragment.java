@@ -91,7 +91,7 @@ public class MapFragment extends SupportMapFragment implements GoogleApiClient.C
                 .target( new LatLng( location.getLatitude(),
                         location.getLongitude() ) )
                 .zoom( 16f )
-                .bearing( 0.0f )
+                .bearing( 1.0f )
                 .tilt( 0.0f )
                 .build();
 

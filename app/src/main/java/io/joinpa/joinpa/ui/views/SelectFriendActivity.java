@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -33,6 +35,9 @@ public class SelectFriendActivity extends AppCompatActivity implements Observer 
     @BindView(R.id.tv_select_friend_ok)
     TextView tvOk;
 
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
     private SelectFriendAdapter adapter;
     private Event event;
     private Notifier notifier;
@@ -55,6 +60,12 @@ public class SelectFriendActivity extends AppCompatActivity implements Observer 
         adapter = new SelectFriendAdapter(this,app.getUser().getFriendList(),notifier);
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setAdapter(adapter);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     @OnClick(R.id.tv_select_friend_ok)

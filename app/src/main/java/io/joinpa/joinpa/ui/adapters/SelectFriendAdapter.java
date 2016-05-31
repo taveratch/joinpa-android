@@ -67,7 +67,7 @@ public class SelectFriendAdapter extends RecyclerView.Adapter<SelectFriendAdapte
                 selectedFriends.add(friend);
                 notifier.notifyObservers(true);
             }else{
-                tvUsername.setTextColor(context.getResources().getColor(R.color.colorPrimary));
+                tvUsername.setTextColor(context.getResources().getColor(R.color.colorBlueGray));
                 layout.setBackgroundResource(R.drawable.rounded_edittext);
                 selectedFriends.remove(friend);
                 notifier.notifyObservers(false);

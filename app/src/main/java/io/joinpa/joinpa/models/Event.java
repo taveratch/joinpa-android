@@ -2,6 +2,7 @@ package io.joinpa.joinpa.models;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.List;
 /**
  * Created by TAWEESOFT on 5/29/16 AD.
  */
-public class Event {
+public class Event implements Serializable{
 
     @SerializedName("_id")
     private String id;
