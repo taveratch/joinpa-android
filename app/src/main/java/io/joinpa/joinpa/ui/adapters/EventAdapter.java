@@ -3,6 +3,7 @@ package io.joinpa.joinpa.ui.adapters;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import butterknife.ButterKnife;
 import io.joinpa.joinpa.R;
 import io.joinpa.joinpa.managers.App;
 import io.joinpa.joinpa.models.Event;
+import io.joinpa.joinpa.models.Friend;
 import io.joinpa.joinpa.util.DateUtil;
 
 /**
@@ -51,12 +53,19 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
     public void onBindViewHolder(ViewHolder holder, int position) {
 
         Event event = events.get(position);
-        int avatar = event.getHost().getAvatar();
         Date date = event.getDate();
+        int avatar = event.getHost().getAvatar();
+        int eventImg = event.getIcon();
+        int numJoined = event.getJoinedList().size();
+        String joinText = "Be the first to join this event";
+        if (numJoined > 0) joinText = numJoined + "people joined";
 
         holder.userImage.setImageResource(app.getInternalData().avatarNormal[avatar]);
+        holder.eventImage.setImageResource(app.getInternalData().eventIcon[eventImg]);
+
         holder.username.setText(event.getHost().getUsername());
         holder.eventName.setText(event.getName());
+        holder.numJoined.setText(joinText);
         holder.dateLabel.setText(DateUtil.getDay(date));
         holder.timeLabel.setText(DateUtil.getTime(date));
         holder.location.setText(event.getPlace().getName());
@@ -75,8 +84,14 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         @BindView(R.id.username)
         TextView username;
 
+        @BindView(R.id.image_event_icon)
+        ImageView eventImage;
+
         @BindView(R.id.text_event_name)
         TextView eventName;
+
+        @BindView(R.id.text_num_joined)
+        TextView numJoined;
 
         @BindView(R.id.text_date)
         TextView dateLabel;

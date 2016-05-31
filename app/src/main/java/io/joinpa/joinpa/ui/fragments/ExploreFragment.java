@@ -51,7 +51,12 @@ public class ExploreFragment extends ObservableFragment implements Observer {
 
         if (objectResponse.isSuccess()) {
             Response<EventElement> response = (Response<EventElement>) objectResponse.getData();
-            events = response.body().getEventList();
+            events.clear();
+            events.addAll(response.body().getEventList());
+            Log.e("GET", "success");
+            for (Event e: events) {
+                Log.e("event", e.getName());
+            }
             adapter.notifyDataSetChanged();
         } else {
             Log.e("error", objectResponse.getMessage());
@@ -88,14 +93,6 @@ public class ExploreFragment extends ObservableFragment implements Observer {
         recyclerView.setLayoutManager(llm);
 
         events = new ArrayList<Event>();
-
-        // ADD fake data
-        Event event = new Event();
-        event.setHost(App.getInstance().getUser());
-        event.setName("Sing a song");
-        event.setPlace(new Place("Library", 1 , 1));
-        event.setDate(new Date());
-        events.add(event);
 
         adapter = new EventAdapter(this.getContext(), events);
         recyclerView.setAdapter(adapter);

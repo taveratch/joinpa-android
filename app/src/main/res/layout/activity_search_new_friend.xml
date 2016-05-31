@@ -34,7 +34,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/imageView4"
+            android:id="@+id/image_event_icon"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/search_new_friend_banner"
             android:layout_marginLeft="@dimen/sidebar_icon_margin"

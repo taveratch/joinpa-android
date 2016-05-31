@@ -49,7 +49,7 @@
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:id="@+id/imageView4"
+                android:id="@+id/image_event_icon"
                 android:layout_margin="5dp"
                 android:layout_gravity="center_horizontal"
                 android:padding="10dp"
