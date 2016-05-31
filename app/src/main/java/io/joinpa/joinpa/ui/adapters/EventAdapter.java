@@ -2,6 +2,7 @@ package io.joinpa.joinpa.ui.adapters;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
 import android.util.Log;
@@ -24,6 +25,7 @@ import io.joinpa.joinpa.managers.App;
 import io.joinpa.joinpa.managers.Commands.JoinEventResponse;
 import io.joinpa.joinpa.models.Event;
 import io.joinpa.joinpa.models.Friend;
+import io.joinpa.joinpa.ui.views.EventActivity;
 import io.joinpa.joinpa.util.DateUtil;
 import io.joinpa.joinpa.util.ProgressDialogUtil;
 
@@ -86,7 +88,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         this.observer = observer;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         @BindView(R.id.image_user)
         ImageView userImage;
@@ -137,6 +139,11 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
 
         @Override
         public void onClick(View v) {
+            Event event = events.get(getAdapterPosition());
+            // TODO: 5/31/2016 AD send real event from App
+            Intent intent = new Intent(context, EventActivity.class);
+            intent.putExtra("event" , event);
+
             // TODO click to show event info
         }
     }

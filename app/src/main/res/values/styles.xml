@@ -31,7 +31,14 @@
     </style>
 
     <style name="JoinButton" parent="@style/Widget.AppCompat.Button.Borderless">
-        <item name="android:background">@drawable/rounded_button_green</item>
+    <item name="android:background">@drawable/rounded_button_green</item>
+    <item name="android:height">@dimen/join_button_height</item>
+    <item name="android:width">@dimen/join_button_width</item>
+    <item name="android:textColor">#FFF</item>
+    </style>
+
+    <style name="CancelButton" parent="@style/Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@drawable/rounded_button_red</item>
         <item name="android:height">@dimen/join_button_height</item>
         <item name="android:width">@dimen/join_button_width</item>
         <item name="android:textColor">#FFF</item>

@@ -119,6 +119,14 @@ public class LoadService {
         call.enqueue(callBack);
     }
 
+    public void getJoinedEvents(Observer observer) {
+        APIService apiService = getAPIService();
+        Call<EventElement> call = apiService.getJoinedEvents("bearer " + app.getToken().getKey());
+        ServerCallBack<EventElement> callBack = new ServerCallBack<>();
+        callBack.addObserver(observer);
+        call.enqueue(callBack);
+    }
+
     public void joinEvent(Map<String, String> data, Observer observer) {
         RequestBody requestBody = getRequestBody(data);
         APIService apiService = getAPIService();

@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
 
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
@@ -16,4 +17,11 @@
             style="@style/toolbarTextTitle"
             android:text="@string/recent_events"/>
     </android.support.v7.widget.Toolbar>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recent_event_recyclerView">
+
+    </android.support.v7.widget.RecyclerView>
 </LinearLayout>
