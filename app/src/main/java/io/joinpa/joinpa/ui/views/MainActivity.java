@@ -31,6 +31,7 @@ import io.joinpa.joinpa.ui.fragments.InvitesFragment;
 import io.joinpa.joinpa.ui.fragments.MyEventFragment;
 import io.joinpa.joinpa.ui.fragments.ObservableFragment;
 import io.joinpa.joinpa.ui.fragments.RecentEventsFragment;
+import io.joinpa.joinpa.util.PermissionUtil;
 
 public class MainActivity extends AppCompatActivity implements Observer {
 
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
         ButterKnife.bind(menuDrawer);
         ButterKnife.bind(this);
         app = App.getInstance();
+        PermissionUtil.canAccessLocation(this); //check permission for location service
         initComponents();
     }
 

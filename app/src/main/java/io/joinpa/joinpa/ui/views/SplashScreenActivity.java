@@ -19,6 +19,7 @@ import io.joinpa.joinpa.managers.App;
 import io.joinpa.joinpa.managers.commands.ObjectResponse;
 import io.joinpa.joinpa.managers.commands.VerifyResponse;
 import io.joinpa.joinpa.models.User;
+import io.joinpa.joinpa.util.PermissionUtil;
 import retrofit2.Response;
 
 public class SplashScreenActivity extends AppCompatActivity implements Observer {
