@@ -91,7 +91,7 @@ use `<merge>` and `<include>` in layout to reuse components.
 ---
 #### Low coupling, High cohesion
 
-- **joina/util**
+- **joinpa/util**
 - **DateUtil** for formatting date, reducing the need of activity to include logic for that.
 - **ProgressDialogUtil** for showing load dialog and hiding without coupling in activity or fragments
 
