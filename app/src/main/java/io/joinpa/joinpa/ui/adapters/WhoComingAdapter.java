@@ -45,6 +45,7 @@ public class WhoComingAdapter extends RecyclerView.Adapter<WhoComingAdapter.View
         Friend friend = friends.get(position);
         holder.imgAvatar.setImageResource(app.getInternalData().avatarNormal[friend.getAvatar()]);
         holder.tvUsername.setText(friend.getUsername());
+        holder.tvFriendCount.setText(friend.getFriendList().size()+"");
     }
 
     @Override
@@ -59,6 +60,9 @@ public class WhoComingAdapter extends RecyclerView.Adapter<WhoComingAdapter.View
 
         @BindView(R.id.tv_username)
         TextView tvUsername;
+
+        @BindView(R.id.tv_friend_count)
+        TextView tvFriendCount;
 
         public ViewHolder(View itemView) {
             super(itemView);
