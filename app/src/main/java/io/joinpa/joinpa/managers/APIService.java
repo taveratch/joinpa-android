@@ -48,6 +48,9 @@ public interface APIService {
     @GET("event/joinedEvent")
     Call<EventElement> getJoinedEvents(@Header("Authorization") String value);
 
+    @GET("event/myEvent")
+    Call<EventElement> getMyEvents(@Header("Authorization") String value);
+
     @POST("event/join")
     Call<Message> joinEvent(@Header("Authorization") String value, @Body RequestBody requestBody);
 
