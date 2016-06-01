@@ -122,6 +122,7 @@ public class EventDetailsActivity extends AppCompatActivity implements Observer 
             return;
         }
         event.setPlace(place);
+        event.setTimeStamp(System.currentTimeMillis());
         Date date = dateTimeHolder.getDate();
         event.setDate(date);
         Gson gson = new Gson();

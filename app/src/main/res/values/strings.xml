@@ -48,4 +48,5 @@
     <string name="pending">Pending</string>
     <string name="declined">Declined</string>
     <string name="please_select_location">Please select location</string>
+    <string name="who_coming">Who\'s coming</string>
 </resources>

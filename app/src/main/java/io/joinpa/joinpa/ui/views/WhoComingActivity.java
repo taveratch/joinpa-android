@@ -5,6 +5,8 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.Button;
 
 import butterknife.BindView;
@@ -28,6 +30,9 @@ public class WhoComingActivity extends FragmentActivity {
     @BindView(R.id.btn_declined)
     Button btnDeclined;
 
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
     private final int PAGE_COUNT = 3;
 
     private PagerAdapter adapter;
@@ -43,6 +48,12 @@ public class WhoComingActivity extends FragmentActivity {
     }
 
     public void initComponents() {
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         adapter = new EventUserListPagerAdapter(getSupportFragmentManager(),PAGE_COUNT,event);
         viewPager.setAdapter(adapter);
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {

@@ -3,12 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="io.joinpa.joinpa.ui.views.WhoComingActivity"
     android:background="@color/colorPrimary">
     <android.support.v7.widget.Toolbar
+        app:navigationIcon="@drawable/ic_arrow_back_black_24dp"
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        style="@style/ToolBarStyle"></android.support.v7.widget.Toolbar>
+        style="@style/ToolBarStyle">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/who_coming"
+            style="@style/toolbarTextTitle"/>
+    </android.support.v7.widget.Toolbar>
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"

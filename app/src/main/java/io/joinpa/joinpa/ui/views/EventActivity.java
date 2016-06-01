@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -46,6 +47,9 @@ public class EventActivity extends AppCompatActivity {
     @BindView(R.id.text_location)
     TextView eventLocation;
 
+    @BindView(R.id.btn_see_map)
+    Button btnSeeMap;
+
     private Event event;
     private App app;
 
@@ -63,7 +67,9 @@ public class EventActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_see_map)
     public void showMap() {
-
+        Intent intent = new Intent(this,ShowMapActivity.class);
+        intent.putExtra("place",event.getPlace());
+        startActivity(intent);
     }
 
 
@@ -73,6 +79,10 @@ public class EventActivity extends AppCompatActivity {
         setContentView(R.layout.activity_event);
         ButterKnife.bind(this);
         app = App.getInstance();
+        initComponents();
+    }
+
+    public void initComponents() {
         EventManager eventManager = app.getEventManager();
         int eventIndex = (int)getIntent().getSerializableExtra("event_index");
         event = eventManager.getTempEventList().get(eventIndex);
@@ -102,7 +112,8 @@ public class EventActivity extends AppCompatActivity {
                 }
             }
         });
-
+        Log.e("isUseMap" , event.getPlace().isUseMap()+"");
+        if (!event.getPlace().isUseMap()) btnSeeMap.setVisibility(View.GONE); //hide see map button
     }
 
 
