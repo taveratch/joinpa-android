@@ -26,7 +26,7 @@ public class LocationAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     private Context context;
     private List<Place> places;
-    private int selectedPlace = 0;
+    private int selectedPlace = -1;
     private Notifier notifier;
 
     public LocationAdapter(Context context, List<Place> places, Notifier notifier) {
@@ -79,6 +79,7 @@ public class LocationAdapter extends RecyclerView.Adapter<ViewHolder> {
     }
 
     public Place getSelectedPlace() {
+        if (selectedPlace==-1) return null;
         return places.get(selectedPlace);
     }
 

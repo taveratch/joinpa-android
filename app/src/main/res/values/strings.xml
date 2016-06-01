@@ -47,4 +47,5 @@
     <string name="joined">Joined</string>
     <string name="pending">Pending</string>
     <string name="declined">Declined</string>
+    <string name="please_select_location">Please select location</string>
 </resources>
