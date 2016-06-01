@@ -403,7 +403,7 @@ public class SwipeRevealLayout extends ViewGroup {
     }
 
     /**
-     * Close the panel to hide the secondary view
+     * Close the panel to dismiss the secondary view
      * @param animation true to animate the close motion. {@link SwipeListener} won't be
      *                  called if is animation is false.
      */

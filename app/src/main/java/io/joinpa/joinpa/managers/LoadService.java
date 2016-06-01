@@ -1,7 +1,5 @@
 package io.joinpa.joinpa.managers;
 
-import android.util.Log;
-
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
@@ -175,7 +173,7 @@ public class LoadService {
         @Override
         public void onFailure(Call<T> call, Throwable t) {
             System.out.println("connection error " + t.getMessage());
-            ProgressDialogUtil.hide();
+            ProgressDialogUtil.dismiss();
             // TODO: 5/13/16 AD handle error
         }
     }

@@ -9,7 +9,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnLongClick;
 import io.joinpa.joinpa.R;
-import io.joinpa.joinpa.managers.Command;
+import io.joinpa.joinpa.managers.commands.Command;
 
 /**
  * Created by TAWEESOFT on 6/1/16 AD.

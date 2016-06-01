@@ -1,11 +1,10 @@
-package io.joinpa.joinpa.managers.Commands;
+package io.joinpa.joinpa.managers.commands;
 
 import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
 import io.joinpa.joinpa.managers.App;
-import io.joinpa.joinpa.managers.Command;
 import retrofit2.Response;
 
 /**

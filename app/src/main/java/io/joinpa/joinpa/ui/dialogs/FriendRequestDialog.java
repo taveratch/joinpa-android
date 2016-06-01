@@ -15,7 +15,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.joinpa.joinpa.R;
-import io.joinpa.joinpa.managers.Commands.GetFriendListResponse;
+import io.joinpa.joinpa.managers.commands.GetFriendListResponse;
 import io.joinpa.joinpa.models.Friend;
 import io.joinpa.joinpa.ui.adapters.FriendRequestAdapter;
 

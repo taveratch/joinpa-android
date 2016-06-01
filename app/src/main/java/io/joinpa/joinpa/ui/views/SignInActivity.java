@@ -1,6 +1,5 @@
 package io.joinpa.joinpa.ui.views;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,9 +20,10 @@ import butterknife.OnClick;
 import io.joinpa.joinpa.R;
 import io.joinpa.joinpa.managers.App;
 import io.joinpa.joinpa.models.Message;
-import io.joinpa.joinpa.managers.Commands.ObjectResponse;
-import io.joinpa.joinpa.managers.Commands.SignInResponse;
+import io.joinpa.joinpa.managers.commands.ObjectResponse;
+import io.joinpa.joinpa.managers.commands.SignInResponse;
 import io.joinpa.joinpa.models.User;
+import io.joinpa.joinpa.util.ProgressDialogUtil;
 import retrofit2.Response;
 
 public class SignInActivity extends AppCompatActivity implements Observer {
@@ -34,7 +34,6 @@ public class SignInActivity extends AppCompatActivity implements Observer {
     @BindView(R.id.et_password)
     EditText etPassword;
 
-    private ProgressDialog progressDialog;
     private App app;
 
     @Override
@@ -47,15 +46,19 @@ public class SignInActivity extends AppCompatActivity implements Observer {
 
     @OnClick(R.id.btnSignin)
     public void signIn() {
+
         String username = etUsername.getText().toString();
         String password = etPassword.getText().toString();
+
         Map<String,String> map = new HashMap<>();
         map.put("username", username);
         map.put("password", password);
+
         SignInResponse signInResponse = new SignInResponse(map, this);
         signInResponse.addObserver(this);
         signInResponse.execute();
-        showLoadingDialog();
+
+        ProgressDialogUtil.show(this, "Signing in");
     }
 
     @Override
@@ -71,26 +74,21 @@ public class SignInActivity extends AppCompatActivity implements Observer {
         } else {
             // TODO: 5/20/16 AD handle error
             Gson gson = new Gson();
-            Message message = gson.fromJson(objectResponse.getMessage() , Message.class);
+            Message message = gson.fromJson(objectResponse.getMessage(), Message.class);
             Log.e("error message1" , message.getMessage());
             Toast.makeText(this, message.getMessage(), Toast.LENGTH_SHORT).show();
         }
-        progressDialog.dismiss();
+        ProgressDialogUtil.dismiss();
     }
 
     @OnClick(R.id.layout_bottom)
     public void navigateToSignUp() {
-        Intent intent = new Intent(this , SignUpActivity.class);
+        Intent intent = new Intent(this, SignUpActivity.class);
         startActivity(intent);
         finish();
     }
 
-    private void showLoadingDialog() {
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage(getString(R.string.please_wait));
-        progressDialog.setCancelable(false);
-        progressDialog.show();
-    }
+
 
     private void navigateToMain() {
         Intent intent = new Intent(this, MainActivity.class);

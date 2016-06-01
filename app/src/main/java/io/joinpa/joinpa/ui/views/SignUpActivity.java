@@ -24,13 +24,14 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.joinpa.joinpa.R;
 import io.joinpa.joinpa.managers.App;
-import io.joinpa.joinpa.managers.Commands.ObjectResponse;
+import io.joinpa.joinpa.managers.commands.ObjectResponse;
 import io.joinpa.joinpa.managers.FormValidator;
 import io.joinpa.joinpa.models.Message;
-import io.joinpa.joinpa.managers.Commands.SignUpResponse;
+import io.joinpa.joinpa.managers.commands.SignUpResponse;
 import io.joinpa.joinpa.models.User;
 import io.joinpa.joinpa.ui.adapters.UserAvatarAdapter;
 
+import io.joinpa.joinpa.util.ProgressDialogUtil;
 import retrofit2.Response;
 
 public class SignUpActivity extends AppCompatActivity implements Observer {
@@ -93,6 +94,7 @@ public class SignUpActivity extends AppCompatActivity implements Observer {
 
     @Override
     public void update(Observable observable, Object data) {
+
         if ( data == null ) return;
         if (!(data instanceof ObjectResponse)) return;
         ObjectResponse objectResponse = (ObjectResponse)data;
@@ -108,7 +110,7 @@ public class SignUpActivity extends AppCompatActivity implements Observer {
             Log.e("error message1" , message.getMessage());
             Toast.makeText(this, message.getMessage(), Toast.LENGTH_SHORT).show();
         }
-        progressDialog.dismiss();
+        ProgressDialogUtil.dismiss();
     }
 
     @Override
@@ -153,14 +155,15 @@ public class SignUpActivity extends AppCompatActivity implements Observer {
         if (validateForm()) {
             Map<String,String> map = new HashMap<>();
             map.put("username", username);
-            map.put("password" , password);
-            map.put("email" , email);
+            map.put("password", password);
+            map.put("email", email);
             map.put("avatar", avatar);
 
-            SignUpResponse signUpResponse = new SignUpResponse(map,this);
+            SignUpResponse signUpResponse = new SignUpResponse(map, this);
             signUpResponse.addObserver(this);
             signUpResponse.execute();
-            showLoadingDialog();
+
+            ProgressDialogUtil.show(this, "Please wait");
         }
 
     }
@@ -170,15 +173,6 @@ public class SignUpActivity extends AppCompatActivity implements Observer {
         Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
         startActivity(intent);
         finish();
-    }
-
-
-
-    private void showLoadingDialog() {
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage(getString(R.string.please_wait));
-        progressDialog.setCancelable(false);
-        progressDialog.show();
     }
 
     private void navigateToMain() {
