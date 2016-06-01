@@ -39,6 +39,11 @@ public class EventManager {
         eventList.clear();
     }
 
+    public void clearTempList() {
+        tempEventList.clear();
+    }
+
+
     public List<Event> getEventList() {
         return eventList;
     }

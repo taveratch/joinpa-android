@@ -24,7 +24,7 @@ import io.joinpa.joinpa.managers.EventManager;
 import io.joinpa.joinpa.models.Event;
 import io.joinpa.joinpa.models.EventElement;
 import io.joinpa.joinpa.models.Message;
-import io.joinpa.joinpa.ui.adapters.EventAdapter;
+import io.joinpa.joinpa.ui.adapters.ExploreEventAdapter;
 import io.joinpa.joinpa.util.ProgressDialogUtil;
 import retrofit2.Response;
 
@@ -39,9 +39,16 @@ public class ExploreFragment extends ObservableFragment implements Observer {
     @BindView(R.id.event_recyclerView)
     RecyclerView recyclerView;
 
-    private EventAdapter adapter;
+    private ExploreEventAdapter adapter;
     private App app;
     public EventManager eventManager;
+
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        eventManager.clearTempList();
+    }
 
     @Nullable
     @Override
@@ -83,6 +90,7 @@ public class ExploreFragment extends ObservableFragment implements Observer {
 
         } else {
             Log.e("error", objectResponse.getMessage());
+            ProgressDialogUtil.hide();
         }
     }
 
@@ -100,7 +108,7 @@ public class ExploreFragment extends ObservableFragment implements Observer {
 
         LinearLayoutManager llm = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(llm);
-        adapter = new EventAdapter(this.getContext(), eventManager.getTempEventList());
+        adapter = new ExploreEventAdapter(this.getContext(), eventManager.getTempEventList());
         adapter.setObserver(this);
         recyclerView.setAdapter(adapter);
     }

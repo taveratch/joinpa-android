@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import java.util.List;
-import java.util.Observable;
 import java.util.Observer;
 
 import butterknife.BindView;
@@ -20,13 +19,11 @@ import butterknife.ButterKnife;
 import io.joinpa.joinpa.R;
 import io.joinpa.joinpa.managers.App;
 import io.joinpa.joinpa.managers.Commands.GetJoinedEventResponse;
-import io.joinpa.joinpa.managers.Commands.GetPublicEventResponse;
 import io.joinpa.joinpa.managers.Commands.ObjectResponse;
 import io.joinpa.joinpa.managers.EventManager;
 import io.joinpa.joinpa.models.Event;
 import io.joinpa.joinpa.models.EventElement;
 import io.joinpa.joinpa.models.Message;
-import io.joinpa.joinpa.ui.adapters.EventAdapter;
 import io.joinpa.joinpa.ui.adapters.RecentEventAdapter;
 import io.joinpa.joinpa.util.ProgressDialogUtil;
 import retrofit2.Response;
@@ -45,6 +42,12 @@ public class RecentEventsFragment extends ObservableFragment implements Observer
     private RecentEventAdapter adapter;
     private App app;
     public EventManager eventManager;
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        eventManager.clearTempList();
+    }
 
     @Nullable
     @Override

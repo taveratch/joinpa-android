@@ -56,4 +56,7 @@ public interface APIService {
 
     @POST("event/create")
     Call<Message> createEvent(@Header("Authorization") String value , @Body Event event);
+
+    @POST("event/remove")
+    Call<Message> removeEvent(@Header("Authorization") String value, @Body RequestBody requestBody);
 }
