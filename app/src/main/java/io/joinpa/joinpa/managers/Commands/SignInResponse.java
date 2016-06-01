@@ -29,17 +29,17 @@ public class SignInResponse extends ObjectResponse {
     @Override
     public void execute() {
         LoadService loadService = LoadService.newInstance();
-        loadService.signIn(data,this);
+        loadService.signIn(data, this);
     }
 
     @Override
     public void update(Observable observable, Object o) {
         Response<Token> response = (Response<Token>)o;
-        Log.e("signin" , response.isSuccessful()+"");
+        Log.e("signin", response.isSuccessful() + "");
 
         if (response.isSuccessful()) {
             Token token = response.body();
-            app.saveToken(token , context);
+            app.saveToken(token, context);
             Log.e("token from signin" , token.getKey());
             VerifyResponse verifyResponse = new VerifyResponse(app.getToken().getKey());
             verifyResponse.addObserver(observer);

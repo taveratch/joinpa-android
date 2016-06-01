@@ -16,13 +16,15 @@ import java.util.Date;
  */
 public class DateTimeHolder {
 
-    private TextView tvDate , tvTime;
+    private final String DATE_PATTERN = "EEE, d MMM";
+    private final String TIME_PATTERN = "h:mm";
+
+    private TextView tvDate, tvTime;
     private Context context;
     private Date date;
     private DateFormat formatter;
-    private final String DATE_PATTERN = "EEE, d MMM";
-    private final String TIME_PATTERN = "h:mm";
-    public DateTimeHolder(Context context , TextView tvDate, TextView tvTime) {
+
+    public DateTimeHolder(Context context, TextView tvDate, TextView tvTime) {
         this.tvDate = tvDate;
         this.tvTime = tvTime;
         this.context = context;
@@ -31,12 +33,23 @@ public class DateTimeHolder {
     }
 
     public void openDateDialog() {
-        DatePickerDialog dialog = new DatePickerDialog(context , dateSetListener,date.getYear()+1900,date.getMonth(),date.getDate());
+        DatePickerDialog dialog = new DatePickerDialog(
+                context,
+                dateSetListener,
+                date.getYear() + 1900,
+                date.getMonth(),
+                date.getDate());
+
         dialog.show();
     }
 
     public void openTimeDialog() {
-        TimePickerDialog dialog = new TimePickerDialog(context,timeSetListener,date.getHours(),date.getMinutes(),true);
+        TimePickerDialog dialog = new TimePickerDialog(
+                context,
+                timeSetListener,
+                date.getHours(),
+                date.getMinutes(), true);
+
         dialog.show();
     }
 

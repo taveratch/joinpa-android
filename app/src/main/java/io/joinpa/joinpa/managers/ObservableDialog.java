@@ -18,7 +18,6 @@ public class ObservableDialog extends Dialog {
 
     private Observable observable;
 
-
     public ObservableDialog(Context context) {
         super(context);
         observable = new Observable();

@@ -20,7 +20,7 @@ public class AcceptFriendRequestResponse extends ObjectResponse {
     public void execute() {
         LoadService loadService = LoadService.newInstance();
         Map<String,String> data = new HashMap<>();
-        data.put("otherUserId" , otherUserId);
-        loadService.acceptFriendRequest(data,this);
+        data.put("otherUserId", otherUserId);
+        loadService.acceptFriendRequest(data, this);
     }
 }

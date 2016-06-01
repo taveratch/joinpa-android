@@ -27,8 +27,8 @@ public class SearchFriendResponse extends ObjectResponse {
     public void execute() {
         LoadService loadService = LoadService.newInstance();
         Map<String,String> map = new HashMap<>();
-        map.put("search" , search);
-        loadService.searchFriend(map,this);
+        map.put("search", search);
+        loadService.searchFriend(map, this);
     }
 
 }

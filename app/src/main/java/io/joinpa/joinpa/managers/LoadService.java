@@ -23,6 +23,8 @@ import retrofit2.Response;
  */
 public class LoadService {
 
+    private final String AUTH_KEY = "bearer " + App.getInstance().getToken().getKey();
+
     private App app;
 
     private LoadService () {
@@ -41,7 +43,7 @@ public class LoadService {
         return HttpManager.getInstance().getAPIService(APIService.class);
     }
 
-    public void signIn(Map<String, String> data , Observer observer) {
+    public void signIn(Map<String, String> data, Observer observer) {
         RequestBody requestBody = getRequestBody(data);
         APIService apiService = getAPIService();
         Call<Token> call = apiService.signin(requestBody);
@@ -50,7 +52,7 @@ public class LoadService {
         call.enqueue(callback);
     }
 
-    public void signUp(Map<String,String> data , Observer observer) {
+    public void signUp(Map<String, String> data, Observer observer) {
         RequestBody requestBody = getRequestBody(data);
         APIService apiService = getAPIService();
         Call<Token> call = apiService.signup(requestBody);
@@ -59,19 +61,19 @@ public class LoadService {
         call.enqueue(callBack);
     }
 
-    public void verify(Map<String,String> data , Observer observer) {
+    public void verify(Map<String, String> data, Observer observer) {
         RequestBody requestBody = getRequestBody(data);
         APIService apiService = getAPIService();
-        Call<User> call = apiService.verify(data.get("token") , requestBody);
+        Call<User> call = apiService.verify(data.get("token"), requestBody);
         ServerCallBack<User> callBack = new ServerCallBack<User>();
         callBack.addObserver(observer);
         call.enqueue(callBack);
     }
 
-    public void searchFriend(Map<String, String> data , Observer observer) {
+    public void searchFriend(Map<String, String> data, Observer observer) {
         RequestBody requestBody = getRequestBody(data);
         APIService apiService = getAPIService();
-        Call<Element> call = apiService.searchFriend("bearer " + app.getToken().getKey() , requestBody);
+        Call<Element> call = apiService.searchFriend(AUTH_KEY, requestBody);
         ServerCallBack<Element> callBack = new ServerCallBack<>();
         callBack.addObserver(observer);
         call.enqueue(callBack);
@@ -80,7 +82,7 @@ public class LoadService {
     public void sendFriendRequest(Map<String, String> data , Observer observer) {
         RequestBody requestBody = getRequestBody(data);
         APIService apiService = getAPIService();
-        Call<Message> call = apiService.sendFriendRequest("bearer " + app.getToken().getKey() , requestBody);
+        Call<Message> call = apiService.sendFriendRequest(AUTH_KEY, requestBody);
         ServerCallBack<Message> callBack = new ServerCallBack<>();
         callBack.addObserver(observer);
         call.enqueue(callBack);
@@ -89,7 +91,7 @@ public class LoadService {
     public void acceptFriendRequest(Map<String,String> data , Observer observer) {
         RequestBody requestBody = getRequestBody(data);
         APIService apiService = getAPIService();
-        Call<Message> call = apiService.acceptFriendRequest("bearer " + app.getToken().getKey() , requestBody);
+        Call<Message> call = apiService.acceptFriendRequest(AUTH_KEY, requestBody);
         ServerCallBack<Message> callBack = new ServerCallBack<>();
         callBack.addObserver(observer);
         call.enqueue(callBack);
@@ -97,7 +99,7 @@ public class LoadService {
 
     public void getFriendList(Observer observer) {
         APIService apiService = getAPIService();
-        Call<Element> call = apiService.getFriendList("bearer " + app.getToken().getKey());
+        Call<Element> call = apiService.getFriendList(AUTH_KEY);
         ServerCallBack<Element> callBack = new ServerCallBack<>();
         callBack.addObserver(observer);
         call.enqueue(callBack);
@@ -106,7 +108,7 @@ public class LoadService {
     public void unfriend(Map<String,String> data , Observer observer) {
         RequestBody requestBody = getRequestBody(data);
         APIService apiService = getAPIService();
-        Call<Message> call = apiService.unfriend("bearer " + app.getToken().getKey() , requestBody);
+        Call<Message> call = apiService.unfriend(AUTH_KEY, requestBody);
         ServerCallBack<Message> callBack = new ServerCallBack<>();
         callBack.addObserver(observer);
         call.enqueue(callBack);
@@ -114,7 +116,7 @@ public class LoadService {
 
     public void getPublicEvents(Observer observer) {
         APIService apiService = getAPIService();
-        Call<EventElement> call = apiService.getPublicEvents("bearer "+ app.getToken().getKey());
+        Call<EventElement> call = apiService.getPublicEvents(AUTH_KEY);
         ServerCallBack<EventElement> callBack = new ServerCallBack<>();
         callBack.addObserver(observer);
         call.enqueue(callBack);
@@ -122,7 +124,7 @@ public class LoadService {
 
     public void getJoinedEvents(Observer observer) {
         APIService apiService = getAPIService();
-        Call<EventElement> call = apiService.getJoinedEvents("bearer " + app.getToken().getKey());
+        Call<EventElement> call = apiService.getJoinedEvents(AUTH_KEY);
         ServerCallBack<EventElement> callBack = new ServerCallBack<>();
         callBack.addObserver(observer);
         call.enqueue(callBack);
@@ -130,7 +132,7 @@ public class LoadService {
 
     public void getMyEvents(Observer observer) {
         APIService apiService = getAPIService();
-        Call<EventElement> call = apiService.getMyEvents("bearer " + app.getToken().getKey());
+        Call<EventElement> call = apiService.getMyEvents(AUTH_KEY);
         ServerCallBack<EventElement> callBack = new ServerCallBack<>();
         callBack.addObserver(observer);
         call.enqueue(callBack);
@@ -139,7 +141,7 @@ public class LoadService {
     public void joinEvent(Map<String, String> data, Observer observer) {
         RequestBody requestBody = getRequestBody(data);
         APIService apiService = getAPIService();
-        Call<Message> call = apiService.joinEvent("bearer " + app.getToken().getKey(), requestBody);
+        Call<Message> call = apiService.joinEvent(AUTH_KEY, requestBody);
         ServerCallBack<Message> callBack = new ServerCallBack<>();
         callBack.addObserver(observer);
         call.enqueue(callBack);
@@ -147,7 +149,7 @@ public class LoadService {
 
     public void createEvent(Event event , Observer observer) {
         APIService apiService = getAPIService();
-        Call<Message> call = apiService.createEvent("bearer " + app.getToken().getKey() , event);
+        Call<Message> call = apiService.createEvent(AUTH_KEY, event);
         ServerCallBack<Message> callBack = new ServerCallBack<>();
         callBack.addObserver(observer);
         call.enqueue(callBack);
@@ -156,7 +158,7 @@ public class LoadService {
     public void removeEvent(Map<String, String> data, Observer observer) {
         RequestBody requestBody = getRequestBody(data);
         APIService apiService = getAPIService();
-        Call<Message> call = apiService.removeEvent("bearer " + app.getToken().getKey(), requestBody);
+        Call<Message> call = apiService.removeEvent(AUTH_KEY, requestBody);
         ServerCallBack<Message> callBack = new ServerCallBack<>();
         callBack.addObserver(observer);
         call.enqueue(callBack);

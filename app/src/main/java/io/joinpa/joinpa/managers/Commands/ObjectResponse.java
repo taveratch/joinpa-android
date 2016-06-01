@@ -5,12 +5,13 @@ import java.util.Observable;
 import java.util.Observer;
 
 import io.joinpa.joinpa.managers.App;
+import io.joinpa.joinpa.managers.Command;
 import retrofit2.Response;
 
 /**
  * Created by TAWEESOFT on 5/14/16 AD.
  */
-public abstract class ObjectResponse extends Observable implements Observer {
+public abstract class ObjectResponse extends Observable implements Observer, Command {
 
     private boolean isSuccess;
     private String message;
@@ -44,8 +45,6 @@ public abstract class ObjectResponse extends Observable implements Observer {
     public void setData(Object data) {
         this.data = data;
     }
-
-    public abstract void execute();
 
     @Override
     public void update(Observable observable, Object data) {

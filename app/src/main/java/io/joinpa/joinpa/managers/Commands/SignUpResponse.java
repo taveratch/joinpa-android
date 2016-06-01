@@ -22,7 +22,8 @@ public class SignUpResponse extends ObjectResponse {
     private Context context;
     private Observer observer;
     private App app;
-    public SignUpResponse(Map<String , String> data , Context context){
+
+    public SignUpResponse(Map<String, String> data, Context context){
         this.data = data;
         this.context = context;
         app = App.getInstance();
@@ -39,7 +40,7 @@ public class SignUpResponse extends ObjectResponse {
         Response<Token> response = (Response<Token>)o;
         if (response.isSuccessful()) {
             Token token = response.body();
-            app.saveToken(token , context);
+            app.saveToken(token, context);
             VerifyResponse verifyResponse = new VerifyResponse(app.getToken().getKey());
             verifyResponse.addObserver(observer);
             verifyResponse.execute();

@@ -49,16 +49,18 @@ public class EventManager {
     }
 
     public void loadInternalEvent(Context context) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.SP_KEY , context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.SP_KEY, context.MODE_PRIVATE);
         String eventsJson = sharedPreferences.getString(Constants.SP_EVENT_KEY , "[]");
         Type type = new TypeToken<List<Event>>(){}.getType();
         addEvent((List<Event>)gson.fromJson(eventsJson,type));
     }
 
     public void saveInternalEvent(Context context) {
-        SharedPreferences.Editor editor = context.getSharedPreferences(Constants.SP_KEY , context.MODE_PRIVATE).edit();
+        SharedPreferences.Editor editor = context.getSharedPreferences(
+                Constants.SP_KEY, context.MODE_PRIVATE).edit();
+
         String eventsJson = gson.toJson(getEventList());
-        editor.putString(Constants.SP_EVENT_KEY , eventsJson);
+        editor.putString(Constants.SP_EVENT_KEY, eventsJson);
         editor.apply();
     }
 

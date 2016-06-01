@@ -20,7 +20,7 @@ public class RemoveEventResponse extends ObjectResponse {
     public void execute() {
         LoadService loadService = LoadService.newInstance();
         Map<String,String> data = new HashMap<>();
-        data.put("eventId" , eventId);
-        loadService.removeEvent(data,this);
+        data.put("eventId", eventId);
+        loadService.removeEvent(data, this);
     }
 }
