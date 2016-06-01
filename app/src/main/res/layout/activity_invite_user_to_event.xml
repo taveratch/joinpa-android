@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="io.joinpa.joinpa.ui.views.InviteUserToEventActivity"
+    android:background="@color/colorPrimary">
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        style="@style/ToolBarStyle"
+        app:navigationIcon="@drawable/ic_close_black_24dp"
+        android:id="@+id/toolbar">
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="@string/invite_friends"
+            android:layout_height="wrap_content"
+            style="@style/toolbarTextTitle"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/toolbarTextTitle"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_gravity="right"
+            android:text="OK (0)"
+            android:id="@+id/tv_select_friend_ok" />
+    </android.support.v7.widget.Toolbar>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+        <include layout="@layout/friend_list_include"></include>
+    </RelativeLayout>
+</RelativeLayout>
