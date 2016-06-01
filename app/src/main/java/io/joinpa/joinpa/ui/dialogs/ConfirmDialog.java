@@ -3,10 +3,12 @@ package io.joinpa.joinpa.ui.dialogs;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.OnLongClick;
 import io.joinpa.joinpa.R;
 import io.joinpa.joinpa.managers.commands.Command;
@@ -46,5 +48,10 @@ public class ConfirmDialog extends Dialog {
         execute();
         dismiss();
         return true;
+    }
+
+    @OnClick(R.id.btn_close)
+    public void close() {
+        dismiss();
     }
 }

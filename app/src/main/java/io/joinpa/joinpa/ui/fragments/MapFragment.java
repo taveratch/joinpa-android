@@ -36,6 +36,7 @@ public class MapFragment extends SupportMapFragment implements GoogleApiClient.C
     private GoogleApiClient mGoogleApiClient;
     private Location mCurrentLocation;
     private double lat,lon;
+    private boolean isZoomCurrentLocation = true;
 
     private final int[] MAP_TYPES = { GoogleMap.MAP_TYPE_SATELLITE,
             GoogleMap.MAP_TYPE_NORMAL,
@@ -87,7 +88,8 @@ public class MapFragment extends SupportMapFragment implements GoogleApiClient.C
         initCamera(mCurrentLocation);
     }
     private void initCamera( Location location ) {
-        initCamera(new LatLng( location.getLatitude(),
+        if (isZoomCurrentLocation)
+            initCamera(new LatLng( location.getLatitude(),
                 location.getLongitude()));
     }
 
@@ -146,7 +148,6 @@ public class MapFragment extends SupportMapFragment implements GoogleApiClient.C
     public void onMapLongClick(LatLng latLng) {
         getMap().clear();
         MarkerOptions options = new MarkerOptions().position( latLng );
-        options.title( getAddressFromLatLng( latLng ) );
         options.icon( BitmapDescriptorFactory.fromBitmap(
                 BitmapFactory.decodeResource(getResources(),
                         R.drawable.map_pin)) );
@@ -155,19 +156,6 @@ public class MapFragment extends SupportMapFragment implements GoogleApiClient.C
         getMap().addMarker( options );
     }
 
-    private String getAddressFromLatLng( LatLng latLng ) {
-        Geocoder geocoder = new Geocoder( getActivity() );
-
-        String address = "";
-        try {
-            address = geocoder
-                    .getFromLocation( latLng.latitude, latLng.longitude, 1 )
-                    .get( 0 ).getAddressLine( 0 );
-        } catch (IOException e ) {
-        }
-
-        return address;
-    }
 
     @Override
     public boolean onMarkerClick(Marker marker) {
@@ -181,5 +169,9 @@ public class MapFragment extends SupportMapFragment implements GoogleApiClient.C
 
     public double getLon() {
         return lon;
+    }
+
+    public void setZoomCurrentLocation(boolean zoomCurrentLocation) {
+        isZoomCurrentLocation = zoomCurrentLocation;
     }
 }
