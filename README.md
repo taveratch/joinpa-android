@@ -16,7 +16,7 @@ Classes that implement singleton
 
   All classes in **managers/commands**
   
-  **UnfriendCommand,CancelEventCommand and RemoveEventCommand** are implemented **Command**, because ConfirmDialog.java will execute a command so we will pass these function in type of **Command** 
+  **UnfriendCommand, CancelEventCommand and RemoveEventCommand** are implemented **Command**, because ConfirmDialog.java will execute a command so we will pass these function in type of **Command** 
   
   These are commands for making interaction with the server.
 
@@ -25,6 +25,7 @@ Classes that implement singleton
 
 - **Notifier**
 - **DateTimeHolder**
+
 ```
 When user want to select date and time from picker dialog, the ui must be updated after date 
 and time are selected. So I created DateTimeHolder for holding tvDate,tvTime and setting 
@@ -35,6 +36,7 @@ date and time logics (listener).
 #### Adapter
 
 classes in **ui/adapters**
+
 ```
 These adapters are accept list of any type of object (for example, List<Friend>) 
 and convert it to custom view
