@@ -83,6 +83,10 @@ public class App {
         getUser().getFriendList().addAll(friends);
     }
 
+    public boolean isAuthenticated() {
+        return getInternalData().token.getKey() != null;
+    }
+
 
     public EventManager getEventManager() {
         return eventManager;
