@@ -12,6 +12,7 @@ import io.joinpa.joinpa.models.EventElement;
 import io.joinpa.joinpa.models.Message;
 import io.joinpa.joinpa.models.Token;
 import io.joinpa.joinpa.models.User;
+import io.joinpa.joinpa.util.ProgressDialogUtil;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -127,6 +128,14 @@ public class LoadService {
         call.enqueue(callBack);
     }
 
+    public void getMyEvents(Observer observer) {
+        APIService apiService = getAPIService();
+        Call<EventElement> call = apiService.getMyEvents("bearer " + app.getToken().getKey());
+        ServerCallBack<EventElement> callBack = new ServerCallBack<>();
+        callBack.addObserver(observer);
+        call.enqueue(callBack);
+    }
+
     public void joinEvent(Map<String, String> data, Observer observer) {
         RequestBody requestBody = getRequestBody(data);
         APIService apiService = getAPIService();
@@ -144,6 +153,15 @@ public class LoadService {
         call.enqueue(callBack);
     }
 
+    public void removeEvent(Map<String, String> data, Observer observer) {
+        RequestBody requestBody = getRequestBody(data);
+        APIService apiService = getAPIService();
+        Call<Message> call = apiService.removeEvent("bearer " + app.getToken().getKey(), requestBody);
+        ServerCallBack<Message> callBack = new ServerCallBack<>();
+        callBack.addObserver(observer);
+        call.enqueue(callBack);
+    }
+
     class ServerCallBack<T> extends Observable implements Callback<T> {
 
         @Override
@@ -155,6 +173,7 @@ public class LoadService {
         @Override
         public void onFailure(Call<T> call, Throwable t) {
             System.out.println("connection error " + t.getMessage());
+            ProgressDialogUtil.hide();
             // TODO: 5/13/16 AD handle error
         }
     }

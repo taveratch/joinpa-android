@@ -27,7 +27,7 @@ import io.joinpa.joinpa.util.ProgressDialogUtil;
 /**
  * Created by Peter on 5/20/2016 AD.
  */
-public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> {
+public class ExploreEventAdapter extends RecyclerView.Adapter<ExploreEventAdapter.ViewHolder> {
 
     private App app;
 
@@ -35,7 +35,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
     private List<Event> events;
     private Observer observer;
 
-    public EventAdapter(Context context, List<Event> events) {
+    public ExploreEventAdapter(Context context, List<Event> events) {
         this.context = context;
         this.events = events;
         app = App.getInstance();
