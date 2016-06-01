@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "io.joinpa.joinpa"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -37,6 +37,7 @@ dependencies {
     compile 'com.google.firebase:firebase-messaging:9.0.1'
     compile 'com.google.android.gms:play-services-maps:9.0.1'
     compile 'com.google.android.gms:play-services-location:9.0.1'
+    compile 'com.daasuu:animateHorizontalProgressBar:0.2.2'
 }
 
 apply plugin: 'com.google.gms.google-services'
