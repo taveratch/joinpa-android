@@ -28,7 +28,7 @@ public class EventIconAdapter extends RecyclerView.Adapter<EventIconAdapter.View
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context)
-                .inflate(R.layout.item_avatar , parent , false);
+                .inflate(R.layout.item_avatar, parent, false);
         return new ViewHolder(view);
     }
 
