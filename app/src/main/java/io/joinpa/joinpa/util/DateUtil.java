@@ -15,8 +15,7 @@ public class DateUtil {
 
     private static DateFormat format;
 
-
-    public static String getDay(Date date) {
+    public static String getDate(Date date) {
         format = new SimpleDateFormat(DATE_FORMAT, Locale.getDefault());
         return format.format(date);
     }

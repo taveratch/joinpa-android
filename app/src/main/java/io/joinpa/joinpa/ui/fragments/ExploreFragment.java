@@ -1,6 +1,5 @@
 package io.joinpa.joinpa.ui.fragments;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,22 +11,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Observer;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import io.joinpa.joinpa.R;
 import io.joinpa.joinpa.managers.App;
 import io.joinpa.joinpa.managers.Commands.GetPublicEventResponse;
 import io.joinpa.joinpa.managers.Commands.ObjectResponse;
+import io.joinpa.joinpa.managers.EventManager;
 import io.joinpa.joinpa.models.Event;
 import io.joinpa.joinpa.models.EventElement;
 import io.joinpa.joinpa.models.Message;
-import io.joinpa.joinpa.models.Place;
 import io.joinpa.joinpa.ui.adapters.EventAdapter;
 import io.joinpa.joinpa.util.ProgressDialogUtil;
 import retrofit2.Response;
@@ -44,7 +40,26 @@ public class ExploreFragment extends ObservableFragment implements Observer {
     RecyclerView recyclerView;
 
     private EventAdapter adapter;
-    private List<Event> events;
+    private App app;
+    public EventManager eventManager;
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_explore, container, false);
+        ButterKnife.bind(this,view);
+
+        app = App.getInstance();
+        eventManager = app.getEventManager();
+
+        initComponents();
+
+        GetPublicEventResponse response = new GetPublicEventResponse();
+        response.addObserver(this);
+        response.execute();
+
+        return view;
+    }
 
     @Override
     public void update(java.util.Observable observable, Object data) {
@@ -57,8 +72,8 @@ public class ExploreFragment extends ObservableFragment implements Observer {
         if (objectResponse.isSuccess()) {
             if (((Response)objectResponse.getData()).body().getClass() == EventElement.class) {
                 Response<EventElement> response = (Response<EventElement>) objectResponse.getData();
-                events.clear();
-                events.addAll(response.body().getEventList());
+                List<Event> events = response.body().getEventList();
+                eventManager.setTempEventList(events);
                 adapter.notifyDataSetChanged();
             } else {
                 Response<Message> response = (Response<Message>) objectResponse.getData();
@@ -72,21 +87,7 @@ public class ExploreFragment extends ObservableFragment implements Observer {
     }
 
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_explore, container, false);
-        ButterKnife.bind(this,view);
 
-        initComponents();
-
-        GetPublicEventResponse response = new GetPublicEventResponse();
-        response.addObserver(this);
-        response.execute();
-
-
-        return view;
-    }
 
     private void initComponents() {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -99,10 +100,7 @@ public class ExploreFragment extends ObservableFragment implements Observer {
 
         LinearLayoutManager llm = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(llm);
-
-        events = new ArrayList<Event>();
-
-        adapter = new EventAdapter(this.getContext(), events);
+        adapter = new EventAdapter(this.getContext(), eventManager.getTempEventList());
         adapter.setObserver(this);
         recyclerView.setAdapter(adapter);
     }

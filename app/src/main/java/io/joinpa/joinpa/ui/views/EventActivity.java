@@ -2,14 +2,22 @@ package io.joinpa.joinpa.ui.views;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Button;
+import android.util.Log;
+import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
+
+import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.joinpa.joinpa.R;
+import io.joinpa.joinpa.managers.App;
+import io.joinpa.joinpa.managers.EventManager;
+import io.joinpa.joinpa.models.Event;
+import io.joinpa.joinpa.util.DateUtil;
 
 public class EventActivity extends AppCompatActivity {
 
@@ -37,6 +45,9 @@ public class EventActivity extends AppCompatActivity {
     @BindView(R.id.text_location)
     TextView eventLocation;
 
+    private Event event;
+    private App app;
+
     @OnClick(R.id.layout_coming_pane)
     public void seeComingPeople() {
         // TODO
@@ -44,7 +55,7 @@ public class EventActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_close)
     public void close() {
-
+        finish();
     }
 
     @OnClick(R.id.btn_see_map)
@@ -58,7 +69,39 @@ public class EventActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
         ButterKnife.bind(this);
+        app = App.getInstance();
+        EventManager eventManager = app.getEventManager();
+        int eventIndex = (int)getIntent().getSerializableExtra("event_index");
+        event = eventManager.getTempEventList().get(eventIndex);
+
+        if (!event.getHost().equals(app.getUser())) vSwitch.setVisibility(View.INVISIBLE);
+
+        Log.e("EventActivity", event.getName());
+
+        Date date = event.getDate();
+
+        eventName.setText(event.getName());
+        hostName.setText(event.getHost().getUsername());
+        // TODO tell nonae to send friendlist
+//        numHostFriends.setText(event.getHost().getFriendList().size());
+        eventDate.setText(DateUtil.getDate(date));
+        eventTime.setText(DateUtil.getTime(date));
+        eventLocation.setText(event.getPlace().getName());
+        if (!event.isPrivate()) vSwitch.setChecked(false);
+
+        vSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    visibility.setText("Hidden");
+                } else {
+                    visibility.setText("Public");
+                }
+            }
+        });
+
     }
+
 
 
 }

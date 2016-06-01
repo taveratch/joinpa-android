@@ -120,7 +120,7 @@ public class SignUpActivity extends AppCompatActivity implements Observer {
     private boolean validateForm() {
 
         if (!FormValidator.validateUsername(username)) {
-            usernameWrapper.setError("Username must contain only a-z and is longer than 3 characters");
+            usernameWrapper.setError("Username can contain only a-z, 0-9, underscore, hyphen and is between 3-15 characters");
         } else {
             usernameWrapper.setError(null);
         }

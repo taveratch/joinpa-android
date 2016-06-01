@@ -5,8 +5,8 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:layout_width="@dimen/avatar_size"
-        android:layout_height="@dimen/avatar_size"
+        android:layout_width="@dimen/sign_up_avatar_size"
+        android:layout_height="@dimen/sign_up_avatar_size"
         android:id="@+id/avatar_image_view"
         android:layout_gravity="center_horizontal"
         android:layout_margin="@dimen/avatar_margin"

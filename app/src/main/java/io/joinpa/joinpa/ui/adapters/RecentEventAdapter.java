@@ -18,16 +18,15 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.joinpa.joinpa.R;
 import io.joinpa.joinpa.managers.App;
-import io.joinpa.joinpa.managers.Commands.JoinEventResponse;
 import io.joinpa.joinpa.models.Event;
 import io.joinpa.joinpa.ui.views.EventActivity;
 import io.joinpa.joinpa.util.DateUtil;
 import io.joinpa.joinpa.util.ProgressDialogUtil;
 
 /**
- * Created by Peter on 5/20/2016 AD.
+ * Created by Peter on 5/31/2016 AD.
  */
-public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> {
+public class RecentEventAdapter extends RecyclerView.Adapter<RecentEventAdapter.ViewHolder> {
 
     private App app;
 
@@ -35,7 +34,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
     private List<Event> events;
     private Observer observer;
 
-    public EventAdapter(Context context, List<Event> events) {
+    public RecentEventAdapter(Context context, List<Event> events) {
         this.context = context;
         this.events = events;
         app = App.getInstance();
@@ -45,7 +44,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_event_explore, parent, false);
+                .inflate(R.layout.item_event_recent, parent, false);
 
         ViewHolder vh = new ViewHolder(v);
 
@@ -72,6 +71,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         holder.dateLabel.setText(DateUtil.getDate(date));
         holder.timeLabel.setText(DateUtil.getTime(date));
         holder.location.setText(event.getPlace().getName());
+
     }
 
     @Override
@@ -115,15 +115,16 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
             v.setOnClickListener(this);
         }
 
-        @OnClick(R.id.btn_join)
-        public void joinEvent() {
+        @OnClick(R.id.btn_cancel)
+        public void cancelEvent() {
             Event event = events.remove(getAdapterPosition());
             notifyItemRemoved(getAdapterPosition());
 
-            ProgressDialogUtil.show(context, "Joining event..");
-            JoinEventResponse response = new JoinEventResponse(event.getId());
-            response.addObserver(observer);
-            response.execute();
+            ProgressDialogUtil.show(context, "Canceling event..");
+            // TODO cancel event response
+//            JoinEventResponse response = new JoinEventResponse(event.getId());
+//            response.addObserver(observer);
+//            response.execute();
 
         }
 
@@ -134,5 +135,4 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
             context.startActivity(intent);
         }
     }
-
 }
