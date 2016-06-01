@@ -22,14 +22,17 @@ import butterknife.BindView;
 import io.joinpa.joinpa.R;
 import butterknife.ButterKnife;
 import io.joinpa.joinpa.managers.App;
+import io.joinpa.joinpa.managers.Command;
 import io.joinpa.joinpa.managers.Commands.GetFriendListResponse;
 import io.joinpa.joinpa.managers.Commands.ObjectResponse;
+import io.joinpa.joinpa.managers.Commands.UnFriendCommand;
 import io.joinpa.joinpa.managers.Commands.UnFriendResponse;
 import io.joinpa.joinpa.managers.LoadService;
 import io.joinpa.joinpa.managers.SwipeRevealLayout;
 import io.joinpa.joinpa.managers.ViewBinderHelper;
 import io.joinpa.joinpa.models.Friend;
 import io.joinpa.joinpa.models.Message;
+import io.joinpa.joinpa.ui.dialogs.ConfirmDialog;
 import io.joinpa.joinpa.ui.views.SearchNewFriendActivity;
 import retrofit2.Response;
 
@@ -128,9 +131,13 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Vi
                 public void onClick(View v) {
                     String friendId = friend.getId();
                     Log.e("yyyy" , friendId);
-                    UnFriendResponse response = new UnFriendResponse(friendId);
-                    response.addObserver(FriendListAdapter.this);
-                    response.execute();
+                    Command command = new UnFriendCommand(FriendListAdapter.this,friendId);
+                    ConfirmDialog confirmDialog = new ConfirmDialog(context);
+                    confirmDialog.setCommand(command);
+                    confirmDialog.show();
+//                    UnFriendResponse response = new UnFriendResponse(friendId);
+//                    response.addObserver(FriendListAdapter.this);
+//                    response.execute();
                 }
             });
         }

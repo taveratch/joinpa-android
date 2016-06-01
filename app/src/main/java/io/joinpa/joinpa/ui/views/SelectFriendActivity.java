@@ -19,6 +19,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.joinpa.joinpa.R;
 import io.joinpa.joinpa.managers.App;
+import io.joinpa.joinpa.managers.Constants;
 import io.joinpa.joinpa.managers.Notifier;
 import io.joinpa.joinpa.models.Event;
 import io.joinpa.joinpa.models.Friend;
@@ -74,7 +75,7 @@ public class SelectFriendActivity extends AppCompatActivity implements Observer 
         event.setPendingList(selectedFriend);
         Intent intent = new Intent(this,EventDetailsActivity.class);
         intent.putExtra("event" , event);
-        startActivity(intent);
+        startActivityForResult(intent,1);
     }
 
     @Override
@@ -84,5 +85,15 @@ public class SelectFriendActivity extends AppCompatActivity implements Observer 
         if (isIncrease) selectedCount++;
         else selectedCount--;
         tvOk.setText(String.format("OK (%d)" , selectedCount));
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == Constants.EXIT) {
+            setResult(Constants.EXIT);
+            finish();
+            System.out.println("Result " + resultCode);
+        }
     }
 }

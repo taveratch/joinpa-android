@@ -83,17 +83,17 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/hidden"
-                        android:id="@+id/textView17"
+                        android:text="@string/shown_to_all"
+                        android:id="@+id/tv_visibility"
                         android:textColor="@color/colorWhite" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/hidden_desc"
-                        android:id="@+id/textView18"
+                        android:text="@string/public_desc"
+                        android:id="@+id/tv_visibility_desc"
                         android:textColor="@color/colorWhite"
-                        android:textSize="10dp" />
+                        android:textSize="11dp" />
                 </LinearLayout>
 
                 <RelativeLayout

@@ -41,4 +41,10 @@
     <string name="google_map_API_key">AIzaSyBaeOEcU8izVNcc7rvJr1u1goehSbje-vo</string>
     <string name="use_google_map">Use Google Map</string>
     <string name="use_map_desc">Show a place with pinned location</string>
+    <string name="shown_to_all">Shown to all</string>
+    <string name="public_desc">Your friends can see and join</string>
+    <string name="confirm">Confirm</string>
+    <string name="joined">Joined</string>
+    <string name="pending">Pending</string>
+    <string name="declined">Declined</string>
 </resources>

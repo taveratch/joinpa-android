@@ -1,5 +1,6 @@
 package io.joinpa.joinpa.ui.views;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,6 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.joinpa.joinpa.R;
 import io.joinpa.joinpa.managers.App;
+import io.joinpa.joinpa.managers.Constants;
 import io.joinpa.joinpa.ui.adapters.CreateEventAdapter;
 
 public class NewEventActivity extends AppCompatActivity implements Observer{
@@ -51,5 +53,11 @@ public class NewEventActivity extends AppCompatActivity implements Observer{
     @Override
     public void update(Observable observable, Object data) {
         initComponents();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Constants.EXIT) finish();
     }
 }
