@@ -234,16 +234,16 @@
                 android:textStyle="bold" />
 
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="70dp"
                 android:layout_height="25dp"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:id="@+id/btn_see_map"
-                android:text="Show map"
+                android:text="Map"
                 style="@style/Base.Widget.AppCompat.Button.Borderless"
                 android:background="@drawable/rounded_edittext_blue_border"
                 android:textColor="@color/colorPrimary"
-                android:textSize="8dp" />
+                android:textSize="10dp" />
 
         </RelativeLayout>
 
