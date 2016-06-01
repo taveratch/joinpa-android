@@ -68,4 +68,7 @@ public interface APIService {
 
     @POST("event/edit")
     Call<Message> editEvent(@Header("Authorization") String value, @Body RequestBody requestBody);
+    
+    @POST("event/invite")
+    Call<Message> inviteFriend(@Header("Authorization") String value, @Body RequestBody requestBody);
 }

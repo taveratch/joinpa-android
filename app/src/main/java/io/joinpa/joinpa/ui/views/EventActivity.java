@@ -125,6 +125,13 @@ public class EventActivity extends AppCompatActivity {
         if (!event.getPlace().isUseMap()) btnSeeMap.setVisibility(View.GONE); //hide see map button
     }
 
+    @OnClick(R.id.btn_invite)
+    public void inviteFriend() {
+        Intent intent = new Intent(this, InviteUserToEventActivity.class);
+        intent.putExtra("event",event);
+        startActivity(intent);
+    }
+
 
 
 }
