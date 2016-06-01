@@ -70,7 +70,6 @@ public class SignUpActivity extends AppCompatActivity implements Observer {
     private String avatar;
 
     private UserAvatarAdapter adapter;
-    private ProgressDialog progressDialog;
     private App app;
 
     @Override

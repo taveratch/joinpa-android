@@ -32,7 +32,6 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.0.1'
     apt 'com.jakewharton:butterknife-compiler:8.0.1'
     compile 'net.simonvt.menudrawer:menudrawer:3.0.6'
-    compile 'com.bignerdranch.android:recyclerview-multiselect:0.2'
     compile 'com.chauthai.swipereveallayout:swipe-reveal-layout:1.2.0'
     compile 'com.google.firebase:firebase-messaging:9.0.1'
     compile 'com.google.android.gms:play-services-maps:9.0.1'
