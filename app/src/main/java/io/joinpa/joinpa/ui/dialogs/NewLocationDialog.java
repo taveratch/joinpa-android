@@ -25,7 +25,7 @@ import io.joinpa.joinpa.ui.fragments.MapFragment;
 /**
  * Created by TAWEESOFT on 5/31/16 AD.
  */
-public class NewLocationDialog extends Dialog{
+public class NewLocationDialog extends Dialog {
 
     @BindView(R.id.et_location_name)
     EditText etLocationName;

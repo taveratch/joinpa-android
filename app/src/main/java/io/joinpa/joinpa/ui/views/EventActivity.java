@@ -102,7 +102,14 @@ public class EventActivity extends AppCompatActivity {
         eventDate.setText(DateUtil.getDate(date));
         eventTime.setText(DateUtil.getTime(date));
         eventLocation.setText(event.getPlace().getName());
-        if (!event.isPrivate()) vSwitch.setChecked(false);
+
+        if (event.isPrivate()) {
+            visibility.setText("Hidden");
+            vSwitch.setChecked(true);
+        } else {
+            visibility.setText("Shown to all");
+            vSwitch.setChecked(false);
+        }
 
         vSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -114,7 +121,7 @@ public class EventActivity extends AppCompatActivity {
                 }
             }
         });
-        Log.e("isUseMap" , event.getPlace().isUseMap()+"");
+        Log.e("isUseMap" , event.getPlace().isUseMap() + "");
         if (!event.getPlace().isUseMap()) btnSeeMap.setVisibility(View.GONE); //hide see map button
     }
 

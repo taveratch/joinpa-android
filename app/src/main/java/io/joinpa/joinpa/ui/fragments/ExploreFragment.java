@@ -2,6 +2,7 @@ package io.joinpa.joinpa.ui.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -39,6 +40,9 @@ public class ExploreFragment extends ObservableFragment implements Observer {
     @BindView(R.id.event_recyclerView)
     RecyclerView recyclerView;
 
+    @BindView(R.id.swipe_refresh_layout)
+    SwipeRefreshLayout swipeRefreshLayout;
+
     private ExploreEventAdapter adapter;
     private App app;
     public EventManager eventManager;
@@ -60,9 +64,7 @@ public class ExploreFragment extends ObservableFragment implements Observer {
 
         initComponents();
 
-        GetPublicEventResponse response = new GetPublicEventResponse();
-        response.addObserver(this);
-        response.execute();
+        fetchContent();
 
         return view;
     }
@@ -81,6 +83,7 @@ public class ExploreFragment extends ObservableFragment implements Observer {
                 List<Event> events = response.body().getEventList();
                 eventManager.setTempEventList(events);
                 adapter.notifyDataSetChanged();
+                swipeRefreshLayout.setRefreshing(false);
             } else {
                 Response<Message> response = (Response<Message>) objectResponse.getData();
                 ProgressDialogUtil.dismiss();
@@ -91,10 +94,9 @@ public class ExploreFragment extends ObservableFragment implements Observer {
             Log.e("error", objectResponse.getMessage());
             ProgressDialogUtil.dismiss();
         }
+
+        
     }
-
-
-
 
     private void initComponents() {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -110,6 +112,19 @@ public class ExploreFragment extends ObservableFragment implements Observer {
         adapter = new ExploreEventAdapter(this.getContext(), eventManager.getTempEventList());
         adapter.setObserver(this);
         recyclerView.setAdapter(adapter);
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                fetchContent();
+            }
+        });
+    }
+
+    public void fetchContent() {
+        GetPublicEventResponse response = new GetPublicEventResponse();
+        response.addObserver(this);
+        response.execute();
     }
 
 }
