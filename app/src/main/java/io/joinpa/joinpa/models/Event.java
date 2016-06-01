@@ -2,15 +2,13 @@ package io.joinpa.joinpa.models;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 /**
  * Created by TAWEESOFT on 5/29/16 AD.
  */
-public class Event implements Serializable {
+public class Event {
 
     @SerializedName("_id")
     private String id;
@@ -27,6 +25,7 @@ public class Event implements Serializable {
     @SerializedName("icon")
     private int icon;
 
+    @SerializedName("isPrivate")
     private boolean isPrivate;
 
     @SerializedName("place")
@@ -41,6 +40,7 @@ public class Event implements Serializable {
     @SerializedName("declinedList")
     private List<Friend> declinedList;
 
+    @SerializedName("timestamp")
     private long timeStamp;
 
     public String getId() {

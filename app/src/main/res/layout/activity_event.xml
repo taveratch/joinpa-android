@@ -33,6 +33,7 @@
             android:layout_height="24dp"
             android:id="@+id/btn_close"
             android:src="@drawable/ic_close_black_24dp"
+            android:background="?android:attr/selectableItemBackground"
             android:layout_gravity="left|top" />
 
     </FrameLayout>
@@ -233,13 +234,12 @@
                 android:text="Library"
                 android:textStyle="bold" />
 
-            <Button
-                android:layout_width="120dp"
+            <ImageView
+                android:layout_width="80dp"
                 android:layout_height="40dp"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
-                android:id="@+id/btn_see_map"
-                android:text="Show map" />
+                android:id="@+id/btn_see_map"/>
 
         </RelativeLayout>
 

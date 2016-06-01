@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/list_component_margin"
-    android:background="@drawable/rounded_list_item"
-    >
+    android:background="@drawable/rounded_list_item">
 
     <io.joinpa.joinpa.managers.SwipeRevealLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
