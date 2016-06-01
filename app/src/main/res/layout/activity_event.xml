@@ -51,8 +51,8 @@
             android:id="@+id/btn_edit_name"
             android:text="Edit"
             style="@style/Base.Widget.AppCompat.Button.Borderless"
-            android:background="@drawable/rounded_edittext_blue_border"
-            android:textColor="@color/colorPrimary"
+            android:background="@drawable/rounded_edittext_blue_gray_border"
+            android:textColor="@color/colorBlueGray"
             android:textSize="10dp"
             android:layout_gravity="right|bottom"
             android:visibility="invisible"/>

@@ -30,6 +30,7 @@ import io.joinpa.joinpa.managers.commands.ObjectResponse;
 import io.joinpa.joinpa.models.Event;
 import io.joinpa.joinpa.models.Message;
 import io.joinpa.joinpa.ui.dialogs.DateTimeSelectorDialog;
+import io.joinpa.joinpa.ui.dialogs.EditNameDialog;
 import io.joinpa.joinpa.util.DateUtil;
 import io.joinpa.joinpa.util.ProgressDialogUtil;
 import retrofit2.Response;
@@ -205,12 +206,12 @@ public class EventActivity extends AppCompatActivity implements Observer {
         btnConfirm.setVisibility(View.VISIBLE);
     }
 
-    @OnClick(R.id.text_event_name)
+    @OnClick(R.id.btn_edit_name)
     public void editName() {
         nameEdited = true;
         setChanged();
-        // TODO set text to new name
-        // show dialog
+        EditNameDialog dialog = new EditNameDialog(this, event, eventName);
+        dialog.show();
         eventName.setText(event.getName());
     }
 
