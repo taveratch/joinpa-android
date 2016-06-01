@@ -17,6 +17,7 @@ public class CancelEventCommand implements Command {
     private RecentEventAdapter adapter;
     private int position;
     private List<Event> events;
+
     public CancelEventCommand(String eventId, Observer observer, RecentEventAdapter adapter, int position, List<Event> eventList) {
         this.eventId = eventId;
         this.observer = observer;

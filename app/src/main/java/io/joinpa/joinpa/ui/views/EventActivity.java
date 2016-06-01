@@ -8,22 +8,35 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Observable;
+import java.util.Observer;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.joinpa.joinpa.R;
 import io.joinpa.joinpa.managers.App;
+import io.joinpa.joinpa.managers.DateTimeHolder;
 import io.joinpa.joinpa.managers.EventManager;
+import io.joinpa.joinpa.managers.commands.EditEventResponse;
+import io.joinpa.joinpa.managers.commands.ObjectResponse;
 import io.joinpa.joinpa.models.Event;
+import io.joinpa.joinpa.models.EventElement;
+import io.joinpa.joinpa.models.Message;
 import io.joinpa.joinpa.util.DateUtil;
 import io.joinpa.joinpa.util.ProgressDialogUtil;
+import retrofit2.Response;
 
-public class EventActivity extends AppCompatActivity {
+public class EventActivity extends AppCompatActivity implements Observer {
 
     @BindView(R.id.text_event_name)
     TextView eventName;
@@ -52,8 +65,25 @@ public class EventActivity extends AppCompatActivity {
     @BindView(R.id.btn_see_map)
     Button btnSeeMap;
 
+    @BindView(R.id.btn_confirm)
+    ImageView btnConfirm;
+
     private Event event;
     private App app;
+    private boolean isHost = false;
+    private boolean nameEdited = false;
+    private boolean dateEdited = false;
+    private boolean visibilityEdited = false;
+    private boolean placeEdited = false;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_event);
+        ButterKnife.bind(this);
+        app = App.getInstance();
+        initComponents();
+    }
 
     @OnClick(R.id.layout_coming_pane)
     public void seeComingPeople() {
@@ -67,31 +97,68 @@ public class EventActivity extends AppCompatActivity {
         finish();
     }
 
+    @OnClick(R.id.btn_confirm)
+    public void confirmEdit() {
+        // TODO Send result to server
+
+        Map<String, String> data = new HashMap<>();
+        data.put("eventId", event.getId());
+        if (nameEdited) data.put("name", event.getName());
+        if (dateEdited) data.put("date", event.getDate().toLocaleString());
+        if (visibilityEdited) data.put("isPrivate", event.isPrivate() + "");
+
+
+        for (Map.Entry<String, String> entry : data.entrySet())
+        {
+            System.out.println(entry.getKey() + "/" + entry.getValue());
+        }
+
+        ProgressDialogUtil.show(this, "Please wait");
+        EditEventResponse response = new EditEventResponse(data);
+        response.addObserver(this);
+        response.execute();
+    }
+
     @OnClick(R.id.btn_see_map)
     public void showMap() {
-        ProgressDialogUtil.show(this,"Opening map");
+        ProgressDialogUtil.show(this, "Opening map");
         Intent intent = new Intent(this,ShowMapActivity.class);
-        intent.putExtra("place",event.getPlace());
+        intent.putExtra("place", event.getPlace());
         startActivity(intent);
     }
 
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_event);
-        ButterKnife.bind(this);
-        app = App.getInstance();
-        initComponents();
+    public void update(Observable observable, Object data) {
+        if (data == null) return;
+        if (!(data instanceof ObjectResponse)) return;
+
+        ObjectResponse objectResponse = (ObjectResponse) data;
+
+        if (objectResponse.isSuccess()) {
+            Response<Message> response = (Response<Message>) objectResponse.getData();
+            ProgressDialogUtil.dismiss();
+            Toast.makeText(this, response.body().getMessage(), Toast.LENGTH_LONG).show();
+            finish();
+
+        } else {
+            Log.e("error", objectResponse.getMessage());
+            ProgressDialogUtil.dismiss();
+        }
     }
 
     public void initComponents() {
+
         EventManager eventManager = app.getEventManager();
         int eventIndex = (int)getIntent().getSerializableExtra("event_index");
         event = eventManager.getTempEventList().get(eventIndex);
 
-        if (!event.getHost().equals(app.getUser())) vSwitch.setVisibility(View.INVISIBLE);
+        if (event.getHost().equals(app.getUser())) isHost = true;
 
+        if (!isHost) {
+            vSwitch.setVisibility(View.INVISIBLE);
+            eventName.setClickable(false);
+
+        }
         Log.e("EventActivity", event.getName());
 
         Date date = event.getDate();
@@ -116,9 +183,13 @@ public class EventActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     visibility.setText("Hidden");
+                    event.setPrivate(true);
+
                 } else {
-                    visibility.setText("Public");
+                    visibility.setText("Shown to all");
+                    event.setPrivate(false);
                 }
+                editVisibility();
             }
         });
         Log.e("isUseMap" , event.getPlace().isUseMap() + "");
@@ -132,6 +203,36 @@ public class EventActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void setChanged() {
+        btnConfirm.setVisibility(View.VISIBLE);
+    }
 
+    @OnClick(R.id.text_event_name)
+    public void editName() {
+        nameEdited = true;
+        setChanged();
+        // TODO set text to new name
+        // show dialog
+        eventName.setText(event.getName());
+    }
 
+    @OnClick(R.id.btn_edit_date)
+    public void editDate() {
+        dateEdited = true;
+        setChanged();
+        DateTimeHolder dateTimeHolder = new DateTimeHolder(this, eventDate, eventTime);
+        dateTimeHolder.openDateDialog();
+        event.setDate(dateTimeHolder.getDate());
+    }
+
+    public void editVisibility() {
+        visibilityEdited = true;
+        setChanged();
+    }
+
+    public void editPlace() {
+        placeEdited = true;
+        setChanged();
+        eventLocation.setText(event.getPlace().getName());
+    }
 }
