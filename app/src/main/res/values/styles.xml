@@ -8,8 +8,6 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-
-
     <style name="TextLabel" parent="TextAppearance.AppCompat">
         <!-- Hint color and label color in FALSE state -->
         <item name="android:textColor">@color/colorPrimaryDark</item>
@@ -17,9 +15,9 @@
         <item name="android:textColorHighlight">@color/colorRed</item>
         <item name="android:textColorLink">@color/colorRed</item>
         <!-- Label color in TRUE state and bar color FALSE and TRUE State -->
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/colorRedAlpha</item>
         <item name="colorControlNormal">@color/colorPrimary</item>
-        <item name="colorControlActivated">@color/colorAccent</item>
+        <item name="colorControlActivated">@color/colorRedAlpha</item>
     </style>
 
     <style name="ToolBarStyle" parent="@style/Widget.AppCompat.Toolbar">

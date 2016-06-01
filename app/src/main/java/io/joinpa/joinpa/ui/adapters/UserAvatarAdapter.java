@@ -68,7 +68,7 @@ public class UserAvatarAdapter extends RecyclerView.Adapter<UserAvatarAdapter.Vi
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.avatar.setImageResource(app.getInternalData().avatarNormal[position]);
         if(position == selectedAvatar)
-            holder.avatar.setBackgroundResource(R.drawable.green_circle);
+            holder.avatar.setBackgroundResource(R.drawable.red_circle);
         else
             holder.avatar.setBackgroundResource(R.drawable.blue_circle);
     }

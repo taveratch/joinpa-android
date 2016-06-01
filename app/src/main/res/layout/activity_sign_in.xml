@@ -115,7 +115,7 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/avatar_size"
+            android:layout_height="@dimen/footer_height"
             android:id="@+id/layout_bottom"
             android:background="@color/colorPrimary"
             android:layout_alignParentBottom="true"
