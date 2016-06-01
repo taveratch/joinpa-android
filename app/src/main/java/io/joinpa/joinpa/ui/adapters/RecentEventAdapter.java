@@ -18,6 +18,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.joinpa.joinpa.R;
 import io.joinpa.joinpa.managers.App;
+import io.joinpa.joinpa.managers.commands.CancelEventResponse;
 import io.joinpa.joinpa.models.Event;
 import io.joinpa.joinpa.ui.views.EventActivity;
 import io.joinpa.joinpa.util.DateUtil;
@@ -121,11 +122,10 @@ public class RecentEventAdapter extends RecyclerView.Adapter<RecentEventAdapter.
             notifyItemRemoved(getAdapterPosition());
 
             ProgressDialogUtil.show(context, "Canceling event..");
-            // TODO cancel event response
-//            JoinEventResponse response = new JoinEventResponse(event.getId());
-//            response.addObserver(observer);
-//            response.execute();
 
+            CancelEventResponse response = new CancelEventResponse(event.getId());
+            response.addObserver(observer);
+            response.execute();
         }
 
         @Override
