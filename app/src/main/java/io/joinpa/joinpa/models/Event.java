@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by TAWEESOFT on 5/29/16 AD.
  */
-public class Event implements Serializable{
+public class Event implements Serializable {
 
     @SerializedName("_id")
     private String id;

@@ -84,7 +84,7 @@ public class EventActivity extends AppCompatActivity {
         hostName.setText(event.getHost().getUsername());
         // TODO tell nonae to send friendlist
 //        numHostFriends.setText(event.getHost().getFriendList().size());
-        eventDate.setText(DateUtil.getDay(date));
+        eventDate.setText(DateUtil.getDate(date));
         eventTime.setText(DateUtil.getTime(date));
         eventLocation.setText(event.getPlace().getName());
         if (!event.isPrivate()) vSwitch.setChecked(false);

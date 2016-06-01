@@ -18,7 +18,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.joinpa.joinpa.R;
 import io.joinpa.joinpa.managers.App;
-import io.joinpa.joinpa.managers.Commands.JoinEventResponse;
 import io.joinpa.joinpa.models.Event;
 import io.joinpa.joinpa.ui.views.EventActivity;
 import io.joinpa.joinpa.util.DateUtil;
@@ -69,7 +68,7 @@ public class RecentEventAdapter extends RecyclerView.Adapter<RecentEventAdapter.
         holder.username.setText(event.getHost().getUsername());
         holder.eventName.setText(event.getName());
         holder.numJoined.setText(joinText);
-        holder.dateLabel.setText(DateUtil.getDay(date));
+        holder.dateLabel.setText(DateUtil.getDate(date));
         holder.timeLabel.setText(DateUtil.getTime(date));
         holder.location.setText(event.getPlace().getName());
 

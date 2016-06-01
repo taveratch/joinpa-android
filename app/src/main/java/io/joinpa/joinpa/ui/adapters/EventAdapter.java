@@ -69,7 +69,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         holder.username.setText(event.getHost().getUsername());
         holder.eventName.setText(event.getName());
         holder.numJoined.setText(joinText);
-        holder.dateLabel.setText(DateUtil.getDay(date));
+        holder.dateLabel.setText(DateUtil.getDate(date));
         holder.timeLabel.setText(DateUtil.getTime(date));
         holder.location.setText(event.getPlace().getName());
     }
