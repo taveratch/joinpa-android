@@ -6,12 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.bignerdranch.android.multiselector.SwappingHolder;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.joinpa.joinpa.R;
 import io.joinpa.joinpa.managers.App;
+import io.joinpa.joinpa.ui.viewholders.ViewHolder;
 
 
 public class UserAvatarAdapter extends RecyclerView.Adapter<UserAvatarAdapter.ViewHolder> {
@@ -53,7 +52,7 @@ public class UserAvatarAdapter extends RecyclerView.Adapter<UserAvatarAdapter.Vi
         return app.getInternalData().avatarNormal.length;
     }
 
-    public class ViewHolder extends SwappingHolder implements View.OnClickListener {
+    public class ViewHolder extends io.joinpa.joinpa.ui.viewholders.ViewHolder implements View.OnClickListener {
 
         @BindView(R.id.avatar_image_view)
         ImageView avatar;
