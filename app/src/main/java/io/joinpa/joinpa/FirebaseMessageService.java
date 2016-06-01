@@ -30,7 +30,7 @@ public class FirebaseMessageService extends FirebaseMessagingService {
         Log.e("Received Message Noti" , remoteMessage.getNotification().getBody());
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
         builder.setSmallIcon(R.drawable.logo);
-        builder.setContentTitle(remoteMessage.getNotification().getTitle());
+        builder.setContentTitle(remoteMessage.getNotification().getTitle()+"1");
         Gson gson = new Gson();
         NotificationHandler handler = gson.fromJson(remoteMessage.getNotification().getBody(),NotificationHandler.class);
         NotificationReceiver receiver = NotificationReceiver.getInstance();
@@ -43,21 +43,25 @@ public class FirebaseMessageService extends FirebaseMessagingService {
         }else{
             receiver.setFriend(handler.getFriend());
         }
-        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
-// Adds the back stack for the Intent (but not the Intent itself)
-        stackBuilder.addParentStack(SplashScreenActivity.class);
-// Adds the Intent that starts the Activity to the top of the stack
-        stackBuilder.addNextIntent(intent);
-        PendingIntent resultPendingIntent =
-                stackBuilder.getPendingIntent(
-                        0,
-                        PendingIntent.FLAG_UPDATE_CURRENT
-                );
-        builder.setContentIntent(resultPendingIntent);
-        NotificationManager mNotificationManager =
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-// mId allows you to update the notification later on.
-        mNotificationManager.notify(1, builder.build());
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        builder.setContentIntent(contentIntent);
+        NotificationManager nManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        nManager.notify(12345, builder.build());
+//        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+//// Adds the back stack for the Intent (but not the Intent itself)
+//        stackBuilder.addParentStack(SplashScreenActivity.class);
+//// Adds the Intent that starts the Activity to the top of the stack
+//        stackBuilder.addNextIntent(intent);
+//        PendingIntent resultPendingIntent =
+//                stackBuilder.getPendingIntent(
+//                        0,
+//                        PendingIntent.FLAG_UPDATE_CURRENT
+//                );
+//        builder.setContentIntent(resultPendingIntent);
+//        NotificationManager mNotificationManager =
+//                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+//// mId allows you to update the notification later on.
+//        mNotificationManager.notify(12345, builder.build());
     }
 
 
