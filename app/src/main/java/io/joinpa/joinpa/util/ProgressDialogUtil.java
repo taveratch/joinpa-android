@@ -20,6 +20,7 @@ public class ProgressDialogUtil {
     }
 
     public static void dismiss() {
+        if (dialog == null) return;
         if (dialog.isShowing()) dialog.dismiss();
     }
 }

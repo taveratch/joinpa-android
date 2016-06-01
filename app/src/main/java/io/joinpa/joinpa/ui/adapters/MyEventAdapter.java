@@ -18,8 +18,10 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.joinpa.joinpa.R;
 import io.joinpa.joinpa.managers.App;
+import io.joinpa.joinpa.managers.commands.RemoveEventCommand;
 import io.joinpa.joinpa.managers.commands.RemoveEventResponse;
 import io.joinpa.joinpa.models.Event;
+import io.joinpa.joinpa.ui.dialogs.ConfirmDialog;
 import io.joinpa.joinpa.ui.views.EventActivity;
 import io.joinpa.joinpa.util.DateUtil;
 import io.joinpa.joinpa.util.ProgressDialogUtil;
@@ -118,14 +120,11 @@ public class MyEventAdapter extends RecyclerView.Adapter<MyEventAdapter.ViewHold
 
         @OnClick(R.id.btn_remove)
         public void removeEvent() {
-            Event event = events.remove(getAdapterPosition());
-            notifyItemRemoved(getAdapterPosition());
-
-            ProgressDialogUtil.show(context, "Removing event..");
-            RemoveEventResponse response = new RemoveEventResponse(event.getId());
-            System.out.println(event.getId());
-            response.addObserver(observer);
-            response.execute();
+            Event event = events.get(getAdapterPosition());
+            RemoveEventCommand command = new RemoveEventCommand(event.getId(),observer,MyEventAdapter.this,getAdapterPosition(),events);
+            ConfirmDialog confirmDialog = new ConfirmDialog(context);
+            confirmDialog.setCommand(command);
+            confirmDialog.show();
         }
 
         @Override
