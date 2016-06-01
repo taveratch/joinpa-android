@@ -61,7 +61,7 @@
             android:name=".ui.views.NewEventActivity"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
+            android:windowSoftInputMode="stateHidden|adjustPan|adjustNothing|stateAlwaysHidden" />
         <activity
             android:name=".ui.views.SelectFriendActivity"
             android:configChanges="orientation|screenSize"

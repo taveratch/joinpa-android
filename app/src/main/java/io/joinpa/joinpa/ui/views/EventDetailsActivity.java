@@ -27,6 +27,7 @@ import io.joinpa.joinpa.R;
 import io.joinpa.joinpa.managers.App;
 import io.joinpa.joinpa.managers.Commands.CreateEventResponse;
 import io.joinpa.joinpa.managers.Commands.ObjectResponse;
+import io.joinpa.joinpa.managers.Constants;
 import io.joinpa.joinpa.managers.DateTimeHolder;
 import io.joinpa.joinpa.managers.LoadService;
 import io.joinpa.joinpa.managers.Notifier;
@@ -49,6 +50,12 @@ public class EventDetailsActivity extends AppCompatActivity implements Observer{
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+
+    @BindView(R.id.tv_visibility)
+    TextView tvVisibility;
+
+    @BindView(R.id.tv_visibility_desc)
+    TextView tvVisibilityDesc;
 
     private LocationAdapter locationAdapter;
     private App app;
@@ -92,10 +99,17 @@ public class EventDetailsActivity extends AppCompatActivity implements Observer{
 
     @OnCheckedChanged(R.id.sw_visibility)
     public void setVisibility(boolean isChecked) {
-        if (isChecked)
+        if (isChecked){
             event.setPrivate(true);
-        else
+            tvVisibility.setText(getString(R.string.hidden));
+            tvVisibilityDesc.setText(getString(R.string.hidden_desc));
+        }
+        else{
             event.setPrivate(false);
+            tvVisibility.setText(getString(R.string.shown_to_all));
+            tvVisibilityDesc.setText(getString(R.string.public_desc));
+        }
+
     }
 
     @Override
@@ -113,6 +127,7 @@ public class EventDetailsActivity extends AppCompatActivity implements Observer{
             Log.e("failed" , objectResponse.getMessage()+"");
             Toast.makeText(this, objectResponse.getMessage(), Toast.LENGTH_SHORT).show();
         }
+        setResult(Constants.EXIT);
         finish();
     }
 

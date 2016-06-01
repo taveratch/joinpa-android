@@ -1,5 +1,6 @@
 package io.joinpa.joinpa.ui.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -62,7 +63,7 @@ public class CreateEventAdapter extends RecyclerView.Adapter<CreateEventAdapter.
             Event event = events.get(index);
             Intent intent = new Intent(CreateEventAdapter.this.context , SelectFriendActivity.class);
             intent.putExtra("event" , event);
-            CreateEventAdapter.this.context.startActivity(intent);
+            ((Activity)CreateEventAdapter.this.context).startActivityForResult(intent,1);
         }
     }
 
@@ -90,7 +91,6 @@ public class CreateEventAdapter extends RecyclerView.Adapter<CreateEventAdapter.
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Log.e("pppppp" , position + "");
         if(position == events.size()){ // add new custom event
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
