@@ -128,6 +128,14 @@ public class LoadService {
         call.enqueue(callBack);
     }
 
+    public void getInvitedEvents(Observer observer) {
+        APIService apiService = getAPIService();
+        Call<EventElement> call = apiService.getInvitedEvents(AUTH_KEY);
+        ServerCallBack<EventElement> callBack = new ServerCallBack<>();
+        callBack.addObserver(observer);
+        call.enqueue(callBack);
+    }
+
     public void getMyEvents(Observer observer) {
         APIService apiService = getAPIService();
         Call<EventElement> call = apiService.getMyEvents(AUTH_KEY);
@@ -148,6 +156,15 @@ public class LoadService {
     public void createEvent(Event event , Observer observer) {
         APIService apiService = getAPIService();
         Call<Message> call = apiService.createEvent(AUTH_KEY, event);
+        ServerCallBack<Message> callBack = new ServerCallBack<>();
+        callBack.addObserver(observer);
+        call.enqueue(callBack);
+    }
+
+    public void cancelEvent(Map<String, String> data, Observer observer) {
+        RequestBody requestBody = getRequestBody(data);
+        APIService apiService = getAPIService();
+        Call<Message> call = apiService.cancelEvent(AUTH_KEY, requestBody);
         ServerCallBack<Message> callBack = new ServerCallBack<>();
         callBack.addObserver(observer);
         call.enqueue(callBack);

@@ -19,15 +19,16 @@ import butterknife.OnClick;
 import io.joinpa.joinpa.R;
 import io.joinpa.joinpa.managers.App;
 import io.joinpa.joinpa.managers.commands.CancelEventResponse;
+import io.joinpa.joinpa.managers.commands.JoinEventResponse;
 import io.joinpa.joinpa.models.Event;
 import io.joinpa.joinpa.ui.views.EventActivity;
 import io.joinpa.joinpa.util.DateUtil;
 import io.joinpa.joinpa.util.ProgressDialogUtil;
 
 /**
- * Created by Peter on 5/31/2016 AD.
+ * Created by Peter on 6/1/2016 AD.
  */
-public class RecentEventAdapter extends RecyclerView.Adapter<RecentEventAdapter.ViewHolder> {
+public class InvitedEventAdapter extends RecyclerView.Adapter<InvitedEventAdapter.ViewHolder> {
 
     private App app;
 
@@ -35,7 +36,7 @@ public class RecentEventAdapter extends RecyclerView.Adapter<RecentEventAdapter.
     private List<Event> events;
     private Observer observer;
 
-    public RecentEventAdapter(Context context, List<Event> events) {
+    public InvitedEventAdapter(Context context, List<Event> events) {
         this.context = context;
         this.events = events;
         app = App.getInstance();
@@ -43,9 +44,8 @@ public class RecentEventAdapter extends RecyclerView.Adapter<RecentEventAdapter.
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_event_recent, parent, false);
+                .inflate(R.layout.item_event_invite, parent, false);
 
         ViewHolder vh = new ViewHolder(v);
 
@@ -72,7 +72,6 @@ public class RecentEventAdapter extends RecyclerView.Adapter<RecentEventAdapter.
         holder.dateLabel.setText(DateUtil.getDate(date));
         holder.timeLabel.setText(DateUtil.getTime(date));
         holder.location.setText(event.getPlace().getName());
-
     }
 
     @Override
@@ -116,13 +115,23 @@ public class RecentEventAdapter extends RecyclerView.Adapter<RecentEventAdapter.
             v.setOnClickListener(this);
         }
 
-        @OnClick(R.id.btn_cancel)
-        public void cancelEvent() {
+        @OnClick(R.id.btn_accept)
+        public void acceptEvent() {
             Event event = events.remove(getAdapterPosition());
             notifyItemRemoved(getAdapterPosition());
 
-            ProgressDialogUtil.show(context, "Canceling event..");
+            ProgressDialogUtil.show(context, "Joining event..");
+            JoinEventResponse response = new JoinEventResponse(event.getId());
+            response.addObserver(observer);
+            response.execute();
+        }
 
+        @OnClick(R.id.btn_decline)
+        public void declineEvent() {
+            Event event = events.remove(getAdapterPosition());
+            notifyItemRemoved(getAdapterPosition());
+
+            ProgressDialogUtil.show(context, "Declining event..");
             CancelEventResponse response = new CancelEventResponse(event.getId());
             response.addObserver(observer);
             response.execute();

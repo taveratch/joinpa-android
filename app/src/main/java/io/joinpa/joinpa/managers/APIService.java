@@ -48,6 +48,9 @@ public interface APIService {
     @GET("event/joinedEvent")
     Call<EventElement> getJoinedEvents(@Header("Authorization") String value);
 
+    @GET("event/invitedEvent")
+    Call<EventElement> getInvitedEvents(@Header("Authorization") String value);
+
     @GET("event/myEvent")
     Call<EventElement> getMyEvents(@Header("Authorization") String value);
 
@@ -55,7 +58,10 @@ public interface APIService {
     Call<Message> joinEvent(@Header("Authorization") String value, @Body RequestBody requestBody);
 
     @POST("event/create")
-    Call<Message> createEvent(@Header("Authorization") String value , @Body Event event);
+    Call<Message> createEvent(@Header("Authorization") String value, @Body Event event);
+
+    @POST("event/decline")
+    Call<Message> cancelEvent(@Header("Authorization") String value, @Body RequestBody requestBody);
 
     @POST("event/remove")
     Call<Message> removeEvent(@Header("Authorization") String value, @Body RequestBody requestBody);

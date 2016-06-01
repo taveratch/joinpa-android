@@ -1,7 +1,6 @@
 package io.joinpa.joinpa.ui.views;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -40,11 +39,11 @@ public class SplashScreenActivity extends AppCompatActivity implements Observer 
             public void run() {
                 // TODO: 5/14/16 AD remove these lines and load token in splash screen
                 app.loadToken(SplashScreenActivity.this);
-                if(app.isAuthenticated()) {
+                if (app.isAuthenticated()) {
                     VerifyResponse verifyResponse = new VerifyResponse(app.getToken().getKey());
                     verifyResponse.addObserver(SplashScreenActivity.this);
                     verifyResponse.execute();
-                }else{
+                } else {
                     navigateToSignIn();
                 }
                 finish();
@@ -59,13 +58,13 @@ public class SplashScreenActivity extends AppCompatActivity implements Observer 
     }
 
     public void navigateToMain() {
-        Intent intent = new Intent(this,MainActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
     }
 
     public void navigateToSignIn() {
-        Intent intent = new Intent(this,SignInActivity.class);
+        Intent intent = new Intent(this, SignInActivity.class);
         startActivity(intent);
         finish();
     }
@@ -75,15 +74,15 @@ public class SplashScreenActivity extends AppCompatActivity implements Observer 
         if (data == null) return;
         if (!(data instanceof ObjectResponse)) return;
         ObjectResponse objectResponse = (ObjectResponse)data;
-        if(objectResponse.isSuccess()) {
+        if (objectResponse.isSuccess()) {
             Response<User> response = (Response<User>)objectResponse.getData();
             User user = response.body();
             app.setUser(user);
             app.getEventManager().loadInternalEvent(SplashScreenActivity.this);
             app.getPlaceManager().loadInternalPlace(SplashScreenActivity.this);
             navigateToMain();
-        }else{
-            Log.e("error" , objectResponse.getMessage());
+        } else {
+            Log.e("error", objectResponse.getMessage());
             navigateToSignIn();
         }
     }
