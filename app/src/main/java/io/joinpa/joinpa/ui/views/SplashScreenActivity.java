@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.daasuu.ahp.AnimateHorizontalProgressBar;
-import com.google.gson.Gson;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -17,8 +16,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.joinpa.joinpa.R;
 import io.joinpa.joinpa.managers.App;
-import io.joinpa.joinpa.managers.Commands.ObjectResponse;
-import io.joinpa.joinpa.managers.Commands.VerifyResponse;
+import io.joinpa.joinpa.managers.commands.ObjectResponse;
+import io.joinpa.joinpa.managers.commands.VerifyResponse;
 import io.joinpa.joinpa.models.User;
 import retrofit2.Response;
 
