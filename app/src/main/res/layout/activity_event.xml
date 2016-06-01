@@ -43,6 +43,20 @@
             android:layout_gravity="right|top"
             android:visibility="invisible"/>
 
+        <Button
+            android:layout_width="70dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:id="@+id/btn_edit_name"
+            android:text="Edit"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            android:background="@drawable/rounded_edittext_blue_border"
+            android:textColor="@color/colorPrimary"
+            android:textSize="10dp"
+            android:layout_gravity="right|bottom"
+            android:visibility="invisible"/>
+
     </FrameLayout>
 
     <LinearLayout
@@ -166,7 +180,8 @@
                 style="@style/Base.Widget.AppCompat.Button.Borderless"
                 android:background="@drawable/rounded_edittext_blue_border"
                 android:textColor="@color/colorPrimary"
-                android:textSize="10dp" />
+                android:textSize="10dp"
+                android:visibility="invisible"/>
 
         </RelativeLayout>
 
@@ -212,7 +227,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:id="@+id/switch_visibility" />
+                android:id="@+id/switch_visibility"
+                android:visibility="invisible"/>
 
         </RelativeLayout>
 

@@ -63,6 +63,12 @@ public class EventActivity extends AppCompatActivity implements Observer {
     @BindView(R.id.btn_see_map)
     Button btnSeeMap;
 
+    @BindView(R.id.btn_edit_name)
+    Button btnEditName;
+
+    @BindView(R.id.btn_edit_date)
+    Button btnEditDate;
+
     @BindView(R.id.btn_confirm)
     ImageView btnConfirm;
 
@@ -131,6 +137,7 @@ public class EventActivity extends AppCompatActivity implements Observer {
             ProgressDialogUtil.dismiss();
             Toast.makeText(this, response.body().getMessage(), Toast.LENGTH_LONG).show();
             btnConfirm.setVisibility(View.INVISIBLE);
+
         } else {
             Log.e("error", objectResponse.getMessage());
             ProgressDialogUtil.dismiss();
@@ -145,10 +152,10 @@ public class EventActivity extends AppCompatActivity implements Observer {
 
         if (event.getHost().equals(app.getUser())) isHost = true;
 
-        if (!isHost) {
-            vSwitch.setVisibility(View.INVISIBLE);
-            eventName.setClickable(false);
-
+        if (isHost) {
+            btnEditName.setVisibility(View.VISIBLE);
+            btnEditDate.setVisibility(View.VISIBLE);
+            vSwitch.setVisibility(View.VISIBLE);
         }
         Log.e("EventActivity", event.getName());
 
