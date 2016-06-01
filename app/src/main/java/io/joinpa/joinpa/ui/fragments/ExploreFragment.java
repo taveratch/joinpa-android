@@ -43,7 +43,6 @@ public class ExploreFragment extends ObservableFragment implements Observer {
     private App app;
     public EventManager eventManager;
 
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();

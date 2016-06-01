@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
         fragmentList.add(new RecentEventsFragment());
         fragmentList.add(new FriendFragment());
 
-        for(ObservableFragment fm : fragmentList) fm.addObserver(this);
+        for (ObservableFragment fm : fragmentList) fm.addObserver(this);
 
         sideBarItems = new ArrayList<>();
         sideBarItems.add(new SideBarItem(getString(R.string.explore), R.drawable.sidebar_explore_icon));

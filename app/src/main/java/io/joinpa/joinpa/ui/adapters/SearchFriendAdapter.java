@@ -40,6 +40,56 @@ public class SearchFriendAdapter extends RecyclerView.Adapter<SearchFriendAdapte
         app = App.getInstance();
     }
 
+    @Override
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context)
+                .inflate(R.layout.item_search_friend, parent , false);
+        return new ViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(final ViewHolder holder, int position) {
+        final Friend friend = searchResult.get(position);
+        if (!friend.isFriend()) {
+            holder.imgAdd.setImageResource(R.drawable.add_friend_action);
+            holder.imgAdd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    SendFriendRequestResponse response = new SendFriendRequestResponse(friend.getId());
+                    response.addObserver(SearchFriendAdapter.this);
+                    response.execute();
+                    holder.imgAdd.setImageResource(R.drawable.already_friend_action); //set icon to already be friend
+                }
+            });
+        } else
+            holder.imgAdd.setImageResource(R.drawable.already_friend_action);
+
+        holder.imgAvatar.setImageResource(app.getInternalData().avatarNormal[friend.getAvatar()]);
+        holder.imgAvatar.setBackgroundResource(R.drawable.blue_circle);
+        holder.tvUsername.setText(friend.getUsername());
+        holder.tvFriendCount.setText(friend.getFriendList().size() + " friends");
+    }
+
+    @Override
+    public int getItemCount() {
+        return searchResult.size();
+    }
+
+    @Override
+    public void update(Observable observable, Object data) {
+        if (data == null) return;
+        if (!(data instanceof ObjectResponse)) return;
+        ObjectResponse objectResponse = (ObjectResponse)data;
+        Response<Message> response = (Response<Message>)objectResponse.getData();
+        if (response.isSuccessful())
+            Toast.makeText(context, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+        else { // TODO: 5/21/16 AD Maybe change it to show error message from client (detected by status)
+            Gson gson = new Gson();
+            Message message = gson.fromJson(objectResponse.getMessage(),Message.class);
+            Toast.makeText(context, message.getMessage(),Toast.LENGTH_SHORT).show();
+        }
+    }
+
     class ViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.img_add)
@@ -57,54 +107,6 @@ public class SearchFriendAdapter extends RecyclerView.Adapter<SearchFriendAdapte
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);
-        }
-    }
-
-    @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.search_friend_item_layout , parent , false);
-        return new ViewHolder(view);
-    }
-
-    @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
-        final Friend friend = searchResult.get(position);
-        if(!friend.isFriend()) {
-            holder.imgAdd.setImageResource(R.drawable.add_friend_action);
-            holder.imgAdd.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    SendFriendRequestResponse response = new SendFriendRequestResponse(friend.getId());
-                    response.addObserver(SearchFriendAdapter.this);
-                    response.execute();
-                    holder.imgAdd.setImageResource(R.drawable.already_friend_action); //set icon to already be friend
-                }
-            });
-        }else
-            holder.imgAdd.setImageResource(R.drawable.already_friend_action);
-        holder.imgAvatar.setImageResource(app.getInternalData().avatarNormal[friend.getAvatar()]);
-        holder.imgAvatar.setBackgroundResource(R.drawable.blue_circle);
-        holder.tvUsername.setText(friend.getUsername());
-        holder.tvFriendCount.setText(friend.getFriendList().size() + " friends");
-    }
-
-    @Override
-    public int getItemCount() {
-        return searchResult.size();
-    }
-
-    @Override
-    public void update(Observable observable, Object data) {
-        if( data == null ) return;
-        if (! (data instanceof ObjectResponse)) return;
-        ObjectResponse objectResponse = (ObjectResponse)data;
-        Response<Message> response = (Response<Message>)objectResponse.getData();
-        if(response.isSuccessful())
-            Toast.makeText(context, response.body().getMessage(), Toast.LENGTH_SHORT).show();
-        else{ // TODO: 5/21/16 AD Maybe change it to show error message from client (detected by status)
-            Gson gson = new Gson();
-            Message message = gson.fromJson(objectResponse.getMessage(),Message.class);
-            Toast.makeText(context, message.getMessage(),Toast.LENGTH_SHORT).show();
         }
     }
 }

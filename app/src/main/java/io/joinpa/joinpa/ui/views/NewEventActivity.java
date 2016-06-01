@@ -19,7 +19,7 @@ import io.joinpa.joinpa.managers.App;
 import io.joinpa.joinpa.managers.Constants;
 import io.joinpa.joinpa.ui.adapters.CreateEventAdapter;
 
-public class NewEventActivity extends AppCompatActivity implements Observer{
+public class NewEventActivity extends AppCompatActivity implements Observer {
 
     @BindView(R.id.rv)
     RecyclerView rv;

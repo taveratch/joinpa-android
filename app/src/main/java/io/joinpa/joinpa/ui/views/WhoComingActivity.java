@@ -73,7 +73,6 @@ public class WhoComingActivity extends FragmentActivity {
         });
     }
 
-
     @OnClick(R.id.btn_joined)
     public void showJoinedList() {
         viewPager.setCurrentItem(0);

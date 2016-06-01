@@ -24,7 +24,6 @@ import io.joinpa.joinpa.models.Friend;
  */
 public class SelectFriendAdapter extends RecyclerView.Adapter<SelectFriendAdapter.ViewHolder> {
 
-
     private List<Friend> friendList;
     private Context context;
     private List<Friend> selectedFriends;
@@ -41,7 +40,8 @@ public class SelectFriendAdapter extends RecyclerView.Adapter<SelectFriendAdapte
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private boolean  isChecked = false;
+        private boolean isChecked = false;
+
         @BindView(R.id.tv_username)
         TextView tvUsername;
 
@@ -54,19 +54,19 @@ public class SelectFriendAdapter extends RecyclerView.Adapter<SelectFriendAdapte
         public ViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
-            ButterKnife.bind(this,itemView);
+            ButterKnife.bind(this, itemView);
         }
 
         @Override
         public void onClick(View v) {
             Friend friend = friendList.get(getAdapterPosition());
             notifier.setChanged();
-            if(!isChecked){
+            if (!isChecked) {
                 layout.setBackgroundResource(R.drawable.rounded_edittext_blue_gray);
                 tvUsername.setTextColor(context.getResources().getColor(R.color.colorWhite));
                 selectedFriends.add(friend);
                 notifier.notifyObservers(true);
-            }else{
+            } else {
                 tvUsername.setTextColor(context.getResources().getColor(R.color.colorBlueGray));
                 layout.setBackgroundResource(R.drawable.rounded_edittext);
                 selectedFriends.remove(friend);

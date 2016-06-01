@@ -41,11 +41,12 @@ public class SideBarAdapter extends ArrayAdapter<SideBarItem> {
         SideBarItem item = getItem(position);
         holder.imgIcon.setImageResource(item.getIcon());
         holder.tvItemName.setText(item.getTitle());
-        if (position == selectedItem){
+
+        if (position == selectedItem) {
             holder.layout.setBackgroundColor(getContext().getResources().getColor(R.color.colorWhite));
             holder.imgIcon.setBackgroundResource(R.drawable.blue_circle);
             holder.tvItemName.setTextColor(getContext().getResources().getColor(R.color.colorBlueGray));
-        }else{
+        } else {
             holder.layout.setBackgroundColor(0);
             holder.imgIcon.setBackgroundResource(R.drawable.white_circle);
             holder.tvItemName.setTextColor(getContext().getResources().getColor(R.color.colorWhite));
@@ -53,7 +54,7 @@ public class SideBarAdapter extends ArrayAdapter<SideBarItem> {
         return convertView;
     }
 
-    class ViewHolder{
+    class ViewHolder {
 
         @BindView(R.id.layout)
         LinearLayout layout;

@@ -38,7 +38,7 @@ public class NewCustomEventDialog extends ObservableDialog {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dialog_new_custom_event_layout);
+        setContentView(R.layout.dialog_new_custom_event);
         ButterKnife.bind(this);
         initComponents();
     }

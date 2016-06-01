@@ -32,18 +32,6 @@ public class WhoComingAdapter extends RecyclerView.Adapter<WhoComingAdapter.View
         app = App.getInstance();
     }
 
-    class ViewHolder extends io.joinpa.joinpa.ui.viewholders.ViewHolder {
-
-        @BindView(R.id.img_avatar)
-        ImageView imgAvatar;
-
-        @BindView(R.id.tv_username)
-        TextView tvUsername;
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-        }
-    }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -62,5 +50,18 @@ public class WhoComingAdapter extends RecyclerView.Adapter<WhoComingAdapter.View
     @Override
     public int getItemCount() {
         return friends.size();
+    }
+
+    class ViewHolder extends io.joinpa.joinpa.ui.viewholders.ViewHolder {
+
+        @BindView(R.id.img_avatar)
+        ImageView imgAvatar;
+
+        @BindView(R.id.tv_username)
+        TextView tvUsername;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+        }
     }
 }

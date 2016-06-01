@@ -37,7 +37,7 @@ public class ConfirmDialog extends Dialog {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dialog_confirm_layout);
+        setContentView(R.layout.dialog_confirm);
         ButterKnife.bind(this);
     }
 

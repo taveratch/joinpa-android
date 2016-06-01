@@ -40,29 +40,11 @@ public class FriendRequestAdapter extends RecyclerView.Adapter<FriendRequestAdap
         app = App.getInstance();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
-
-        @BindView(R.id.tv_username)
-        TextView tvUsername;
-
-        @BindView(R.id.img_avatar)
-        ImageView imgAvatar;
-
-        @BindView(R.id.btn_accept)
-        Button btnAccept;
-
-        @BindView(R.id.btn_decline)
-        Button btnDecline;
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-            ButterKnife.bind(this,itemView);
-        }
-    }
-
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.friend_request_item_layout,parent,false);
+        View view = LayoutInflater.from(context)
+                .inflate(R.layout.item_friend_request,parent,false);
+
         return new ViewHolder(view);
     }
 
@@ -95,7 +77,7 @@ public class FriendRequestAdapter extends RecyclerView.Adapter<FriendRequestAdap
     }
 
     public void declineRequest(Friend friend) {
-
+        // TODO
     }
 
     @Override
@@ -105,17 +87,36 @@ public class FriendRequestAdapter extends RecyclerView.Adapter<FriendRequestAdap
 
     @Override
     public void update(Observable observable, Object data) {
-        if( data == null) return;
-        if( !(data instanceof ObjectResponse)) return;
+        if (data == null) return;
+        if (!(data instanceof ObjectResponse)) return;
         ObjectResponse objectResponse = (ObjectResponse)data;
-        if(objectResponse.isSuccess()){
+        if (objectResponse.isSuccess()) {
             Response<Message> response = (Response<Message>)objectResponse.getData();
             Message message = response.body();
             Toast.makeText(context, message.getMessage(), Toast.LENGTH_SHORT).show();
-        }else{
-            // TODO: 5/21/16 AD handle error
+        } else {
             Log.e("error" , objectResponse.getMessage());
-            Toast.makeText(context, objectResponse.getMessage() , Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, objectResponse.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    class ViewHolder extends RecyclerView.ViewHolder {
+
+        @BindView(R.id.tv_username)
+        TextView tvUsername;
+
+        @BindView(R.id.img_avatar)
+        ImageView imgAvatar;
+
+        @BindView(R.id.btn_accept)
+        Button btnAccept;
+
+        @BindView(R.id.btn_decline)
+        Button btnDecline;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
         }
     }
 }
