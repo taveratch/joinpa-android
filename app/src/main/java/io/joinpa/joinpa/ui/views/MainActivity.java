@@ -23,8 +23,12 @@ import butterknife.OnClick;
 import butterknife.OnItemClick;
 import io.joinpa.joinpa.R;
 import io.joinpa.joinpa.managers.App;
+import io.joinpa.joinpa.models.Event;
+import io.joinpa.joinpa.models.Friend;
+import io.joinpa.joinpa.models.NotificationReceiver;
 import io.joinpa.joinpa.models.SideBarItem;
 import io.joinpa.joinpa.ui.adapters.SideBarAdapter;
+import io.joinpa.joinpa.ui.dialogs.PartialEventDialog;
 import io.joinpa.joinpa.ui.fragments.ExploreFragment;
 import io.joinpa.joinpa.ui.fragments.FriendFragment;
 import io.joinpa.joinpa.ui.fragments.InvitesFragment;
@@ -47,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
     TextView tvUsername;
 
     private App app;
+    private NotificationReceiver notificationReceiver;
     private MenuDrawer menuDrawer;
     private List<ObservableFragment> fragmentList;
     private List<SideBarItem> sideBarItems;
@@ -61,8 +66,10 @@ public class MainActivity extends AppCompatActivity implements Observer {
         ButterKnife.bind(menuDrawer);
         ButterKnife.bind(this);
         app = App.getInstance();
+        notificationReceiver = NotificationReceiver.getInstance();
         PermissionUtil.canAccessLocation(this); //check permission for location service
         initComponents();
+        checkNotification();
     }
 
     /**
@@ -146,6 +153,19 @@ public class MainActivity extends AppCompatActivity implements Observer {
         });
         dialogBuilder.setNegativeButton("No", null);
         dialogBuilder.create().show();
+    }
+
+    public void checkNotification() {
+        if (notificationReceiver.isEventNotified()) {
+            // TODO: 6/1/16 AD show event dialog
+            Event event = notificationReceiver.getEvent();
+            notificationReceiver.setEvent(null);
+            PartialEventDialog dialog = new PartialEventDialog(this,event);
+            dialog.show();
+        }else if (notificationReceiver.isFriendNotified()) {
+            Friend friend = notificationReceiver.getFriend();
+            notificationReceiver.setFriend(null);
+        }
     }
 
 
