@@ -1,4 +1,4 @@
-package io.joinpa.joinpa.managers.Commands;
+package io.joinpa.joinpa.managers.commands;
 
 import java.util.List;
 import java.util.Observable;

@@ -1,4 +1,4 @@
-package io.joinpa.joinpa.managers.Commands;
+package io.joinpa.joinpa.managers.commands;
 
 import android.content.Context;
 import android.util.Log;
@@ -9,8 +9,6 @@ import java.util.Observable;
 import java.util.Observer;
 
 import io.joinpa.joinpa.managers.App;
-import io.joinpa.joinpa.managers.Commands.ObjectResponse;
-import io.joinpa.joinpa.managers.Commands.VerifyResponse;
 import io.joinpa.joinpa.managers.LoadService;
 import io.joinpa.joinpa.models.Token;
 import retrofit2.Response;
@@ -22,7 +20,8 @@ public class SignUpResponse extends ObjectResponse {
     private Context context;
     private Observer observer;
     private App app;
-    public SignUpResponse(Map<String , String> data , Context context){
+
+    public SignUpResponse(Map<String, String> data, Context context){
         this.data = data;
         this.context = context;
         app = App.getInstance();
@@ -39,7 +38,7 @@ public class SignUpResponse extends ObjectResponse {
         Response<Token> response = (Response<Token>)o;
         if (response.isSuccessful()) {
             Token token = response.body();
-            app.saveToken(token , context);
+            app.saveToken(token, context);
             VerifyResponse verifyResponse = new VerifyResponse(app.getToken().getKey());
             verifyResponse.addObserver(observer);
             verifyResponse.execute();

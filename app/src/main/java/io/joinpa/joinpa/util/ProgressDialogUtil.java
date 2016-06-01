@@ -19,7 +19,7 @@ public class ProgressDialogUtil {
         dialog.show();
     }
 
-    public static void hide() {
-        if (dialog.isShowing()) dialog.hide();
+    public static void dismiss() {
+        if (dialog.isShowing()) dialog.dismiss();
     }
 }

@@ -1,34 +1,26 @@
 package io.joinpa.joinpa.ui.fragments;
 
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
 import java.util.Observer;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.joinpa.joinpa.R;
 import io.joinpa.joinpa.managers.App;
-import io.joinpa.joinpa.managers.Commands.GetFriendListResponse;
 import io.joinpa.joinpa.models.Friend;
 import io.joinpa.joinpa.ui.adapters.FriendListAdapter;
-import io.joinpa.joinpa.ui.adapters.FriendRequestAdapter;
 import io.joinpa.joinpa.ui.dialogs.FriendRequestDialog;
 
 /**

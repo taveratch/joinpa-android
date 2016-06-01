@@ -20,12 +20,11 @@ import java.util.Observer;
 
 import butterknife.BindView;
 import io.joinpa.joinpa.R;
-import butterknife.ButterKnife;
 import io.joinpa.joinpa.managers.App;
-import io.joinpa.joinpa.managers.Command;
-import io.joinpa.joinpa.managers.Commands.GetFriendListResponse;
-import io.joinpa.joinpa.managers.Commands.ObjectResponse;
-import io.joinpa.joinpa.managers.Commands.UnFriendCommand;
+import io.joinpa.joinpa.managers.commands.Command;
+import io.joinpa.joinpa.managers.commands.GetFriendListResponse;
+import io.joinpa.joinpa.managers.commands.ObjectResponse;
+import io.joinpa.joinpa.managers.commands.UnFriendCommand;
 import io.joinpa.joinpa.managers.SwipeRevealLayout;
 import io.joinpa.joinpa.managers.ViewBinderHelper;
 import io.joinpa.joinpa.models.Friend;

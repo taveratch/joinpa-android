@@ -24,22 +24,21 @@ public class App {
     private InternalData internalData;
     private EventManager eventManager;
     private PlaceManager placeManager;
-    private Gson gson;
+
     private App() {
         internalData = InternalData.getInstance();
-        gson = new Gson();
         eventManager = new EventManager(internalData.events);
         placeManager = new PlaceManager(internalData.places);
     }
 
     public static App getInstance() {
-        if ( app == null ) app = new App();
+        if (app == null ) app = new App();
         return app;
     }
 
     public void saveToken(Token token , Context context) {
         SharedPreferences.Editor editor = context.getSharedPreferences(Constants.SP_KEY , context.MODE_PRIVATE).edit();
-        editor.putString("token" , token.getKey());
+        editor.putString("token", token.getKey());
         editor.apply();
         loadToken(context);
     }
@@ -56,8 +55,8 @@ public class App {
     }
 
     public void loadToken(Context context){
-        SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.SP_KEY , context.MODE_PRIVATE);
-        String token = sharedPreferences.getString("token" , null);
+        SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.SP_KEY, context.MODE_PRIVATE);
+        String token = sharedPreferences.getString("token", null);
         internalData.token = new Token(token);
     }
 

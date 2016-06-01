@@ -1,4 +1,4 @@
-package io.joinpa.joinpa.managers.Commands;
+package io.joinpa.joinpa.managers.commands;
 
 import android.util.Log;
 
@@ -32,7 +32,7 @@ public class VerifyResponse extends ObjectResponse {
         Map<String , String> map = new HashMap<>();
         map.put("token", token);
         map.put("deviceKey", FirebaseInstanceId.getInstance().getToken());
-        Log.e("deviceKey" , FirebaseInstanceId.getInstance().getToken());
+        Log.e("deviceKey", FirebaseInstanceId.getInstance().getToken());
         loadService.verify(map, this);
     }
 

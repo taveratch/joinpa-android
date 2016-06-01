@@ -13,17 +13,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
 import java.util.Observer;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.joinpa.joinpa.R;
 import io.joinpa.joinpa.managers.App;
-import io.joinpa.joinpa.managers.Commands.GetMyEventResponse;
-import io.joinpa.joinpa.managers.Commands.ObjectResponse;
+import io.joinpa.joinpa.managers.commands.GetMyEventResponse;
+import io.joinpa.joinpa.managers.commands.ObjectResponse;
 import io.joinpa.joinpa.managers.EventManager;
 import io.joinpa.joinpa.models.Event;
 import io.joinpa.joinpa.models.EventElement;
@@ -90,13 +88,13 @@ public class MyEventFragment extends ObservableFragment implements Observer {
                 adapter.notifyDataSetChanged();
             } else {
                 Response<Message> response = (Response<Message>) objectResponse.getData();
-                ProgressDialogUtil.hide();
+                ProgressDialogUtil.dismiss();
                 Toast.makeText(getContext(), response.body().getMessage(), Toast.LENGTH_LONG).show();
             }
 
         } else {
             Log.e("error", objectResponse.getMessage());
-            ProgressDialogUtil.hide();
+            ProgressDialogUtil.dismiss();
         }
     }
 

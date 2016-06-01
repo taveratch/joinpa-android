@@ -16,6 +16,7 @@ import io.joinpa.joinpa.models.Place;
  * Created by TAWEESOFT on 5/30/16 AD.
  */
 public class PlaceManager {
+
     private List<Place> places;
     private Gson gson = new Gson();
 
@@ -23,7 +24,7 @@ public class PlaceManager {
         this.places = places;
     }
 
-    public void addPlace(Context context,Place place) {
+    public void addPlace(Context context, Place place) {
         places.add(place);
         saveInternalPlace(context);
     }
@@ -42,16 +43,16 @@ public class PlaceManager {
     }
 
     public void loadInternalPlace(Context context) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.SP_KEY , context.MODE_PRIVATE);
-        String eventsJson = sharedPreferences.getString(Constants.SP_PLACE_KEY , "[]");
+        SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.SP_KEY, context.MODE_PRIVATE);
+        String eventsJson = sharedPreferences.getString(Constants.SP_PLACE_KEY, "[]");
         Type type = new TypeToken<List<Place>>(){}.getType();
-        setPlaces((List<Place>)gson.fromJson(eventsJson,type));
+        setPlaces((List<Place>)gson.fromJson(eventsJson, type));
     }
 
     public void saveInternalPlace(Context context) {
-        SharedPreferences.Editor editor = context.getSharedPreferences(Constants.SP_KEY , context.MODE_PRIVATE).edit();
+        SharedPreferences.Editor editor = context.getSharedPreferences(Constants.SP_KEY, context.MODE_PRIVATE).edit();
         String eventsJson = gson.toJson(getPlaces());
-        editor.putString(Constants.SP_PLACE_KEY , eventsJson);
+        editor.putString(Constants.SP_PLACE_KEY, eventsJson);
         editor.apply();
     }
 }

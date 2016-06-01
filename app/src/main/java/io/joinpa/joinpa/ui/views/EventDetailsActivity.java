@@ -1,6 +1,5 @@
 package io.joinpa.joinpa.ui.views;
 
-import android.app.DatePickerDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,8 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,11 +22,10 @@ import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import io.joinpa.joinpa.R;
 import io.joinpa.joinpa.managers.App;
-import io.joinpa.joinpa.managers.Commands.CreateEventResponse;
-import io.joinpa.joinpa.managers.Commands.ObjectResponse;
+import io.joinpa.joinpa.managers.commands.CreateEventResponse;
+import io.joinpa.joinpa.managers.commands.ObjectResponse;
 import io.joinpa.joinpa.managers.Constants;
 import io.joinpa.joinpa.managers.DateTimeHolder;
-import io.joinpa.joinpa.managers.LoadService;
 import io.joinpa.joinpa.managers.Notifier;
 import io.joinpa.joinpa.models.Event;
 import io.joinpa.joinpa.models.Message;

@@ -1,4 +1,4 @@
-package io.joinpa.joinpa.managers.Commands;
+package io.joinpa.joinpa.managers.commands;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,8 +19,8 @@ public class SendFriendRequestResponse extends ObjectResponse {
     public void execute() {
         LoadService loadService = LoadService.newInstance();
         Map<String,String> data = new HashMap<>();
-        data.put("otherUserId" , otherUserId);
-        loadService.sendFriendRequest(data , this);
+        data.put("otherUserId", otherUserId);
+        loadService.sendFriendRequest(data, this);
     }
 
 }

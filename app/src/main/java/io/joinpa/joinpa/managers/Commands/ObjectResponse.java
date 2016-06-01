@@ -1,4 +1,4 @@
-package io.joinpa.joinpa.managers.Commands;
+package io.joinpa.joinpa.managers.commands;
 
 import java.io.IOException;
 import java.util.Observable;
@@ -10,7 +10,7 @@ import retrofit2.Response;
 /**
  * Created by TAWEESOFT on 5/14/16 AD.
  */
-public abstract class ObjectResponse extends Observable implements Observer {
+public abstract class ObjectResponse extends Observable implements Observer, Command {
 
     private boolean isSuccess;
     private String message;
@@ -44,8 +44,6 @@ public abstract class ObjectResponse extends Observable implements Observer {
     public void setData(Object data) {
         this.data = data;
     }
-
-    public abstract void execute();
 
     @Override
     public void update(Observable observable, Object data) {

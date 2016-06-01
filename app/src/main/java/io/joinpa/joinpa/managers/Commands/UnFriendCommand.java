@@ -1,8 +1,6 @@
-package io.joinpa.joinpa.managers.Commands;
+package io.joinpa.joinpa.managers.commands;
 
 import java.util.Observer;
-
-import io.joinpa.joinpa.managers.Command;
 
 /**
  * Created by TAWEESOFT on 6/1/16 AD.
