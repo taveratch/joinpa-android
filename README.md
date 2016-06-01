@@ -2,25 +2,58 @@
 
 ## Patterns
 
-##### Singleton
+#### Singleton
 
-##### Command 
+- **App**
+- **HttpManager**
+- **InternalData**
 
-##### Mediator
+#### Command 
 
-##### Adapter
+  All classes in **managers/Commands**
 
-##### Observer
+#### Mediator
+
+- **Notifier**
+- **DateTimeHolder**
+
+#### Adapter
+
+classes in **ui/adapters**
+
+#### Observer
+
+#### Facade
+
+- **LoadService**
+
+#### FlyWeight
+
+- **InternalData**
 
 ## Principles
 
-##### Open-Closed
+#### Open-Closed
 
-##### Don't repeat yourself
+**Friend** is an extension of **User**, **User** is closed for modification.
 
-##### Information expert
+#### Don't repeat yourself
 
-##### Low coupling
+use `<merge>` and `<include>` in layout to reuse components.
+
+**item_partial_event** included in **item_event_explore**
+
+
+#### Information expert
+
+- **EventManager**
+- **PlaceManager**
+- **HttpManager**
+
+#### Low coupling, High cohesion
+- **DateUtil** for formatting date, reducing the need of activity to include logic for that.
+
+- **ProgressDialogUtil** for showing load dialog and hiding without coupling in activity or fragments
 
 ## Team
 - Chinthiti Wisetsombat
