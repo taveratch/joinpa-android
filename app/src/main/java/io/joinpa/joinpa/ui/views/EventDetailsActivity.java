@@ -140,6 +140,8 @@ public class EventDetailsActivity extends AppCompatActivity implements Observer{
     public void save() {
         Place place = locationAdapter.getSelectedPlace();
         event.setPlace(place);
+        Date date = dateTimeHolder.getDate();
+        event.setDate(date);
         Gson gson = new Gson();
         System.out.println(gson.toJson(event));
         CreateEventResponse response = new CreateEventResponse(event);
