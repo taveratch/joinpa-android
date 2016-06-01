@@ -95,8 +95,7 @@ public class EventActivity extends AppCompatActivity {
 
         eventName.setText(event.getName());
         hostName.setText(event.getHost().getUsername());
-        // TODO tell nonae to send friendlist
-//        numHostFriends.setText(event.getHost().getFriendList().size());
+        numHostFriends.setText(event.getHost().getFriendList().size() + " friends");
         eventDate.setText(DateUtil.getDate(date));
         eventTime.setText(DateUtil.getTime(date));
         eventLocation.setText(event.getPlace().getName());
