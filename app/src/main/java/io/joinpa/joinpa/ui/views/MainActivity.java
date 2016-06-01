@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
     private MenuDrawer menuDrawer;
     private List<ObservableFragment> fragmentList;
     private List<SideBarItem> sideBarItems;
+    private SideBarAdapter sideBarAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
         sideBarItems.add(new SideBarItem(getString(R.string.friends), R.drawable.sidebar_friend_icon));
         sideBarItems.add(new SideBarItem(getString(R.string.sign_out), R.drawable.sidebar_signout_icon));
 
-        SideBarAdapter sideBarAdapter = new SideBarAdapter(this, R.layout.item_sidebar, sideBarItems);
+        sideBarAdapter = new SideBarAdapter(this, R.layout.item_sidebar, sideBarItems);
         lvSideBar.setAdapter(sideBarAdapter);
 
         switchFragment(0); //Show primary fragment which is Explore
@@ -122,6 +123,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
     public void onItemClicked(int position) {
         if (position == sideBarItems.size() - 1) signOut();
         else {
+            sideBarAdapter.setSelectedItem(position);
             switchFragment(position);
             toggleMenu();
         }

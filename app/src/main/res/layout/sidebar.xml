@@ -10,13 +10,18 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:gravity="center_vertical"
+        android:paddingTop="@dimen/activity_horizontal_margin"
+        android:paddingBottom="@dimen/activity_horizontal_margin"
         android:id="@+id/linearLayout2">
 
         <ImageView
             android:layout_width="@dimen/sidebar_icon_size"
             android:layout_height="@dimen/sidebar_icon_size"
             android:id="@+id/img_avatar"
-            android:layout_margin="@dimen/sidebar_icon_margin"
+            android:layout_marginTop="@dimen/sidebar_icon_margin"
+            android:layout_marginBottom="@dimen/sidebar_icon_margin"
+            android:layout_marginLeft="@dimen/sidebar_side_margin"
+            android:layout_marginRight="@dimen/sidebar_side_margin"
             android:src="@drawable/avatar_1"
             android:padding="@dimen/inside_avatar_padding"
             android:background="@drawable/white_circle" />
