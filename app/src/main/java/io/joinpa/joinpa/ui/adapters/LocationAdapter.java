@@ -115,4 +115,8 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
     public int getItemCount() {
         return places.size()+1;
     }
+
+    public Place getSelectedPlace() {
+        return places.get(selectedPlace);
+    }
 }

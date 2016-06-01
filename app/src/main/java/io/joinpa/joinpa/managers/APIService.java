@@ -1,6 +1,7 @@
 package io.joinpa.joinpa.managers;
 
 import io.joinpa.joinpa.models.Element;
+import io.joinpa.joinpa.models.Event;
 import io.joinpa.joinpa.models.EventElement;
 import io.joinpa.joinpa.models.Message;
 import io.joinpa.joinpa.models.Token;
@@ -46,4 +47,7 @@ public interface APIService {
 
     @POST("event/join")
     Call<Message> joinEvent(@Header("Authorization") String value, @Body RequestBody requestBody);
+
+    @POST("event/create")
+    Call<Message> createEvent(@Header("Authorization") String value , @Body Event event);
 }

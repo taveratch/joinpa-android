@@ -7,6 +7,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import io.joinpa.joinpa.models.Element;
+import io.joinpa.joinpa.models.Event;
 import io.joinpa.joinpa.models.EventElement;
 import io.joinpa.joinpa.models.Message;
 import io.joinpa.joinpa.models.Token;
@@ -127,6 +128,14 @@ public class LoadService {
         call.enqueue(callBack);
     }
 
+    public void createEvent(Event event , Observer observer) {
+        APIService apiService = getAPIService();
+        Call<Message> call = apiService.createEvent("bearer " + app.getToken().getKey() , event);
+        ServerCallBack<Message> callBack = new ServerCallBack<>();
+        callBack.addObserver(observer);
+        call.enqueue(callBack);
+    }
+
     class ServerCallBack<T> extends Observable implements Callback<T> {
 
         @Override
@@ -137,7 +146,7 @@ public class LoadService {
 
         @Override
         public void onFailure(Call<T> call, Throwable t) {
-            Log.e("connection error" , t.getMessage());
+            System.out.println("connection error " + t.getMessage());
             // TODO: 5/13/16 AD handle error
         }
     }
