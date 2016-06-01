@@ -44,4 +44,7 @@
     <string name="shown_to_all">Shown to all</string>
     <string name="public_desc">Your friends can see and join</string>
     <string name="confirm">Confirm</string>
+    <string name="joined">Joined</string>
+    <string name="pending">Pending</string>
+    <string name="declined">Declined</string>
 </resources>

@@ -1,5 +1,6 @@
 package io.joinpa.joinpa.ui.views;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -50,7 +51,9 @@ public class EventActivity extends AppCompatActivity {
 
     @OnClick(R.id.layout_coming_pane)
     public void seeComingPeople() {
-        // TODO
+        Intent intent = new Intent(this,WhoComingActivity.class);
+        intent.putExtra("event" , event);
+        startActivity(intent);
     }
 
     @OnClick(R.id.btn_close)

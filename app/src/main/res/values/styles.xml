@@ -69,4 +69,9 @@
         <item name="android:windowMinWidthMajor">90%</item>
         <item name="android:windowMinWidthMinor">90%</item>
     </style>
+
+    <style name="viewPagerButtonStyle" parent="@style/Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@drawable/rounded_button_white_alpha45</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
 </resources>
