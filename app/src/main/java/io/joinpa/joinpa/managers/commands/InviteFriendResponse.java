@@ -30,6 +30,7 @@ public class InviteFriendResponse extends ObjectResponse {
         Gson gson = new Gson();
         Type type = new TypeToken<List<Friend>>(){}.getType();
         Map<String,String> data = new HashMap<>();
+        System.out.println("gson " + gson.toJson(selectedFriend,type));
         data.put("eventId" , eventId);
         data.put("invitedList" , gson.toJson(selectedFriend,type));
         loadService.inviteFriend(data, this);
