@@ -2,6 +2,7 @@ package io.joinpa.joinpa.ui.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -39,6 +40,9 @@ public class RecentEventsFragment extends ObservableFragment implements Observer
     @BindView(R.id.recent_event_recyclerView)
     RecyclerView recyclerView;
 
+    @BindView(R.id.swipe_refresh_layout)
+    SwipeRefreshLayout swipeRefreshLayout;
+
     private RecentEventAdapter adapter;
     private App app;
     public EventManager eventManager;
@@ -58,10 +62,7 @@ public class RecentEventsFragment extends ObservableFragment implements Observer
         ButterKnife.bind(this, view);
 
         initComponents();
-
-        GetJoinedEventResponse response = new GetJoinedEventResponse();
-        response.addObserver(this);
-        response.execute();
+        fetchContent();
 
         return view;
     }
@@ -79,6 +80,7 @@ public class RecentEventsFragment extends ObservableFragment implements Observer
                 List<Event> events = response.body().getEventList();
                 eventManager.setTempEventList(events);
                 adapter.notifyDataSetChanged();
+                swipeRefreshLayout.setRefreshing(false);
             } else {
                 Response<Message> response = (Response<Message>) objectResponse.getData();
                 ProgressDialogUtil.dismiss();
@@ -105,6 +107,18 @@ public class RecentEventsFragment extends ObservableFragment implements Observer
         adapter = new RecentEventAdapter(getContext(), eventManager.getTempEventList());
         adapter.setObserver(this);
         recyclerView.setAdapter(adapter);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                fetchContent();
+            }
+        });
+    }
+
+    public void fetchContent() {
+        GetJoinedEventResponse response = new GetJoinedEventResponse();
+        response.addObserver(this);
+        response.execute();
     }
 
 

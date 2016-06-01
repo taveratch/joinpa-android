@@ -65,4 +65,7 @@ public interface APIService {
 
     @POST("event/remove")
     Call<Message> removeEvent(@Header("Authorization") String value, @Body RequestBody requestBody);
+
+    @POST("event/edit")
+    Call<Message> editEvent(@Header("Authorization") String value, @Body RequestBody requestBody);
 }

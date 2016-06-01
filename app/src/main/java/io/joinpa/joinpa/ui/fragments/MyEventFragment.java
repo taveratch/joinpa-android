@@ -3,6 +3,7 @@ package io.joinpa.joinpa.ui.fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -45,6 +46,9 @@ public class MyEventFragment extends ObservableFragment implements Observer {
     @BindView(R.id.myEvent_recyclerView)
     RecyclerView recyclerView;
 
+    @BindView(R.id.swipe_refresh_layout)
+    SwipeRefreshLayout swipeRefreshLayout;
+
     private App app;
     private EventManager eventManager;
     private MyEventAdapter adapter;
@@ -53,6 +57,12 @@ public class MyEventFragment extends ObservableFragment implements Observer {
     public void onDestroyView() {
         super.onDestroyView();
         eventManager.clearTempList();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        fetchContent();
     }
 
     @Nullable
@@ -66,9 +76,7 @@ public class MyEventFragment extends ObservableFragment implements Observer {
 
         initComponents();
 
-        GetMyEventResponse response = new GetMyEventResponse();
-        response.addObserver(this);
-        response.execute();
+        fetchContent();
 
         return view;
     }
@@ -86,6 +94,7 @@ public class MyEventFragment extends ObservableFragment implements Observer {
                 List<Event> events = response.body().getEventList();
                 eventManager.setTempEventList(events);
                 adapter.notifyDataSetChanged();
+                swipeRefreshLayout.setRefreshing(false);
             } else {
                 Response<Message> response = (Response<Message>) objectResponse.getData();
                 ProgressDialogUtil.dismiss();
@@ -96,6 +105,7 @@ public class MyEventFragment extends ObservableFragment implements Observer {
             Log.e("error", objectResponse.getMessage());
             ProgressDialogUtil.dismiss();
         }
+
     }
 
     private void initComponents() {
@@ -120,5 +130,17 @@ public class MyEventFragment extends ObservableFragment implements Observer {
         adapter = new MyEventAdapter(getContext(), eventManager.getTempEventList());
         adapter.setObserver(this);
         recyclerView.setAdapter(adapter);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                fetchContent();
+            }
+        });
+    }
+
+    public void fetchContent() {
+        GetMyEventResponse response = new GetMyEventResponse();
+        response.addObserver(this);
+        response.execute();
     }
 }
