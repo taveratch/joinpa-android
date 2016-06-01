@@ -25,36 +25,17 @@ public class EventIconAdapter extends RecyclerView.Adapter<EventIconAdapter.View
         this.context = context;
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-
-        @BindView(R.id.avatar_image_view)
-        ImageView imgIcon;
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-            itemView.setOnClickListener(this);
-            ButterKnife.bind(this,itemView);
-        }
-
-        @Override
-        public void onClick(View v) {
-            int index = getAdapterPosition();
-            selectedItem = index;
-            EventIconAdapter.this.notifyDataSetChanged();
-        }
-    }
-
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context)
-                        .inflate(R.layout.item_avatar , parent , false);
+                .inflate(R.layout.item_avatar , parent , false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.imgIcon.setImageResource(icons[position]);
-        if(position == selectedItem) holder.imgIcon.setBackgroundResource(R.drawable.green_circle);
+        if (position == selectedItem) holder.imgIcon.setBackgroundResource(R.drawable.green_circle);
         else holder.imgIcon.setBackgroundResource(R.drawable.blue_circle);
     }
 
@@ -66,4 +47,24 @@ public class EventIconAdapter extends RecyclerView.Adapter<EventIconAdapter.View
     public int getSelectedItem() {
         return selectedItem;
     }
+
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+        @BindView(R.id.avatar_image_view)
+        ImageView imgIcon;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            itemView.setOnClickListener(this);
+            ButterKnife.bind(this, itemView);
+        }
+
+        @Override
+        public void onClick(View v) {
+            int index = getAdapterPosition();
+            selectedItem = index;
+            EventIconAdapter.this.notifyDataSetChanged();
+        }
+    }
+
 }

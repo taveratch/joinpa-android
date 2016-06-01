@@ -52,14 +52,25 @@ public class FriendFragment extends ObservableFragment implements Observer {
     TextView tvFriendRequestCount;
 
     private App app;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_friends , container , false);
-        ButterKnife.bind(this,view);
+        View view = inflater.inflate(R.layout.fragment_friends, container, false);
+        ButterKnife.bind(this, view);
         app = App.getInstance();
         initComponents();
         return view;
+    }
+
+    /**
+     * Refresh friend list
+     * @param observable
+     * @param data
+     */
+    @Override
+    public void update(java.util.Observable observable, Object data) {
+        initComponents();
     }
 
     public void initComponents() {
@@ -80,7 +91,7 @@ public class FriendFragment extends ObservableFragment implements Observer {
             }
         });
 
-        if(friendRequests.size() == 0) layoutFriendRequest.setVisibility(View.GONE);
+        if (friendRequests.size() == 0) layoutFriendRequest.setVisibility(View.GONE);
         tvFriendRequestCount.setText(friendRequests.size() + "");
 
         layoutFriendRequest.setOnClickListener(new View.OnClickListener() {
@@ -92,16 +103,7 @@ public class FriendFragment extends ObservableFragment implements Observer {
     }
 
     public void showFriendRequestDialog(List<Friend> friendRequests) {
-        FriendRequestDialog dialog = new FriendRequestDialog(getContext(),friendRequests,this);
+        FriendRequestDialog dialog = new FriendRequestDialog(getContext(), friendRequests, this);
         dialog.show();
-    }
-    /**
-     * Refresh friend list
-     * @param observable
-     * @param data
-     */
-    @Override
-    public void update(java.util.Observable observable, Object data) {
-        initComponents();
     }
 }

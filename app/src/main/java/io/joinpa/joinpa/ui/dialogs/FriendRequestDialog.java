@@ -6,8 +6,6 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 
 import java.util.List;
@@ -38,7 +36,7 @@ public class FriendRequestDialog extends Dialog {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.friend_request_list_layout);
+        setContentView(R.layout.list_friend_request);
         ButterKnife.bind(this);
         initComponents();
     }

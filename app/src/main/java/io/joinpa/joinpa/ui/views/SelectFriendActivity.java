@@ -55,27 +55,13 @@ public class SelectFriendActivity extends AppCompatActivity implements Observer 
         initComponents();
     }
 
-    public void initComponents() {
-        notifier = new Notifier();
-        notifier.addObserver(this);
-        adapter = new SelectFriendAdapter(this,app.getUser().getFriendList(),notifier);
-        rv.setLayoutManager(new LinearLayoutManager(this));
-        rv.setAdapter(adapter);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-    }
-
     @OnClick(R.id.tv_select_friend_ok)
     public void next() {
         List<Friend> selectedFriend = adapter.getSelectedFriends();
         event.setPendingList(selectedFriend);
-        Intent intent = new Intent(this,EventDetailsActivity.class);
-        intent.putExtra("event" , event);
-        startActivityForResult(intent,1);
+        Intent intent = new Intent(this, EventDetailsActivity.class);
+        intent.putExtra("event", event);
+        startActivityForResult(intent, 1);
     }
 
     @Override
@@ -90,10 +76,24 @@ public class SelectFriendActivity extends AppCompatActivity implements Observer 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode == Constants.EXIT) {
+        if (resultCode == Constants.EXIT) {
             setResult(Constants.EXIT);
             finish();
             System.out.println("Result " + resultCode);
         }
+    }
+
+    public void initComponents() {
+        notifier = new Notifier();
+        notifier.addObserver(this);
+        adapter = new SelectFriendAdapter(this,app.getUser().getFriendList(),notifier);
+        rv.setLayoutManager(new LinearLayoutManager(this));
+        rv.setAdapter(adapter);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 }

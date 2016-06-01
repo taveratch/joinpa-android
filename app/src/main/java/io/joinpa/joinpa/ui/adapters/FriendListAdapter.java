@@ -26,24 +26,24 @@ import io.joinpa.joinpa.managers.Command;
 import io.joinpa.joinpa.managers.Commands.GetFriendListResponse;
 import io.joinpa.joinpa.managers.Commands.ObjectResponse;
 import io.joinpa.joinpa.managers.Commands.UnFriendCommand;
-import io.joinpa.joinpa.managers.Commands.UnFriendResponse;
-import io.joinpa.joinpa.managers.LoadService;
 import io.joinpa.joinpa.managers.SwipeRevealLayout;
 import io.joinpa.joinpa.managers.ViewBinderHelper;
 import io.joinpa.joinpa.models.Friend;
 import io.joinpa.joinpa.models.Message;
 import io.joinpa.joinpa.ui.dialogs.ConfirmDialog;
+import io.joinpa.joinpa.ui.viewholders.ViewHolder;
 import io.joinpa.joinpa.ui.views.SearchNewFriendActivity;
 import retrofit2.Response;
 
 /**
  * Created by TAWEESOFT on 5/20/16 AD.
  */
-public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.ViewHolder> implements Observer {
+public class FriendListAdapter extends RecyclerView.Adapter<ViewHolder> implements Observer {
+
+    private final ViewBinderHelper binderHelper = new ViewBinderHelper();
 
     private Context context;
     private List<Friend> friendList;
-    private final ViewBinderHelper binderHelper = new ViewBinderHelper();
     private Observer observer;
     private App app;
 
@@ -53,53 +53,16 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Vi
         app = App.getInstance();
     }
 
-    // TODO: 5/31/16 AD remove viewholder and use ViewHolder.java from P
-    class ViewHolder extends RecyclerView.ViewHolder {
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-            ButterKnife.bind(this , itemView);
-        }
-    }
-
-    class ViewHolderList extends ViewHolder {
-
-        @BindView(R.id.tv_username)
-        TextView tvUsername;
-
-        @BindView(R.id.img_avatar)
-        ImageView imgAvatar;
-
-        @BindView(R.id.swipeLayout)
-        SwipeRevealLayout layout;
-
-        @BindView(R.id.removeLayout)
-        FrameLayout removeLayout;
-
-        public ViewHolderList(View itemView) {
-            super(itemView);
-        }
-    }
-
-    class ViewHolderAddFriend extends ViewHolder {
-
-        @BindView(R.id.add_friend_layout)
-        LinearLayout addFriendLayout;
-
-        public ViewHolderAddFriend(View itemView) {
-            super(itemView);
-        }
-    }
-
-
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = null;
-        if(viewType == 0){
-            view = LayoutInflater.from(context).inflate(R.layout.add_new_friend_item_layout , parent,false);
+        if (viewType == 0) {
+            view = LayoutInflater.from(context)
+                    .inflate(R.layout.item_add_friend, parent, false);
+
             return new ViewHolderAddFriend(view);
         }
-        view = LayoutInflater.from(context).inflate(R.layout.friend_item_layout , parent , false);
+        view = LayoutInflater.from(context).inflate(R.layout.item_friend, parent, false);
         return new ViewHolderList(view);
     }
 
@@ -110,7 +73,7 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Vi
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        if(position==0) {
+        if (position == 0) {
             ViewHolderAddFriend addFriendHolder = (ViewHolderAddFriend)holder;
             addFriendHolder.addFriendLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -119,10 +82,11 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Vi
                     context.startActivity(intent);
                 }
             });
-        }else{
-            final Friend friend = friendList.get(position-1);
+        } else {
+            final Friend friend = friendList.get(position - 1);
             ViewHolderList listHolder = (ViewHolderList)holder;
             binderHelper.bind(listHolder.layout,friend.getUsername()); //second parameter is unique string to identify the data.
+
             listHolder.tvUsername.setText(friend.getUsername());
             listHolder.imgAvatar.setImageResource(app.getInternalData().avatarNormal[friend.getAvatar()]);
             listHolder.imgAvatar.setBackgroundResource(R.drawable.blue_circle);
@@ -131,13 +95,10 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Vi
                 public void onClick(View v) {
                     String friendId = friend.getId();
                     Log.e("yyyy" , friendId);
-                    Command command = new UnFriendCommand(FriendListAdapter.this,friendId);
+                    Command command = new UnFriendCommand(FriendListAdapter.this, friendId);
                     ConfirmDialog confirmDialog = new ConfirmDialog(context);
                     confirmDialog.setCommand(command);
                     confirmDialog.show();
-//                    UnFriendResponse response = new UnFriendResponse(friendId);
-//                    response.addObserver(FriendListAdapter.this);
-//                    response.execute();
                 }
             });
         }
@@ -171,19 +132,48 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Vi
 
     @Override
     public void update(Observable observable, Object data) {
-        if( data == null ) return;
-        if( !(data instanceof ObjectResponse)) return;
+        if (data == null) return;
+        if (!(data instanceof ObjectResponse)) return;
         ObjectResponse objectResponse = (ObjectResponse)data;
-        if(objectResponse.isSuccess()){
+        if (objectResponse.isSuccess()){
             Response<Message> response = (Response<Message>)objectResponse.getData();
             Message message = response.body();
             Toast.makeText(context, message.getMessage(), Toast.LENGTH_SHORT).show();
             loadNewFriendList();
-        }else{
-            // TODO: 5/22/16 AD handle error
+        } else {
             Log.e("error" , objectResponse.getMessage());
         }
     }
+
+    class ViewHolderList extends ViewHolder {
+
+        @BindView(R.id.tv_username)
+        TextView tvUsername;
+
+        @BindView(R.id.img_avatar)
+        ImageView imgAvatar;
+
+        @BindView(R.id.swipeLayout)
+        SwipeRevealLayout layout;
+
+        @BindView(R.id.removeLayout)
+        FrameLayout removeLayout;
+
+        public ViewHolderList(View itemView) {
+            super(itemView);
+        }
+    }
+
+    class ViewHolderAddFriend extends ViewHolder {
+
+        @BindView(R.id.add_friend_layout)
+        LinearLayout addFriendLayout;
+
+        public ViewHolderAddFriend(View itemView) {
+            super(itemView);
+        }
+    }
+
 
     public void loadNewFriendList() {
         GetFriendListResponse response = new GetFriendListResponse();

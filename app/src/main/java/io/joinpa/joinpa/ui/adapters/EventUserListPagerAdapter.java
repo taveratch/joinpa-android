@@ -14,6 +14,7 @@ public class EventUserListPagerAdapter extends FragmentPagerAdapter {
 
     private int pageCount;
     private Event event;
+
     public EventUserListPagerAdapter(FragmentManager fm, int pageCount, Event event) {
         super(fm);
         this.event = event;

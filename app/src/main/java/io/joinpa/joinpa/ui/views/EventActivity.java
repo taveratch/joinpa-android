@@ -51,8 +51,8 @@ public class EventActivity extends AppCompatActivity {
 
     @OnClick(R.id.layout_coming_pane)
     public void seeComingPeople() {
-        Intent intent = new Intent(this,WhoComingActivity.class);
-        intent.putExtra("event" , event);
+        Intent intent = new Intent(this, WhoComingActivity.class);
+        intent.putExtra("event", event);
         startActivity(intent);
     }
 

@@ -24,7 +24,7 @@ import io.joinpa.joinpa.models.Friend;
 import io.joinpa.joinpa.ui.adapters.SearchFriendAdapter;
 import retrofit2.Response;
 
-public class SearchNewFriendActivity extends AppCompatActivity implements Observer{
+public class SearchNewFriendActivity extends AppCompatActivity implements Observer {
 
     @BindView(R.id.et_search)
     EditText etSearch;

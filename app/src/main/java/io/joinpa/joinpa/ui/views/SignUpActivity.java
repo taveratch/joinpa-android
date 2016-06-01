@@ -27,7 +27,7 @@ import io.joinpa.joinpa.managers.App;
 import io.joinpa.joinpa.managers.Commands.ObjectResponse;
 import io.joinpa.joinpa.managers.FormValidator;
 import io.joinpa.joinpa.models.Message;
-import io.joinpa.joinpa.models.SignUpResponse;
+import io.joinpa.joinpa.managers.Commands.SignUpResponse;
 import io.joinpa.joinpa.models.User;
 import io.joinpa.joinpa.ui.adapters.UserAvatarAdapter;
 

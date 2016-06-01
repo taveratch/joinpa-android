@@ -124,7 +124,6 @@ public class ExploreEventAdapter extends RecyclerView.Adapter<ExploreEventAdapte
             JoinEventResponse response = new JoinEventResponse(event.getId());
             response.addObserver(observer);
             response.execute();
-
         }
 
         @Override

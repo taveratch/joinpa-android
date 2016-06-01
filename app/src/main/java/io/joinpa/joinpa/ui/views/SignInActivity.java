@@ -67,7 +67,7 @@ public class SignInActivity extends AppCompatActivity implements Observer {
         if ( o == null ) return;
         if (!(o instanceof ObjectResponse)) return;
         ObjectResponse objectResponse = (ObjectResponse)o;
-        if(objectResponse.isSuccess()) {
+        if (objectResponse.isSuccess()) {
             Response<User> response = (Response<User>)objectResponse.getData();
             User user = response.body();
             app.setUser(user); //Save User to App

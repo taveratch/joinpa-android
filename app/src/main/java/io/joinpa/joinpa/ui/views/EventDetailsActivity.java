@@ -37,7 +37,7 @@ import io.joinpa.joinpa.models.Place;
 import io.joinpa.joinpa.ui.adapters.LocationAdapter;
 import retrofit2.Response;
 
-public class EventDetailsActivity extends AppCompatActivity implements Observer{
+public class EventDetailsActivity extends AppCompatActivity implements Observer {
 
     @BindView(R.id.tv_choose_date)
     TextView tvChooseDate;
@@ -73,18 +73,23 @@ public class EventDetailsActivity extends AppCompatActivity implements Observer{
         initComponents();
     }
 
-    public void initComponents() {
-        initNotifier();
-        dateTimeHolder = new DateTimeHolder(this,tvChooseDate,tvChooseTime);
-        locationAdapter = new LocationAdapter(this,app.getPlaceManager().getPlaces(),notifier);
-        rv.setLayoutManager(new LinearLayoutManager(this));
-        rv.setAdapter(locationAdapter);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+    @Override
+    public void update(Observable observable, Object data) {
+        locationAdapter.notifyDataSetChanged();
+        if (data == null) return;
+        if (!(data instanceof ObjectResponse)) return;
+        ObjectResponse objectResponse = (ObjectResponse)data;
+        if (objectResponse.isSuccess()){
+            Response<Message> response = (Response<Message>)objectResponse.getData();
+            Message message = response.body();
+            Toast.makeText(this, message.getMessage(), Toast.LENGTH_SHORT).show();
+            Log.e("success" , message.getMessage()+"");
+        } else {
+            Log.e("failed" , objectResponse.getMessage()+"");
+            Toast.makeText(this, objectResponse.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+        setResult(Constants.EXIT);
+        finish();
     }
 
     @OnClick(R.id.tv_choose_date)
@@ -112,30 +117,6 @@ public class EventDetailsActivity extends AppCompatActivity implements Observer{
 
     }
 
-    @Override
-    public void update(Observable observable, Object data) {
-        locationAdapter.notifyDataSetChanged();
-        if(data == null) return;
-        if(!(data instanceof ObjectResponse)) return;
-        ObjectResponse objectResponse = (ObjectResponse)data;
-        if(objectResponse.isSuccess()){
-            Response<Message> response = (Response<Message>)objectResponse.getData();
-            Message message = response.body();
-            Toast.makeText(this, message.getMessage(), Toast.LENGTH_SHORT).show();
-            Log.e("success" , message.getMessage()+"");
-        }else{
-            Log.e("failed" , objectResponse.getMessage()+"");
-            Toast.makeText(this, objectResponse.getMessage(), Toast.LENGTH_SHORT).show();
-        }
-        setResult(Constants.EXIT);
-        finish();
-    }
-
-    public void initNotifier() {
-        notifier = new Notifier();
-        notifier.addObserver(this);
-    }
-
     @OnClick(R.id.img_ok)
     public void save() {
         Place place = locationAdapter.getSelectedPlace();
@@ -148,4 +129,25 @@ public class EventDetailsActivity extends AppCompatActivity implements Observer{
         response.addObserver(this);
         response.execute();
     }
+
+    public void initNotifier() {
+        notifier = new Notifier();
+        notifier.addObserver(this);
+    }
+
+    public void initComponents() {
+        initNotifier();
+        dateTimeHolder = new DateTimeHolder(this, tvChooseDate, tvChooseTime);
+        locationAdapter = new LocationAdapter(this,app.getPlaceManager().getPlaces(), notifier);
+        rv.setLayoutManager(new LinearLayoutManager(this));
+        rv.setAdapter(locationAdapter);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+    }
+
+
 }

@@ -1,4 +1,4 @@
-package io.joinpa.joinpa.models;
+package io.joinpa.joinpa.managers.Commands;
 
 import android.content.Context;
 import android.util.Log;
@@ -12,6 +12,7 @@ import io.joinpa.joinpa.managers.App;
 import io.joinpa.joinpa.managers.Commands.ObjectResponse;
 import io.joinpa.joinpa.managers.Commands.VerifyResponse;
 import io.joinpa.joinpa.managers.LoadService;
+import io.joinpa.joinpa.models.Token;
 import retrofit2.Response;
 
 
