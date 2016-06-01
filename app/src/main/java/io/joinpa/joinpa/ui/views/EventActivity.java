@@ -1,5 +1,6 @@
 package io.joinpa.joinpa.ui.views;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import io.joinpa.joinpa.managers.App;
 import io.joinpa.joinpa.managers.EventManager;
 import io.joinpa.joinpa.models.Event;
 import io.joinpa.joinpa.util.DateUtil;
+import io.joinpa.joinpa.util.ProgressDialogUtil;
 
 public class EventActivity extends AppCompatActivity {
 
@@ -67,6 +69,7 @@ public class EventActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_see_map)
     public void showMap() {
+        ProgressDialogUtil.show(this,"Opening map");
         Intent intent = new Intent(this,ShowMapActivity.class);
         intent.putExtra("place",event.getPlace());
         startActivity(intent);

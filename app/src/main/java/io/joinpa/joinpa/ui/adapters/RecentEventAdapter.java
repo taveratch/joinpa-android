@@ -18,8 +18,11 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.joinpa.joinpa.R;
 import io.joinpa.joinpa.managers.App;
+import io.joinpa.joinpa.managers.commands.CancelEventCommand;
 import io.joinpa.joinpa.managers.commands.CancelEventResponse;
+import io.joinpa.joinpa.managers.commands.Command;
 import io.joinpa.joinpa.models.Event;
+import io.joinpa.joinpa.ui.dialogs.ConfirmDialog;
 import io.joinpa.joinpa.ui.views.EventActivity;
 import io.joinpa.joinpa.util.DateUtil;
 import io.joinpa.joinpa.util.ProgressDialogUtil;
@@ -118,14 +121,11 @@ public class RecentEventAdapter extends RecyclerView.Adapter<RecentEventAdapter.
 
         @OnClick(R.id.btn_cancel)
         public void cancelEvent() {
-            Event event = events.remove(getAdapterPosition());
-            notifyItemRemoved(getAdapterPosition());
-
-            ProgressDialogUtil.show(context, "Canceling event..");
-
-            CancelEventResponse response = new CancelEventResponse(event.getId());
-            response.addObserver(observer);
-            response.execute();
+            Event event = events.get(getAdapterPosition());
+            Command command = new CancelEventCommand(event.getId(),observer,RecentEventAdapter.this,getAdapterPosition(),events);
+            ConfirmDialog confirmDialog = new ConfirmDialog(context);
+            confirmDialog.setCommand(command);
+            confirmDialog.show();
         }
 
         @Override

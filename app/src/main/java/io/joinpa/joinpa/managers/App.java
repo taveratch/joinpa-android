@@ -61,6 +61,7 @@ public class App {
     }
 
     public Token getToken() {
+        if(getInternalData().token == null) return new Token("temp");
         return getInternalData().token;
     }
 
