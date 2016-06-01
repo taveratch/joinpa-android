@@ -11,8 +11,13 @@ import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import com.google.gson.Gson;
 
+import io.joinpa.joinpa.managers.Constants;
+import io.joinpa.joinpa.models.NotificationHandler;
+import io.joinpa.joinpa.models.NotificationReceiver;
 import io.joinpa.joinpa.ui.views.SignInActivity;
+import io.joinpa.joinpa.ui.views.SplashScreenActivity;
 
 /**
  * Created by TAWEESOFT on 5/28/16 AD.
@@ -26,12 +31,21 @@ public class FirebaseMessageService extends FirebaseMessagingService {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
         builder.setSmallIcon(R.drawable.logo);
         builder.setContentTitle(remoteMessage.getNotification().getTitle());
-        builder.setContentText(remoteMessage.getNotification().getBody());
-        Intent intent = new Intent(this , SignInActivity.class);
-
+        Gson gson = new Gson();
+        NotificationHandler handler = gson.fromJson(remoteMessage.getNotification().getBody(),NotificationHandler.class);
+        NotificationReceiver receiver = NotificationReceiver.getInstance();
+        System.out.println("message " + handler.getMessage());
+        builder.setContentText(handler.getMessage());
+        Intent intent = new Intent(this , SplashScreenActivity.class);
+        if (handler.getStatus() == Constants.NOTIFICATION_EVENT){
+            receiver.setEvent(handler.getEvent());
+            System.out.println(handler.getEvent().getName());
+        }else{
+            receiver.setFriend(handler.getFriend());
+        }
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
 // Adds the back stack for the Intent (but not the Intent itself)
-        stackBuilder.addParentStack(SignInActivity.class);
+        stackBuilder.addParentStack(SplashScreenActivity.class);
 // Adds the Intent that starts the Activity to the top of the stack
         stackBuilder.addNextIntent(intent);
         PendingIntent resultPendingIntent =
