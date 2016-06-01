@@ -275,7 +275,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Who's coming"
+            android:text="@string/who_coming"
             android:textColor="#ffffff"
             android:layout_toRightOf="@+id/layout_coming_icon"
             android:layout_centerVertical="true" />
