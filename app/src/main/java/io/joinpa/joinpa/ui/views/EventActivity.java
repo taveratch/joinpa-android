@@ -1,6 +1,5 @@
 package io.joinpa.joinpa.ui.views;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,7 +14,6 @@ import android.widget.Toast;
 
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
@@ -30,8 +28,8 @@ import io.joinpa.joinpa.managers.EventManager;
 import io.joinpa.joinpa.managers.commands.EditEventResponse;
 import io.joinpa.joinpa.managers.commands.ObjectResponse;
 import io.joinpa.joinpa.models.Event;
-import io.joinpa.joinpa.models.EventElement;
 import io.joinpa.joinpa.models.Message;
+import io.joinpa.joinpa.ui.dialogs.DateTimeSelectorDialog;
 import io.joinpa.joinpa.util.DateUtil;
 import io.joinpa.joinpa.util.ProgressDialogUtil;
 import retrofit2.Response;
@@ -107,12 +105,6 @@ public class EventActivity extends AppCompatActivity implements Observer {
         if (dateEdited) data.put("date", event.getDate().toLocaleString());
         if (visibilityEdited) data.put("isPrivate", event.isPrivate() + "");
 
-
-        for (Map.Entry<String, String> entry : data.entrySet())
-        {
-            System.out.println(entry.getKey() + "/" + entry.getValue());
-        }
-
         ProgressDialogUtil.show(this, "Please wait");
         EditEventResponse response = new EditEventResponse(data);
         response.addObserver(this);
@@ -138,8 +130,7 @@ public class EventActivity extends AppCompatActivity implements Observer {
             Response<Message> response = (Response<Message>) objectResponse.getData();
             ProgressDialogUtil.dismiss();
             Toast.makeText(this, response.body().getMessage(), Toast.LENGTH_LONG).show();
-            finish();
-
+            btnConfirm.setVisibility(View.INVISIBLE);
         } else {
             Log.e("error", objectResponse.getMessage());
             ProgressDialogUtil.dismiss();
@@ -199,7 +190,7 @@ public class EventActivity extends AppCompatActivity implements Observer {
     @OnClick(R.id.btn_invite)
     public void inviteFriend() {
         Intent intent = new Intent(this, InviteUserToEventActivity.class);
-        intent.putExtra("event",event);
+        intent.putExtra("event", event);
         startActivity(intent);
     }
 
@@ -221,7 +212,8 @@ public class EventActivity extends AppCompatActivity implements Observer {
         dateEdited = true;
         setChanged();
         DateTimeHolder dateTimeHolder = new DateTimeHolder(this, eventDate, eventTime);
-        dateTimeHolder.openDateDialog();
+        DateTimeSelectorDialog dialog = new DateTimeSelectorDialog(this, dateTimeHolder);
+        dialog.show();
         event.setDate(dateTimeHolder.getDate());
     }
 
