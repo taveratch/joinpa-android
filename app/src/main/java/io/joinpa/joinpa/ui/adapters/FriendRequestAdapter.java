@@ -21,6 +21,7 @@ import io.joinpa.joinpa.R;
 import io.joinpa.joinpa.managers.App;
 import io.joinpa.joinpa.managers.commands.AcceptFriendRequestResponse;
 import io.joinpa.joinpa.managers.commands.ObjectResponse;
+import io.joinpa.joinpa.managers.commands.UnFriendResponse;
 import io.joinpa.joinpa.models.Friend;
 import io.joinpa.joinpa.models.Message;
 import retrofit2.Response;
@@ -59,13 +60,15 @@ public class FriendRequestAdapter extends RecyclerView.Adapter<FriendRequestAdap
             public void onClick(View v) {
                 acceptRequest(friend);
                 friendRequest.remove(position);
-                notifyDataSetChanged();
+                notifyItemRemoved(position);
             }
         });
         holder.btnDecline.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 declineRequest(friend);
+                friendRequest.remove(position);
+                notifyItemRemoved(position);
             }
         });
     }
@@ -77,7 +80,9 @@ public class FriendRequestAdapter extends RecyclerView.Adapter<FriendRequestAdap
     }
 
     public void declineRequest(Friend friend) {
-        // TODO
+        UnFriendResponse response = new UnFriendResponse(friend.getId());
+        response.addObserver(this);
+        response.execute();
     }
 
     @Override
