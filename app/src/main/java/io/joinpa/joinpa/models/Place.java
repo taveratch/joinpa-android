@@ -1,13 +1,22 @@
 package io.joinpa.joinpa.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
-/**
- * Created by TAWEESOFT on 5/29/16 AD.
- */
 public class Place implements Serializable {
+
+    @SerializedName("name")
     private String name;
-    private double lat,lon;
+
+    @SerializedName("lat")
+    private double lat;
+
+    @SerializedName("lon")
+    private double lon;
+
+    @SerializedName("isUseMap")
+    private boolean isUseMap;
 
     public Place(String name, double lat, double lon) {
         this.name = name;
@@ -37,5 +46,13 @@ public class Place implements Serializable {
 
     public void setLon(double lon) {
         this.lon = lon;
+    }
+
+    public boolean isUseMap() {
+        return isUseMap;
+    }
+
+    public void setUseMap(boolean useMap) {
+        isUseMap = useMap;
     }
 }

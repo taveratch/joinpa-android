@@ -35,6 +35,7 @@ import io.joinpa.joinpa.models.Event;
 import io.joinpa.joinpa.models.Message;
 import io.joinpa.joinpa.models.Place;
 import io.joinpa.joinpa.ui.adapters.LocationAdapter;
+import io.joinpa.joinpa.util.DialogMessageUtil;
 import retrofit2.Response;
 
 public class EventDetailsActivity extends AppCompatActivity implements Observer {
@@ -120,6 +121,10 @@ public class EventDetailsActivity extends AppCompatActivity implements Observer 
     @OnClick(R.id.img_ok)
     public void save() {
         Place place = locationAdapter.getSelectedPlace();
+        if(place == null){
+            DialogMessageUtil.showToast(this,getString(R.string.please_select_location));
+            return;
+        }
         event.setPlace(place);
         Date date = dateTimeHolder.getDate();
         event.setDate(date);
@@ -148,6 +153,7 @@ public class EventDetailsActivity extends AppCompatActivity implements Observer 
             }
         });
     }
+
 
 
 }

@@ -102,6 +102,7 @@ public class NewLocationDialog extends Dialog{
         double lat = mapFragment.getLat();
         double lon = mapFragment.getLon();
         Place place = new Place(locationName,lat,lon);
+        place.setUseMap(swEnableMap.isChecked());
         app.getPlaceManager().addPlace(getContext(),place);
         notifier.setChanged();
         notifier.notifyObservers();
