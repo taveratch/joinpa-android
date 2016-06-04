@@ -33,11 +33,13 @@ public class FirebaseMessageService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         // TODO: 5/28/16 AD Handle message and show notification
-        sendNotification(remoteMessage.getData().get("body"));
+        String body  = remoteMessage.getData().get("body");
+        String title = remoteMessage.getData().get("title");
+        sendNotification(title, body);
     }
 
 
-    private void sendNotification(String messageBody) {
+    private void sendNotification(String title, String messageBody) {
         System.out.println("Notification Message " + messageBody);
         Gson gson = new Gson();
         NotificationHandler handler = gson.fromJson(messageBody,NotificationHandler.class);
@@ -55,7 +57,7 @@ public class FirebaseMessageService extends FirebaseMessagingService {
         Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.logo)
-                .setContentTitle("JoinPa")
+                .setContentTitle(title)
                 .setContentText(handler.getMessage())
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)

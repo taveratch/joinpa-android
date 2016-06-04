@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Friend request"
+        android:id="@+id/textView12"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        style="@style/dialogHeaderStyle"
+        android:layout_marginBottom="@dimen/list_component_margin" />
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp">
+            <include layout="@layout/item_friend_request_merge"></include>
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+</LinearLayout>

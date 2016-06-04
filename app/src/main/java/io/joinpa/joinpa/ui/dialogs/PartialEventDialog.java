@@ -86,7 +86,6 @@ public class PartialEventDialog extends Dialog {
 
     @OnClick(R.id.btn_accept)
     public void acceptEvent() {
-//        ProgressDialogUtil.show(getContext(), "Joining event..");
         JoinEventResponse response = new JoinEventResponse(event.getId());
         response.execute();
         dismiss();
@@ -94,7 +93,6 @@ public class PartialEventDialog extends Dialog {
 
     @OnClick(R.id.btn_decline)
     public void declineEvent() {
-//        ProgressDialogUtil.show(getContext(), "Declining event..");
         CancelEventResponse response = new CancelEventResponse(event.getId());
         response.execute();
         dismiss();

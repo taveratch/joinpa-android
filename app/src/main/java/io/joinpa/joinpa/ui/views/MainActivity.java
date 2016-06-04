@@ -28,7 +28,9 @@ import io.joinpa.joinpa.models.Friend;
 import io.joinpa.joinpa.models.NotificationReceiver;
 import io.joinpa.joinpa.models.SideBarItem;
 import io.joinpa.joinpa.ui.adapters.SideBarAdapter;
+import io.joinpa.joinpa.ui.dialogs.FriendRequestDialog;
 import io.joinpa.joinpa.ui.dialogs.PartialEventDialog;
+import io.joinpa.joinpa.ui.dialogs.PartialFriendRequestDialog;
 import io.joinpa.joinpa.ui.fragments.ExploreFragment;
 import io.joinpa.joinpa.ui.fragments.FriendFragment;
 import io.joinpa.joinpa.ui.fragments.InvitesFragment;
@@ -165,6 +167,8 @@ public class MainActivity extends AppCompatActivity implements Observer {
         }else if (notificationReceiver.isFriendNotified()) {
             Friend friend = notificationReceiver.getFriend();
             notificationReceiver.setFriend(null);
+            PartialFriendRequestDialog dialog = new PartialFriendRequestDialog(this,friend);
+            dialog.show();
         }
     }
 
