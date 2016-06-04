@@ -1,187 +1,207 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="io.joinpa.joinpa.ui.views.EventDetailsActivity"
     android:background="@color/colorPrimary">
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        app:navigationIcon="@drawable/ic_arrow_back_black_24dp"
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        style="@style/ToolBarStyle">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            style="@style/toolbarTextTitle"
-            android:text="@string/event_details" />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_gravity="right"
-            android:src="@drawable/ic_check_black_24dp"
-            android:id="@+id/img_ok" />
-    </android.support.v7.widget.Toolbar>
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/toolbar"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:gravity="center_horizontal"
-        android:layout_margin="@dimen/activity_horizontal_margin">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageView10"
-            android:layout_below="@+id/toolbar"
-            android:layout_centerHorizontal="true"
-            android:src="@drawable/event_detail_banner" />
-
-        <LinearLayout
-            android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:id="@+id/view2">
+        <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/activity_vertical_margin">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/visibility"
-                android:id="@+id/textView16"
-                android:textColor="@color/colorWhite" />
-
-            <LinearLayout
-                android:orientation="horizontal"
+            android:layout_height="match_parent"
+            app:layout_scrollFlags="scroll|enterAlways|snap"
+            app:titleEnabled="false">
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/list_component_margin">
-
-                <ImageView
-                    android:layout_width="@dimen/avatar_size"
-                    android:layout_height="@dimen/avatar_size"
-                    android:id="@+id/imageView11"
-                    android:background="@drawable/blue_gray_circle_2border"
-                    android:src="@drawable/visibility"
-                    android:padding="10dp" />
+                android:layout_height="match_parent">
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    app:navigationIcon="@drawable/ic_arrow_back_black_24dp"
+                    android:layout_width="match_parent"
+                    style="@style/ToolBarStyle">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        style="@style/toolbarTextTitle"
+                        android:text="@string/event_details" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:layout_gravity="right"
+                        android:src="@drawable/ic_check_black_24dp"
+                        android:id="@+id/img_ok" />
+                </android.support.v7.widget.Toolbar>
 
                 <LinearLayout
                     android:orientation="vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/sidebar_icon_margin">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/toolbar"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:gravity="center_horizontal"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin">
 
-                    <TextView
+                    <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/shown_to_all"
-                        android:id="@+id/tv_visibility"
-                        android:textColor="@color/colorWhite" />
+                        android:id="@+id/imageView10"
+                        android:layout_below="@+id/toolbar"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/event_detail_banner" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/public_desc"
-                        android:id="@+id/tv_visibility_desc"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="11dp" />
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/activity_vertical_margin">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/visibility"
+                            android:id="@+id/textView16"
+                            android:textColor="@color/colorWhite" />
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="@dimen/list_component_margin">
+
+                            <ImageView
+                                android:layout_width="@dimen/avatar_size"
+                                android:layout_height="@dimen/avatar_size"
+                                android:id="@+id/imageView11"
+                                android:background="@drawable/blue_gray_circle_2border"
+                                android:src="@drawable/visibility"
+                                android:padding="10dp" />
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:layout_marginLeft="@dimen/sidebar_icon_margin">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/shown_to_all"
+                                    android:id="@+id/tv_visibility"
+                                    android:textColor="@color/colorWhite" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/public_desc"
+                                    android:id="@+id/tv_visibility_desc"
+                                    android:textColor="@color/colorWhite"
+                                    android:textSize="11dp" />
+                            </LinearLayout>
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent">
+
+                                <Switch
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/sw_visibility"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_centerVertical="true"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_alignParentEnd="true"
+                                    android:checked="false" />
+                            </RelativeLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/activity_vertical_margin" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/date"
+                            android:id="@+id/textView19"
+                            android:textColor="@color/colorWhite" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/edittext_height"
+                            android:text="@string/click_here_to_choose_date"
+                            android:id="@+id/tv_choose_date"
+                            android:background="@drawable/rounded_edittext"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:textColor="@color/colorPrimary"
+                            android:layout_marginTop="@dimen/list_component_margin" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/activity_vertical_margin" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/time"
+                            android:id="@+id/textView21"
+                            android:textColor="@color/colorWhite" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/edittext_height"
+                            android:text="@string/click_here_to_choose_time"
+                            android:id="@+id/tv_choose_time"
+                            android:background="@drawable/rounded_edittext"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:textColor="@color/colorPrimary"
+                            android:layout_marginTop="@dimen/list_component_margin" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/activity_vertical_margin" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/location"
+                            android:id="@+id/textView23"
+                            android:textColor="@color/colorWhite" />
+
+                    </LinearLayout>
                 </LinearLayout>
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent">
-
-                    <Switch
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/sw_visibility"
-                        android:layout_gravity="center_vertical"
-                        android:layout_centerVertical="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentEnd="true"
-                        android:checked="false" />
-                </RelativeLayout>
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/activity_vertical_margin" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/date"
-                android:id="@+id/textView19"
-                android:textColor="@color/colorWhite" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/edittext_height"
-                android:text="@string/click_here_to_choose_date"
-                android:id="@+id/tv_choose_date"
-                android:background="@drawable/rounded_edittext"
-                android:gravity="center_vertical|center_horizontal"
-                android:textColor="@color/colorPrimary"
-                android:layout_marginTop="@dimen/list_component_margin" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/activity_vertical_margin" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/time"
-                android:id="@+id/textView21"
-                android:textColor="@color/colorWhite" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/edittext_height"
-                android:text="@string/click_here_to_choose_time"
-                android:id="@+id/tv_choose_time"
-                android:background="@drawable/rounded_edittext"
-                android:gravity="center_vertical|center_horizontal"
-                android:textColor="@color/colorPrimary"
-                android:layout_marginTop="@dimen/list_component_margin" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/activity_vertical_margin" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/location"
-                android:id="@+id/textView23"
-                android:textColor="@color/colorWhite" />
-            <android.support.v7.widget.RecyclerView
-                android:layout_marginTop="@dimen/list_component_margin"
-                android:id="@+id/rv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
-        </LinearLayout>
-    </LinearLayout>
-</RelativeLayout>
+            </RelativeLayout>
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view2"
+        android:layout_margin="@dimen/activity_horizontal_margin"></android.support.v7.widget.RecyclerView>
+</android.support.design.widget.CoordinatorLayout>

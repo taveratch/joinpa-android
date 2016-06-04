@@ -5,6 +5,9 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.media.RingtoneManager;
+import android.net.Uri;
+import android.os.PowerManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
@@ -12,6 +15,9 @@ import android.util.Log;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.google.gson.Gson;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 import io.joinpa.joinpa.managers.Constants;
 import io.joinpa.joinpa.models.NotificationHandler;
@@ -27,42 +33,38 @@ public class FirebaseMessageService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         // TODO: 5/28/16 AD Handle message and show notification
-        Log.e("Received Message Noti" , remoteMessage.getNotification().getBody());
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
-        builder.setSmallIcon(R.drawable.logo);
-        builder.setContentTitle(remoteMessage.getNotification().getTitle()+"1");
+        sendNotification(remoteMessage.getData().get("body"));
+    }
+
+
+    private void sendNotification(String messageBody) {
+        System.out.println("Notification Message " + messageBody);
         Gson gson = new Gson();
-        NotificationHandler handler = gson.fromJson(remoteMessage.getNotification().getBody(),NotificationHandler.class);
+        NotificationHandler handler = gson.fromJson(messageBody,NotificationHandler.class);
         NotificationReceiver receiver = NotificationReceiver.getInstance();
-        System.out.println("message " + handler.getMessage());
-        builder.setContentText(handler.getMessage());
-        Intent intent = new Intent(this , SplashScreenActivity.class);
         if (handler.getStatus() == Constants.NOTIFICATION_EVENT){
             receiver.setEvent(handler.getEvent());
             System.out.println(handler.getEvent().getName());
-        }else{
+        }else if(handler.getStatus() == Constants.NOTIFICATION_FRIEND_REQUEST){
             receiver.setFriend(handler.getFriend());
         }
-        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        builder.setContentIntent(contentIntent);
-        NotificationManager nManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        nManager.notify(12345, builder.build());
-//        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
-//// Adds the back stack for the Intent (but not the Intent itself)
-//        stackBuilder.addParentStack(SplashScreenActivity.class);
-//// Adds the Intent that starts the Activity to the top of the stack
-//        stackBuilder.addNextIntent(intent);
-//        PendingIntent resultPendingIntent =
-//                stackBuilder.getPendingIntent(
-//                        0,
-//                        PendingIntent.FLAG_UPDATE_CURRENT
-//                );
-//        builder.setContentIntent(resultPendingIntent);
-//        NotificationManager mNotificationManager =
-//                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-//// mId allows you to update the notification later on.
-//        mNotificationManager.notify(12345, builder.build());
-    }
+        Intent intent = new Intent(this, SplashScreenActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
+                PendingIntent.FLAG_ONE_SHOT);
+        Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
+                .setSmallIcon(R.drawable.logo)
+                .setContentTitle("JoinPa")
+                .setContentText(handler.getMessage())
+                .setAutoCancel(true)
+                .setSound(defaultSoundUri)
+                .setContentIntent(pendingIntent);
 
+        NotificationManager notificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        notificationManager.notify(0, notificationBuilder.build());
+    }
 
 }
