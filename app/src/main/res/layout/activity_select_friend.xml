@@ -56,7 +56,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/search"
                 android:id="@+id/textView14"
-                android:textColor="@color/colorWhite" />
+                android:textColor="@color/colorWhite"
+                android:visibility="gone" />
 
             <EditText
                 android:layout_width="match_parent"
@@ -66,7 +67,8 @@
                 android:layout_marginTop="@dimen/text_input_margin_top"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:visibility="gone" />
         </LinearLayout>
 
         <LinearLayout
