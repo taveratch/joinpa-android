@@ -115,6 +115,10 @@ public class EventActivity extends AppCompatActivity implements Observer {
         if (dateEdited) data.put("date", event.getDate().toLocaleString());
         if (visibilityEdited) data.put("isPrivate", event.isPrivate() + "");
 
+        nameEdited = false;
+        dateEdited = false;
+        visibilityEdited = false;
+
         ProgressDialogUtil.show(this, "Please wait");
         EditEventResponse response = new EditEventResponse(data);
         response.addObserver(this);
@@ -224,6 +228,7 @@ public class EventActivity extends AppCompatActivity implements Observer {
         dateEdited = true;
         setChanged();
         DateTimeHolder dateTimeHolder = new DateTimeHolder(this, eventDate, eventTime);
+        dateTimeHolder.setDate(event.getDate());
         DateTimeSelectorDialog dialog = new DateTimeSelectorDialog(this, dateTimeHolder);
         dialog.show();
         event.setDate(dateTimeHolder.getDate());

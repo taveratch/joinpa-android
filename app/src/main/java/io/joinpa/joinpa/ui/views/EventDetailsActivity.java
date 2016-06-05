@@ -125,6 +125,7 @@ public class EventDetailsActivity extends AppCompatActivity implements Observer 
         event.setTimeStamp(System.currentTimeMillis());
         Date date = dateTimeHolder.getDate();
         event.setDate(date);
+        System.out.println("DATE : " + date.toLocaleString());
         Gson gson = new Gson();
         System.out.println(gson.toJson(event));
         CreateEventResponse response = new CreateEventResponse(event);
