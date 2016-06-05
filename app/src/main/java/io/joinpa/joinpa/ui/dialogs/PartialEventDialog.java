@@ -52,7 +52,7 @@ public class PartialEventDialog extends Dialog {
     private App app;
 
     public PartialEventDialog(Context context,Event event) {
-        super(context);
+        super(context,R.style.dialogStyle);
         this.event = event;
         app = App.getInstance();
     }

@@ -42,7 +42,7 @@ public class FriendRequestDialog extends Dialog {
     }
 
     public FriendRequestDialog(Context context, List<Friend> friendRequest,Observer observer) {
-        super(context);
+        super(context,R.style.dialogStyle);
         this.friendRequest = friendRequest;
         this.observer = observer;
     }

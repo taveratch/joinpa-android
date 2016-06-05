@@ -5,6 +5,8 @@ import android.content.Context;
 
 import java.util.Observer;
 
+import io.joinpa.joinpa.R;
+
 /**
  * Created by TAWEESOFT on 5/30/16 AD.
  */
@@ -19,7 +21,7 @@ public class ObservableDialog extends Dialog {
     private Observable observable;
 
     public ObservableDialog(Context context) {
-        super(context);
+        super(context, R.style.dialogStyle);
         observable = new Observable();
     }
 

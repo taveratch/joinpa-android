@@ -48,7 +48,7 @@ public class NewLocationDialog extends Dialog {
     private Notifier notifier;
 
     public NewLocationDialog(Context context, Notifier notifier) {
-        super(context);
+        super(context,R.style.dialogStyle);
         this.context = context;
         this.notifier = notifier;
         app = App.getInstance();

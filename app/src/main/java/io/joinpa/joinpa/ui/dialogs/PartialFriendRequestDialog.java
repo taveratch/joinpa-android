@@ -34,7 +34,7 @@ public class PartialFriendRequestDialog extends Dialog {
     private App app;
 
     public PartialFriendRequestDialog(Context context , Friend friend) {
-        super(context);
+        super(context,R.style.dialogStyle);
         this.friend = friend;
         app = App.getInstance();
     }

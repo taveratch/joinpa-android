@@ -88,6 +88,7 @@ public class MapFragment extends SupportMapFragment implements GoogleApiClient.C
         initCamera(mCurrentLocation);
     }
     private void initCamera( Location location ) {
+        if(location == null) return;
         if (isZoomCurrentLocation)
             initCamera(new LatLng( location.getLatitude(),
                 location.getLongitude()));
