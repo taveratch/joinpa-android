@@ -100,7 +100,7 @@
         android:layout_above="@+id/btn_save"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:visibility="visible">
-    <FrameLayout
+    <RelativeLayout
         android:tag="mapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -108,8 +108,20 @@
             android:id="@+id/map"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:name="io.joinpa.joinpa.ui.fragments.MapFragment"></fragment>
-    </FrameLayout>
+            android:name="io.joinpa.joinpa.ui.fragments.MapFragment"
+            android:layout_above="@+id/textView25"></fragment>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tap and hold in map to pin the location"
+            android:id="@+id/textView25"
+            android:layout_gravity="center_horizontal|bottom"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/colorPrimary"
+            android:layout_marginTop="@dimen/text_input_margin_top" />
+    </RelativeLayout>
 </RelativeLayout>
 
 
