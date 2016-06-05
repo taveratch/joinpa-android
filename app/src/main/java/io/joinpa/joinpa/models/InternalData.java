@@ -47,7 +47,22 @@ public class InternalData {
             R.drawable.event_9,
             R.drawable.event_10,
             R.drawable.event_11,
-            R.drawable.event_12,
+            R.drawable.event_12
+    };
+
+    public int[] eventIconLarge = {
+            R.drawable.event_1_large,
+            R.drawable.event_2_large,
+            R.drawable.event_3_large,
+            R.drawable.event_4_large,
+            R.drawable.event_5_large,
+            R.drawable.event_6_large,
+            R.drawable.event_7_large,
+            R.drawable.event_8_large,
+            R.drawable.event_9_large,
+            R.drawable.event_10_large,
+            R.drawable.event_11_large,
+            R.drawable.event_12_large
     };
 
     public List<Event> events = null;

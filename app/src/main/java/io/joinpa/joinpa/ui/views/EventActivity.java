@@ -73,6 +73,9 @@ public class EventActivity extends AppCompatActivity implements Observer {
     @BindView(R.id.btn_confirm)
     ImageView btnConfirm;
 
+    @BindView(R.id.img_event_icon)
+    ImageView imgEventIcon;
+
     private Event event;
     private App app;
     private boolean isHost = false;
@@ -162,6 +165,7 @@ public class EventActivity extends AppCompatActivity implements Observer {
 
         Date date = event.getDate();
 
+        imgEventIcon.setImageResource(app.getInternalData().eventIconLarge[event.getIcon()]);
         eventName.setText(event.getName());
         hostName.setText(event.getHost().getUsername());
         numHostFriends.setText(event.getHost().getFriendList().size() + " friends");

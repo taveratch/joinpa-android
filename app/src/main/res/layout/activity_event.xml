@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,7 +10,11 @@
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:background="@color/colorBlueGray"
-        android:padding="@dimen/activity_horizontal_margin">
+        android:padding="@dimen/activity_horizontal_margin"
+        android:id="@+id/frameLayout"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <TextView
             android:layout_width="wrap_content"
@@ -24,7 +28,7 @@
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:id="@+id/image_event_icon"
+            android:id="@+id/img_event_icon"
             android:layout_gravity="center"
             android:src="@drawable/event_3" />
 
@@ -65,7 +69,10 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:orientation="vertical"
-        android:weightSum="5">
+        android:weightSum="5"
+        android:layout_below="@+id/frameLayout"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
        <RelativeLayout
            android:layout_width="match_parent"
@@ -91,7 +98,9 @@
                    android:layout_width="30dp"
                    android:layout_height="30dp"
                    android:src="@drawable/user_icon"
-                   android:layout_gravity="center" />
+                   android:layout_gravity="center"
+                   android:padding="@dimen/inside_avatar_padding"
+                   android:background="@drawable/blue_gray_circle_2border_event_datail_icons" />
 
            </LinearLayout>
 
@@ -144,7 +153,9 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:src="@drawable/ic_time"
-                    android:layout_gravity="center" />
+                    android:layout_gravity="center"
+                    android:padding="@dimen/inside_avatar_padding"
+                    android:background="@drawable/blue_gray_circle_2border_event_datail_icons" />
 
             </LinearLayout>
 
@@ -209,7 +220,9 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:src="@drawable/ic_lock"
-                    android:layout_gravity="center" />
+                    android:layout_gravity="center"
+                    android:padding="@dimen/inside_avatar_padding"
+                    android:background="@drawable/blue_gray_circle_2border_event_datail_icons" />
 
             </LinearLayout>
 
@@ -256,7 +269,9 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:src="@drawable/ic_location"
-                    android:layout_gravity="center" />
+                    android:layout_gravity="center"
+                    android:padding="@dimen/inside_avatar_padding"
+                    android:background="@drawable/blue_gray_circle_2border_event_datail_icons" />
 
             </LinearLayout>
 
@@ -291,7 +306,10 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:background="@color/colorPrimary"
-        android:id="@+id/layout_coming_pane">
+        android:id="@+id/layout_coming_pane"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <LinearLayout
             android:layout_width="50dp"
@@ -331,4 +349,4 @@
 
     </RelativeLayout>
 
-</LinearLayout>
+</RelativeLayout>

@@ -17,7 +17,7 @@ import java.util.Date;
 public class DateTimeHolder {
 
     private final String DATE_PATTERN = "EEE, d MMM";
-    private final String TIME_PATTERN = "h:mm";
+    private final String TIME_PATTERN = "H:mm";
 
     private TextView tvDate, tvTime;
     private Context context;
