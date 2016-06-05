@@ -1,8 +1,11 @@
 package io.joinpa.joinpa.ui.adapters;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import java.io.Serializable;
 
 import io.joinpa.joinpa.models.Event;
 import io.joinpa.joinpa.ui.fragments.WhoComingListFragment;
@@ -23,15 +26,21 @@ public class EventUserListPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
+        WhoComingListFragment fragment = new WhoComingListFragment();
+        Bundle bundle = new Bundle();
         switch (position){
             case 0:
-                return new WhoComingListFragment(event.getJoinedList());
+                bundle.putSerializable("userList" , (Serializable) event.getJoinedList());
+                break;
             case 1:
-                return new WhoComingListFragment(event.getPendingList());
+                bundle.putSerializable("userList" , (Serializable) event.getPendingList());
+                break;
             case 2:
-                return new WhoComingListFragment(event.getDeclinedList());
+                bundle.putSerializable("userList" , (Serializable) event.getDeclinedList());
+                break;
         }
-        return null;
+        fragment.setArguments(bundle);
+        return fragment;
     }
 
     @Override

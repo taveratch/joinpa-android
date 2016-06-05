@@ -28,15 +28,13 @@ public class WhoComingListFragment extends Fragment {
     private WhoComingAdapter adapter;
     private List<Friend> userList;
 
-    public WhoComingListFragment(List<Friend> userList) {
-        this.userList = userList;
-    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_who_coming,container, false);
         ButterKnife.bind(this,view);
+        Bundle bundle = getArguments();
+        this.userList = (List<Friend>)bundle.getSerializable("userList");
         initComponents();
         return view;
     }
