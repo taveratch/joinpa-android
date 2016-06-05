@@ -108,7 +108,7 @@
             android:id="@+id/map"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:name="io.joinpa.joinpa.ui.fragments.MapFragment"
+            android:name="ske.joinpa.joinpa.ui.fragments.MapFragment"
             android:layout_above="@+id/textView25"></fragment>
 
         <TextView

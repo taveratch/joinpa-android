@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="io.joinpa.joinpa.ui.views.EventActivity">
+    tools:context="ske.joinpa.joinpa.ui.views.EventActivity">
 
     <FrameLayout
         android:layout_width="match_parent"

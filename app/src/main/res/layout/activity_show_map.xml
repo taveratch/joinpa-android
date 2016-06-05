@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="io.joinpa.joinpa.ui.views.ShowMapActivity">
+    tools:context="ske.joinpa.joinpa.ui.views.ShowMapActivity">
     <fragment
         android:id="@+id/map"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="io.joinpa.joinpa.ui.fragments.MapFragment"></fragment>
+        android:name="ske.joinpa.joinpa.ui.fragments.MapFragment"></fragment>
 </RelativeLayout>

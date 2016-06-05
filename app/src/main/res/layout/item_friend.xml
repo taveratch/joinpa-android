@@ -7,7 +7,7 @@
     android:background="@drawable/rounded_list_item"
     >
 
-    <io.joinpa.joinpa.managers.SwipeRevealLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <ske.joinpa.joinpa.managers.SwipeRevealLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -53,5 +53,5 @@
                 android:padding="@dimen/inside_avatar_padding"
                 android:background="@drawable/blue_circle" />
         </FrameLayout>
-    </io.joinpa.joinpa.managers.SwipeRevealLayout>
+    </ske.joinpa.joinpa.managers.SwipeRevealLayout>
 </RelativeLayout>
