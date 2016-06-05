@@ -16,10 +16,8 @@
             style="@style/toolbarTextTitle"
             android:text="@string/friends"/>
     </android.support.v7.widget.Toolbar>
-
     <include
         layout="@layout/friend_list_include"></include>
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/list_item_height"

@@ -2,6 +2,7 @@ package io.joinpa.joinpa.ui.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -19,6 +20,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.joinpa.joinpa.R;
 import io.joinpa.joinpa.managers.App;
+import io.joinpa.joinpa.managers.commands.GetFriendListResponse;
 import io.joinpa.joinpa.models.Friend;
 import io.joinpa.joinpa.ui.adapters.FriendListAdapter;
 import io.joinpa.joinpa.ui.dialogs.FriendRequestDialog;
@@ -43,6 +45,9 @@ public class FriendFragment extends ObservableFragment implements Observer {
     @BindView(R.id.tv_friend_request_count)
     TextView tvFriendRequestCount;
 
+    @BindView(R.id.swipe_refresh_layout)
+    SwipeRefreshLayout swipeRefreshLayout;
+
     private App app;
 
     @Nullable
@@ -63,6 +68,7 @@ public class FriendFragment extends ObservableFragment implements Observer {
     @Override
     public void update(java.util.Observable observable, Object data) {
         initComponents();
+        swipeRefreshLayout.setRefreshing(false);
     }
 
     public void initComponents() {
@@ -92,10 +98,24 @@ public class FriendFragment extends ObservableFragment implements Observer {
                 showFriendRequestDialog(friendRequests);
             }
         });
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                fetchData();
+            }
+        });
     }
 
     public void showFriendRequestDialog(List<Friend> friendRequests) {
         FriendRequestDialog dialog = new FriendRequestDialog(getContext(), friendRequests, this);
         dialog.show();
     }
+
+    public void fetchData() {
+        GetFriendListResponse getFriendListResponse = new GetFriendListResponse();
+        getFriendListResponse.addObserver(this);
+        getFriendListResponse.execute();
+    }
+
 }
